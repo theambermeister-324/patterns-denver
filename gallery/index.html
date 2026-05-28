@@ -199,6 +199,133 @@
       font-weight: 500;
     }
 
+    /* QR codes */
+    .qr-block {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      background: #fff;
+      border: 1.5px solid #e8e4f0;
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+
+    .qr-item {
+      text-align: center;
+      flex: 1;
+      max-width: 200px;
+    }
+
+    .qr-item img {
+      display: block;
+      margin: 0 auto 10px;
+      border-radius: 8px;
+      border: 1px solid #e8e4f0;
+    }
+
+    .qr-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6436bf;
+      margin-bottom: 2px;
+    }
+
+    .qr-url {
+      font-size: 11px;
+      color: #9893a1;
+      word-break: break-all;
+    }
+
+    /* Submission form */
+    .submit-section {
+      background: #fff;
+      border: 1.5px solid #6436bf;
+      border-radius: 10px;
+      padding: 28px;
+      margin-bottom: 32px;
+    }
+
+    .submit-section h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+
+    .submit-section .form-note {
+      font-size: 13px;
+      color: #645e6e;
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      margin-bottom: 16px;
+    }
+
+    .form-row label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .form-row select,
+    .form-row input[type="text"],
+    .form-row textarea {
+      width: 100%;
+      font-size: 14px;
+      font-family: inherit;
+      color: #1a1a1a;
+      background: #faf9fc;
+      border: 1.5px solid #d8d4e4;
+      border-radius: 6px;
+      padding: 10px 12px;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color 0.15s;
+    }
+
+    .form-row select:focus,
+    .form-row input[type="text"]:focus,
+    .form-row textarea:focus {
+      outline: none;
+      border-color: #6436bf;
+    }
+
+    .form-row textarea {
+      resize: vertical;
+      min-height: 72px;
+    }
+
+    .form-row .form-hint {
+      font-size: 11px;
+      color: #9893a1;
+      margin-top: 4px;
+    }
+
+    .submit-btn {
+      display: inline-block;
+      background: #6436bf;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      margin-top: 4px;
+    }
+
+    .submit-btn:hover {
+      background: #5429a8;
+    }
+
     footer {
       text-align: center;
       font-size: 11px;
@@ -217,6 +344,20 @@
       <h1>Patterns Denver — Workshop Gallery</h1>
       <p class="subtitle">June 11, 2026 &nbsp;·&nbsp; Rhino District, Denver &nbsp;·&nbsp; 14 practitioners, 7 pairs, one afternoon</p>
     </header>
+
+    <!-- QR codes — scan to get started / open gallery -->
+    <div class="qr-block">
+      <div class="qr-item">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://github.com/theambermeister-324/patterns-denver" width="160" height="160" alt="QR code for workshop repo">
+        <div class="qr-label">Workshop Repo</div>
+        <div class="qr-url">github.com/theambermeister-324/patterns-denver</div>
+      </div>
+      <div class="qr-item">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://patterns-denver.netlify.app" width="160" height="160" alt="QR code for gallery wall">
+        <div class="qr-label">Gallery Wall</div>
+        <div class="qr-url">patterns-denver.netlify.app</div>
+      </div>
+    </div>
 
     <div class="prompt-bar">
       <strong>The afternoon prompt</strong>
@@ -294,6 +435,50 @@
         <div class="empty-state">Output pending — check back after June 11</div>
       </div>
 
+    </div>
+
+    <!-- Gallery submission form — Netlify processes this natively -->
+    <div class="submit-section">
+      <h3>Add your pair's output</h3>
+      <p class="form-note">Fill this out from your phone or laptop. No git required — your output goes straight to the gallery.</p>
+      <form name="gallery-submissions" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="gallery-submissions">
+        <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+        <div class="form-row">
+          <label for="pair">Your pair</label>
+          <select id="pair" name="pair" required>
+            <option value="" disabled selected>Select your pair…</option>
+            <option>Julian Hartnett + Meghan Morris</option>
+            <option>Rachael Greene + Eric Leckband</option>
+            <option>Rebecca Fanning + Lex ReganHolzheimer</option>
+            <option>Patrick Farrell + Tambralyn Peterson</option>
+            <option>Chris Holder + Ari Weissman</option>
+            <option>Bridget Higgins + Tony Walt</option>
+            <option>Scott Johns + Connie Benedict</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="sentence">Your starting sentence</label>
+          <input type="text" id="sentence" name="sentence" placeholder="I want to see if AI can help me with…" required>
+          <p class="form-hint">The sentence you wrote before pairing began.</p>
+        </div>
+
+        <div class="form-row">
+          <label for="built">What you built</label>
+          <textarea id="built" name="built" placeholder="We deployed an agent that…" required></textarea>
+          <p class="form-hint">1–2 sentences. What did it do?</p>
+        </div>
+
+        <div class="form-row">
+          <label for="surprise">What surprised you</label>
+          <textarea id="surprise" name="surprise" placeholder="We didn't expect…" required></textarea>
+          <p class="form-hint">One sentence. What broke, worked unexpectedly, or changed how you think about this?</p>
+        </div>
+
+        <button type="submit" class="submit-btn">Add to gallery →</button>
+      </form>
     </div>
 
     <div class="meta-section">
