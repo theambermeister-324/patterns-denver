@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patterns Denver — Workshop Gallery</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      background: #f8f9fa;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+      border-bottom: 1px solid #e8e4f0;
+      padding-bottom: 32px;
+    }
+
+    .logo {
+      font-size: 11px;
+      font-weight: 700;
+      color: #6436bf;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.4px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: #645e6e;
+    }
+
+    .prompt-bar {
+      background: #6436bf;
+      color: #fff;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .prompt-bar strong {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-bottom: 6px;
+    }
+
+    .prompt-bar em {
+      font-style: italic;
+      font-size: 17px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6436bf;
+      margin-bottom: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .pair-card {
+      background: #fff;
+      border: 1.5px solid #e8e4f0;
+      border-radius: 10px;
+      padding: 20px 22px;
+      position: relative;
+    }
+
+    .pair-card.filled {
+      border-color: #6436bf;
+    }
+
+    .pair-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #6436bf;
+      margin-bottom: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .pair-orgs {
+      font-size: 12px;
+      color: #9893a1;
+      margin-bottom: 14px;
+    }
+
+    .pair-sentence {
+      font-size: 13px;
+      font-style: italic;
+      color: #3d3847;
+      margin-bottom: 12px;
+      padding: 10px 12px;
+      background: #f3f0f9;
+      border-radius: 6px;
+      border-left: 3px solid #6436bf;
+    }
+
+    .pair-built {
+      font-size: 13px;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .pair-surprise {
+      font-size: 12px;
+      color: #645e6e;
+    }
+
+    .empty-state {
+      font-size: 13px;
+      color: #c4c0cb;
+      font-style: italic;
+    }
+
+    .track-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .tag-curious {
+      background: #e6f4ea;
+      color: #2e7d32;
+    }
+
+    .tag-advanced {
+      background: #f0ebfa;
+      color: #6436bf;
+    }
+
+    .meta-section {
+      background: #fff;
+      border: 1px solid #e8e4f0;
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .meta-section h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+    }
+
+    .facilitators {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .facilitator-chip {
+      font-size: 12px;
+      background: #f3f0f9;
+      color: #6436bf;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 11px;
+      color: #c4c0cb;
+      letter-spacing: 0.06em;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #f0ecf8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">Knapsack × Crux Digital × FuegoUX</div>
+      <h1>Patterns Denver — Workshop Gallery</h1>
+      <p class="subtitle">June 11, 2026 &nbsp;·&nbsp; Rhino District, Denver &nbsp;·&nbsp; 14 practitioners, 7 pairs, one afternoon</p>
+    </header>
+
+    <div class="prompt-bar">
+      <strong>The afternoon prompt</strong>
+      <em>"Your design system has a documentation gap. You have an AI agent. What's the first thing you'd automate? Deploy it."</em>
+    </div>
+
+    <div class="section-label">Curious-but-new track</div>
+    <div class="grid">
+
+      <!-- Pair 1 -->
+      <div class="pair-card">
+        <span class="track-tag tag-curious">Curious-but-new</span>
+        <div class="pair-name">Julian Hartnett + Meghan Morris</div>
+        <div class="pair-orgs">Maxio · Aetna/CVS Health</div>
+        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
+        <div class="empty-state">Output pending — check back after June 11</div>
+      </div>
+
+      <!-- Pair 2 -->
+      <div class="pair-card">
+        <span class="track-tag tag-curious">Curious-but-new</span>
+        <div class="pair-name">Rachael Greene + Eric Leckband</div>
+        <div class="pair-orgs">SageSure · USAA</div>
+        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
+        <div class="empty-state">Output pending — check back after June 11</div>
+      </div>
+
+      <!-- Pair 3 -->
+      <div class="pair-card">
+        <span class="track-tag tag-curious">Curious-but-new</span>
+        <div class="pair-name">Rebecca Fanning + Lex ReganHolzheimer</div>
+        <div class="pair-orgs">Engrain · ADP</div>
+        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
+        <div class="empty-state">Output pending — check back after June 11</div>
+      </div>
+
+      <!-- Pair 4 -->
+      <div class="pair-card">
+        <span class="track-tag tag-curious">Curious-but-new</span>
+        <div class="pair-name">Patrick Farrell + Tambralyn Peterson</div>
+        <div class="pair-orgs">M&amp;T Bank · Allegion</div>
+        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
+        <div class="empty-state">Output pending — check back after June 11</div>
+      </div>
+
+      <!-- Pair 5 -->
+      <div class="pair-card">
+        <span class="track-tag tag-curious">Curious-but-new</span>
+        <div class="pair-name">Chris Holder + Ari Weissman</div>
+        <div class="pair-orgs">Spirence · HealthEdge</div>
+        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
+        <div class="empty-state">Output pending — check back after June 11</div>
+      </div>
+
+      <!-- Pair 6 -->
+      <div class="pair-card">
+        <span class="track-tag tag-curious">Curious-but-new</span>
+        <div class="pair-name">Bridget Higgins + Tony Walt</div>
+        <div class="pair-orgs">Engrain · Spectrum</div>
+        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
+        <div class="empty-state">Output pending — check back after June 11</div>
+      </div>
+
+    </div>
+
+    <div class="section-label">Advanced track</div>
+    <div class="grid">
+
+      <!-- Pair 7 -->
+      <div class="pair-card">
+        <span class="track-tag tag-advanced">Advanced</span>
+        <div class="pair-name">Scott Johns + Connie Benedict</div>
+        <div class="pair-orgs">Intuit · Independent</div>
+        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
+        <div class="empty-state">Output pending — check back after June 11</div>
+      </div>
+
+    </div>
+
+    <div class="meta-section">
+      <h3>Facilitators</h3>
+      <div class="facilitators">
+        <span class="facilitator-chip">Amber Atkins — Knapsack</span>
+        <span class="facilitator-chip">Angie Stevenson — Knapsack</span>
+        <span class="facilitator-chip">Aaron Stone — Crux Digital</span>
+        <span class="facilitator-chip">Nate Wearin — FuegoUX</span>
+      </div>
+    </div>
+
+    <footer>
+      Knapsack × Crux Digital × FuegoUX &nbsp;·&nbsp; Patterns Denver 2026 &nbsp;·&nbsp;
+      <a href="https://github.com/theambermeister-324/patterns-denver" style="color:#9893a1;">github</a>
+    </footer>
+  </div>
+</body>
+</html>

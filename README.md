@@ -1,6 +1,12 @@
-# LLM Knowledge Base Template
+# Patterns Denver — AI Sandbox Workshop
 
-A Claude Code template for spinning up LLM-powered knowledge bases. Drop in source material, ask questions, and Claude maintains a structured, cross-referenced wiki for you.
+**June 11, 2026 · Rhino District, Denver**
+
+This is the workshop sandbox for the Patterns Denver AI Sandbox session. If you're a participant, start with **[WORKSHOP.md](WORKSHOP.md)**.
+
+A Claude Code-powered knowledge base pre-configured for design system source material. Drop in your component docs, pattern library, tokens, or any design system documentation — and use Claude to surface gaps, answer questions, and automate the first thing worth automating.
+
+> *"Your design system has a documentation gap. You have an AI agent. What's the first thing you'd automate? Deploy it."*
 
 ## How It Works
 
