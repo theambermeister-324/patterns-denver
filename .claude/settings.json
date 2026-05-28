@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(ls:*)",
+      "Bash(npx mdbase:*)",
+      "Bash(pnpm install:*)",
+      "Bash(npm install:*)",
+      "Bash(chmod +x scripts/validate-md.sh)",
+      "Bash(bash scripts/validate-md.sh)",
+      "Bash(which obsidian-cli*)",
+      "Bash(which oboe*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/validate-md.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
