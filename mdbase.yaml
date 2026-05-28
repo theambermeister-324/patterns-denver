@@ -1,0 +1,6 @@
+spec_version: '0.2'
+# https://github.com/callumalpass/mdbase-spec/blob/main/04-configuration.md
+settings:
+  default_validation: error
+  default_strict: true
+  timezone: 'America/Los_Angeles'
