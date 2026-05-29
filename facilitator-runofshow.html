@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patterns Denver — AI Sandbox Workshop Run-of-Show</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      background: #f8f9fa;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .logo {
+      font-size: 11px;
+      font-weight: 700;
+      color: #6436bf;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #645e6e;
+      max-width: 540px;
+      margin: 0 auto 20px;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: #645e6e;
+    }
+
+    .meta-row span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .meta-row strong {
+      color: #1a1a1a;
+    }
+
+    /* Section labels */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6436bf;
+      margin-bottom: 8px;
+    }
+
+    /* Premise banner */
+    .premise-banner {
+      background: linear-gradient(135deg, #6436bf 0%, #42247f 100%);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      color: #fff;
+    }
+
+    .premise-banner .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-bottom: 10px;
+    }
+
+    .premise-banner h2 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+
+    .premise-banner p {
+      font-size: 15px;
+      opacity: 0.9;
+      max-width: 620px;
+      line-height: 1.6;
+    }
+
+    /* Section headers */
+    h2.section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: #645e6e;
+      margin-bottom: 20px;
+    }
+
+    .section-block {
+      margin-bottom: 48px;
+    }
+
+    /* Cards */
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 24px 28px;
+      border: 1px solid #e8e4f0;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #4a4456;
+      line-height: 1.6;
+    }
+
+    .card .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .tag-advanced {
+      background: #f0ebff;
+      color: #6436bf;
+    }
+
+    .tag-curious {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .tag-everyone {
+      background: #fff3e0;
+      color: #e65100;
+    }
+
+    /* Prompt cards — larger, on-screen style */
+    .prompt-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 2px solid #e8e4f0;
+      padding: 28px 32px;
+      margin-bottom: 20px;
+    }
+
+    .prompt-card.curious {
+      border-color: #a5d6a7;
+      background: #f9fefb;
+    }
+
+    .prompt-card.advanced {
+      border-color: #ce93d8;
+      background: #fdf8ff;
+    }
+
+    .prompt-card.everyone {
+      border-color: #ffe082;
+      background: #fffdf5;
+    }
+
+    .prompt-card .track-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .curious .track-label { color: #2e7d32; }
+    .advanced .track-label { color: #6436bf; }
+    .everyone .track-label { color: #e65100; }
+
+    .prompt-text {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1a1a1a;
+      line-height: 1.4;
+      letter-spacing: -0.2px;
+      margin-bottom: 12px;
+    }
+
+    .prompt-note {
+      font-size: 13px;
+      color: #645e6e;
+      line-height: 1.6;
+    }
+
+    /* Timeline / onboarding steps */
+    .steps {
+      list-style: none;
+      border-left: 2px solid #e8e4f0;
+      padding-left: 24px;
+      margin-left: 8px;
+    }
+
+    .steps li {
+      position: relative;
+      padding-bottom: 20px;
+      font-size: 14px;
+      color: #4a4456;
+      line-height: 1.6;
+    }
+
+    .steps li:last-child { padding-bottom: 0; }
+
+    .steps li::before {
+      content: '';
+      position: absolute;
+      left: -31px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #6436bf;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px #6436bf;
+    }
+
+    .steps li .time {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6436bf;
+      background: #f0ebff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-right: 8px;
+    }
+
+    .steps li strong { color: #1a1a1a; }
+
+    /* Pairing map */
+    .pairing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .pairing-grid { grid-template-columns: 1fr; }
+    }
+
+    .pair-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px 20px;
+      border: 1px solid #e8e4f0;
+    }
+
+    .pair-card .pair-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6436bf;
+      margin-bottom: 8px;
+    }
+
+    .pair-card .names {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+
+    .pair-card .orgs {
+      font-size: 12px;
+      color: #8b85a0;
+      margin-bottom: 6px;
+    }
+
+    .pair-card .rationale {
+      font-size: 13px;
+      color: #4a4456;
+      line-height: 1.5;
+    }
+
+    .pair-card.advanced-pair {
+      border-color: #ce93d8;
+      background: #fdf8ff;
+    }
+
+    /* Repo setup steps */
+    .setup-steps {
+      counter-reset: step;
+      list-style: none;
+    }
+
+    .setup-steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+
+    .setup-steps li::before {
+      content: counter(step);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+      background: #6436bf;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .setup-steps li .step-content {
+      flex: 1;
+    }
+
+    .setup-steps li .step-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+
+    .setup-steps li .step-detail {
+      font-size: 14px;
+      color: #4a4456;
+      line-height: 1.6;
+    }
+
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      background: #f0ebff;
+      color: #42247f;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .code-block {
+      background: #1a1a2e;
+      color: #e8e4f0;
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 12px 0;
+      overflow-x: auto;
+    }
+
+    .code-block .comment { color: #8b85a0; }
+    .code-block .cmd { color: #a5d6a7; }
+
+    /* Triage card */
+    .triage-card {
+      background: #fff3e0;
+      border: 2px solid #ffe082;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+    }
+
+    .triage-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #e65100;
+      margin-bottom: 14px;
+    }
+
+    .triage-card ol {
+      padding-left: 20px;
+      font-size: 14px;
+      color: #4a4456;
+      line-height: 1.8;
+    }
+
+    /* Open questions */
+    .question-list {
+      list-style: none;
+    }
+
+    .question-list li {
+      display: flex;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid #f0ebff;
+      font-size: 14px;
+      color: #4a4456;
+      line-height: 1.6;
+      align-items: flex-start;
+    }
+
+    .question-list li:last-child { border-bottom: none; }
+
+    .question-list li .owner {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6436bf;
+      background: #f0ebff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    /* Divider */
+    hr {
+      border: none;
+      border-top: 1px solid #e8e4f0;
+      margin: 40px 0;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #8b85a0;
+      margin-top: 48px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="logo">Knapsack + Crux Digital</div>
+      <h1>Patterns Denver<br>AI Sandbox Workshop</h1>
+      <p class="subtitle">Run-of-show, prompts, repo setup, and pairing map for facilitators</p>
+      <div class="meta-row">
+        <span>📅 <strong>June 11, 2026</strong></span>
+        <span>📍 <strong>Denver, CO — Patterns Conference</strong></span>
+        <span>👥 <strong>14 participants</strong></span>
+        <span>🎯 <strong>CongaLine sandbox</strong></span>
+      </div>
+    </header>
+
+    <!-- Premise -->
+    <div class="premise-banner">
+      <div class="eyebrow">Session premise</div>
+      <h2>You already know what's scary — let's make that the first jump.</h2>
+      <p>
+        Participants deploy a real AI agent fleet using Crux Digital's open-source CongaLine platform, tethered to a
+        problem they named themselves. Not a demo. Not a deck. If they leave still calling this "scary," the session failed.
+      </p>
+    </div>
+
+    <!-- Facilitator briefs -->
+    <div class="card" style="margin-bottom: 40px; border-color: #e8e4f0;">
+      <h3 style="margin-bottom:14px;">Morning Facilitator Stories — what each person brings</h3>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div>
+          <div class="tag tag-everyone" style="margin-bottom:6px;">Amber</div>
+          <p><strong>The Enable story.</strong> How Knapsack built an AI-powered sales toolkit in the terminal. What it took, what surprised them, what it means for design system teams thinking about their own AI workflows.</p>
+        </div>
+        <div>
+          <div class="tag tag-advanced" style="margin-bottom:6px;">Aaron Stone — Crux Digital</div>
+          <p><strong>The CongaLine story.</strong> It started with an Nvidia engagement right before OpenClaw landed. Their stakeholder called and said: <em>"Research securing open claw — that's the biggest problem we have."</em> Agents were being given access to email, calendar, GitHub, everything — and they were doing things they <em>thought</em> were right. Reading all your email. Sending messages to the wrong people. C-suite headlines. The enterprise question became: will organizations adopt this? Answer: they won't (security) or they'll be super loose about it and absorb the fallout.</p>
+          <p style="margin-top:8px;">CongaLine is the third option. Zero ingress, zero egress, complete isolation, zero trust starting point. One agent can't see the next agent. The UI is Slack. The surprise: a team agent adapted to their personality and sense of humor within days — and months later, connected a stakeholder's name from a conversation it had quietly read four weeks earlier. It's a team member. And it never spilled a thing.</p>
+          <p style="margin-top:8px;">His honest framing: <em>"CongaLine is an experiment. Whatever's the right format to give people tools to play with and a problem to solve — that's my happy place."</em></p>
+        </div>
+        <div>
+          <div class="tag tag-curious" style="margin-bottom:6px;">Nate Wearin — FuegoUX</div>
+          <p><strong>The "should we" story.</strong> Cross-client view on the central tension: research, design, and dev workflows being reshaped — and the anxiety of not knowing which pieces should stay manual vs. AI-assisted. Where human judgment, critical thinking, and design differentiation still matter. Better outcomes, not just faster ones.</p>
+        </div>
+        <div>
+          <div class="tag tag-everyone" style="margin-bottom:6px;">Angie</div>
+          <p><strong>Her AI journey.</strong> Personal proof point — accessible, first-person, grounded in her own experience. The entry point for participants who aren't sure where they fit in the room.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Psychological Safety — Morning Arc -->
+    <div class="card" style="margin-bottom:32px; border-color:#6436bf; background:#f8f5ff;">
+      <h3 style="color:#6436bf; margin-bottom:12px;">&#9873; Morning Anchor — Say This Out Loud Before Anyone Opens a Laptop</h3>
+      <p style="font-size:14px; color:#3d3847; margin-bottom:16px;">
+        Before anonymous cards are read, before the first prompt goes on screen — establish the container. Research on mixed-maturity rooms is clear: without this framing, advanced participants dominate and beginners disengage. Five sentences. First five minutes. Non-negotiable.
+      </p>
+      <div style="background:#fff; border-radius:8px; padding:16px 20px; border-left:3px solid #6436bf;">
+        <p style="font-size:15px; font-style:italic; color:#1a1a1a; margin-bottom:10px;">"Everything you build today is disposable. The sandbox is the point."</p>
+        <p style="font-size:15px; font-style:italic; color:#1a1a1a; margin-bottom:10px;">"There is no wrong answer to what you automate first."</p>
+        <p style="font-size:15px; font-style:italic; color:#1a1a1a; margin-bottom:0;">"If something breaks — great. That's data."</p>
+      </div>
+      <p style="font-size:12px; color:#645e6e; margin-top:12px;">
+        <strong>Why it matters:</strong> Participants arrive with very different levels of confidence. This framing gives beginners permission to try things they'd otherwise be embarrassed to attempt in front of peers from Intuit and USAA. Say it out loud, not on a slide.
+      </p>
+    </div>
+
+    <!-- Section A: The Prompts -->
+    <div class="section-block">
+      <div class="section-label">Section A</div>
+      <h2 class="section-title">The Prompts</h2>
+      <p class="section-desc">Three prompts. Each serves a different moment in the afternoon. Know them before you walk in.</p>
+
+      <!-- Curious-but-new prompt -->
+      <div class="prompt-card curious">
+        <div class="track-label">Curious-but-new track — visible on screen when participants sit down</div>
+        <div class="prompt-text">
+          Your design system has a documentation gap.<br>
+          You have an AI agent.<br>
+          What's the first thing you'd automate? Deploy it.
+        </div>
+        <div class="prompt-note">
+          <strong>Who sees this:</strong> Meghan, Eric, Lex, Tambralyn, Bridget, Rebecca, Chris, Connie, Ari (9 participants)<br>
+          <strong>Environment:</strong> One agent already running. They modify, extend, or redirect — no blank-screen paralysis.<br>
+          <strong>Timing:</strong> On screen before participants sit down. They read it while cloning the repo.
+        </div>
+      </div>
+
+      <!-- Advanced prompt -->
+      <div class="prompt-card advanced">
+        <div class="track-label">Advanced track — revealed after onboarding is confirmed</div>
+        <div class="prompt-text">
+          Deploy a CongaLine agent fleet that runs a design system linting agent — one agent per platform (web, native, email).
+          Configure isolation policies that mirror your organization's governance model. What breaks first?
+        </div>
+        <div class="prompt-note">
+          <strong>Who sees this:</strong> Scott, Julian, Patrick, Rachael (and Tony if he's engaged)<br>
+          <strong>Environment:</strong> Full CongaLine CLI, empty agent manifest. They define the fleet architecture.<br>
+          <strong>Note:</strong> They should hit real walls. That's the point. Don't rescue them too quickly.
+        </div>
+      </div>
+
+      <!-- Pairing prompt -->
+      <div class="prompt-card everyone">
+        <div class="track-label">Everyone — written before pairing is announced</div>
+        <div class="prompt-text">
+          I want to see if AI can help me with ___.
+        </div>
+        <div class="prompt-note">
+          <strong>Who writes this:</strong> All 14 participants<br>
+          <strong>Timing:</strong> After the outdoor break, before pairing is announced<br>
+          <strong>Format:</strong> One sentence only. No elaboration. Pairing happens around this sentence.<br>
+          <strong>Facilitator use:</strong> Read responses to confirm or adjust the pre-assigned pairing map.
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Section B: Shared Repo Setup -->
+    <div class="section-block">
+      <div class="section-label">Section B</div>
+      <h2 class="section-title">Shared Workshop Repo Setup</h2>
+      <p class="section-desc">The curious-but-new sandbox is <strong>live</strong>. Repo: <a href="https://github.com/theambermeister-324/patterns-denver" style="color:#6436bf;">github.com/theambermeister-324/patterns-denver</a> · Gallery: <a href="https://patterns-denver.netlify.app" style="color:#6436bf;">patterns-denver.netlify.app</a></p>
+
+      <ul class="setup-steps">
+        <li>
+          <div class="step-content">
+            <div class="step-title">✅ Curious-but-new sandbox — live</div>
+            <div class="step-detail">
+              <a href="https://github.com/theambermeister-324/patterns-denver" style="color:#6436bf;">theambermeister-324/patterns-denver</a> is public, pre-configured, and deployed.
+              Participants clone it, run <code>npm install &amp;&amp; claude</code>, and use <code>/ingest all</code> + <code>/query</code> against pre-loaded design system docs.
+              No Docker required for this track. Gallery wall live at <a href="https://patterns-denver.netlify.app" style="color:#6436bf;">patterns-denver.netlify.app</a>.
+            </div>
+            <div class="code-block">
+              <span class="comment"># What curious-but-new participants run on the day</span><br>
+              <span class="cmd">git clone https://github.com/theambermeister-324/patterns-denver</span><br>
+              <span class="cmd">cd patterns-denver && npm install</span><br>
+              <span class="cmd">claude</span><br>
+              <span class="comment"># then: /setup → /ingest all → /query What are the documentation gaps?</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="step-content">
+            <div class="step-title">Advanced track — CongaLine config (Owner: Aaron, due June 4)</div>
+            <div class="step-detail">
+              If Aaron delivers a pre-configured CongaLine Docker setup by June 4, add it to the repo or link to it from
+              <code>WORKSHOP.md</code>. Two branches still the goal:
+              <ul style="margin: 10px 0 0 16px; font-size:14px; line-height:1.8; color:#4a4456;">
+                <li><code>main</code> — curious-but-new (Claude Code KB — already live)</li>
+                <li><code>advanced</code> — CongaLine Docker, empty agent manifest</li>
+              </ul>
+              If the CongaLine config doesn't arrive by June 4, advanced track uses raw
+              <a href="https://github.com/cruxdigital-llc/CongaLine" style="color:#6436bf;">cruxdigital-llc/CongaLine</a> directly
+              — Scott, Julian, Patrick, Rachael can handle it.
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="step-content">
+            <div class="step-title">Print triage cards before leaving for the venue</div>
+            <div class="step-detail">
+              7 copies of <code>triage-card.md</code> — one per pair. Already in the repo.
+              Aaron is the primary technical resolver but should not be a single point of failure.
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="step-content">
+            <div class="step-title">Dry run by June 4 (Owner: Aaron)</div>
+            <div class="step-detail">
+              Put a first-timer in front of the curious-but-new config cold. Time to first useful query output.
+              Target: under 15 minutes. If it takes longer, fix it before June 11.
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Triage card template -->
+      <div class="triage-card">
+        <h3>🛠 Triage Card — print one per pair (7 copies)</h3>
+        <p style="font-size:13px; color:#6d4c41; margin-bottom:10px;">Full version in <code>triage-card.md</code> in the repo. Quick version here:</p>
+        <ol>
+          <li><strong>Is Claude Code running?</strong> Type <code>claude</code> in your terminal inside the <code>patterns-denver</code> folder. If nothing happens: <code>npm install -g @anthropic-ai/claude-code</code></li>
+          <li><strong>Is there something in <code>raw/</code>?</strong> Run <code>ls raw/</code> — you should see <code>sample-design-system.md</code> or your own files. If empty, drop a file in.</li>
+          <li><strong>Did you run <code>/setup</code> first?</strong> If things feel broken, run it and try again.</li>
+        </ol>
+        <p style="margin-top:12px; font-size:13px; color:#6d4c41;">
+          Still stuck → <strong>Angie</strong> (curious-but-new track) · <strong>Aaron</strong> (advanced track / environment) · <strong>"I don't know what to ask"</strong> → Amber or Nate
+        </p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Section C: Room Onboarding Protocol -->
+    <div class="section-block">
+      <div class="section-label">Section C</div>
+      <h2 class="section-title">Room Onboarding Protocol</h2>
+      <p class="section-desc">15-minute target. Phone = QR scanner + gallery viewer + output submitter. Laptop = sandbox. They work in parallel all afternoon.</p>
+
+      <!-- QR codes for projector -->
+      <div class="card" style="margin-bottom:24px; border-color:#e8e4f0; text-align:center;">
+        <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#6436bf; margin-bottom:16px;">Put these on the projector at T-0</p>
+        <div style="display:flex; gap:32px; justify-content:center; flex-wrap:wrap;">
+          <div style="text-align:center;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://github.com/theambermeister-324/patterns-denver" width="140" height="140" alt="Repo QR" style="border-radius:6px; border:1px solid #e8e4f0; display:block; margin:0 auto 8px;">
+            <div style="font-size:11px; font-weight:700; color:#6436bf; text-transform:uppercase; letter-spacing:0.08em;">Workshop Repo</div>
+            <div style="font-size:11px; color:#9893a1;">github.com/theambermeister-324/patterns-denver</div>
+          </div>
+          <div style="text-align:center;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://patterns-denver.netlify.app" width="140" height="140" alt="Gallery QR" style="border-radius:6px; border:1px solid #e8e4f0; display:block; margin:0 auto 8px;">
+            <div style="font-size:11px; font-weight:700; color:#6436bf; text-transform:uppercase; letter-spacing:0.08em;">Gallery Wall</div>
+            <div style="font-size:11px; color:#9893a1;">patterns-denver.netlify.app</div>
+          </div>
+        </div>
+      </div>
+
+      <ul class="steps">
+        <li>
+          <span class="time">T−0</span>
+          <strong>Both QR codes on screen before anyone sits down.</strong>
+          Left = repo (clone this on your laptop). Right = gallery (open this on your phone, keep it open all afternoon).
+          Don't wait for everyone to settle — it's already there when they walk in.
+        </li>
+        <li>
+          <span class="time">T+1</span>
+          <strong>Amber says:</strong> "Scan the left code with your phone and clone it on your laptop. Scan the right code and keep the gallery open on your phone. Phone stays out all afternoon — that's how you see what the room is building."
+        </li>
+        <li>
+          <span class="time">T+3</span>
+          <strong>Everyone runs <code>npm install &amp;&amp; claude</code> simultaneously.</strong>
+          Angie circulates to confirm everyone is in the right directory and Claude Code is launching.
+          Aaron watches from the front.
+        </li>
+        <li>
+          <span class="time">T+7</span>
+          <strong>Run <code>/setup</code>.</strong> Amber says: "If your setup completed — give a thumbs up."
+          Quick visual read on who is blocked. Angie moves to anyone without a thumb up.
+        </li>
+        <li>
+          <span class="time">T+10</span>
+          <strong>Drop docs → run <code>/ingest all</code>.</strong>
+          "Use the sample file for now if you don't have your own. You can replace it later."
+          Triage card is already on every table. Angie handles blocks. Aaron circulates to advanced track.
+        </li>
+        <li>
+          <span class="time">T+13</span>
+          <strong>Everyone runs their first <code>/query</code>.</strong>
+          Curious-but-new starting prompt on screen:
+          <em>"What are the documentation gaps in this design system?"</em>
+          First real output visible. Advanced track has branched to CongaLine.
+        </li>
+        <li>
+          <span class="time">T+15</span>
+          <strong>Pairing prompt on screen:</strong> "I want to see if AI can help me with ___."
+          Everyone writes their sentence. Amber reads a few out loud (with permission).
+          Pairing map revealed. Track-specific prompts go up.
+          <strong>Remind the room:</strong> "When you have output worth sharing, submit it at patterns-denver.netlify.app — from your phone or laptop, no git required."
+        </li>
+      </ul>
+
+      <div class="card" style="margin-top:20px; border-color:#fce4ec; background:#fff8f9;">
+        <h3 style="color:#c62828;">⚠️ If onboarding takes more than 15 minutes</h3>
+        <p>
+          The afternoon is at risk. Don't try to fix it in the room with 14 people watching. This is why the dry run
+          must happen by June 4. If the dry run takes more than 15 minutes, fix the config — not the protocol.
+        </p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Section D: Pairing Map -->
+    <div class="section-block">
+      <div class="section-label">Section D</div>
+      <h2 class="section-title">Pairing Map</h2>
+      <p class="section-desc">
+        Pre-assigned based on maturity spectrum. Confirm against the one-sentence pairing prompts before announcing.
+        Engrain pair is separated by design — Rebecca and Bridget are from the same org and need outside perspective.
+      </p>
+
+      <div class="pairing-grid">
+
+        <div class="pair-card advanced-pair">
+          <div class="pair-num">Advanced Track — Pair 1</div>
+          <div class="names">Scott Johns + Connie Benedict</div>
+          <div class="orgs">Intuit · Independent Consulting</div>
+          <div class="rationale">Strategic ceiling meets metrics obsession. Scott has mapped the full landscape — SaaS collapse, accountability, homogenization. Connie wants to know how you measure outcomes. They will push each other into the hardest questions.</div>
+        </div>
+
+        <div class="pair-card advanced-pair">
+          <div class="pair-num">Advanced Track — Pair 2</div>
+          <div class="names">Julian Hartnett + Rachael Greene</div>
+          <div class="orgs">Maxio · SageSure</div>
+          <div class="rationale">Julian came specifically for agentic workflow enablement. Rachael wants AI-ready design systems and AI-generated prototypes. Both are implementation-focused and will move fast — give them the hard prompt and get out of the way.</div>
+        </div>
+
+        <div class="pair-card advanced-pair">
+          <div class="pair-num">Advanced Track — Pair 3</div>
+          <div class="names">Patrick Farrell</div>
+          <div class="orgs">M&T Bank</div>
+          <div class="rationale">Systems thinker who wants structured content for automation and documentation delivery. Solo or joins Scott/Julian if they want to push deeper. Will engage with the architectural side of CongaLine's isolation model.</div>
+        </div>
+
+        <div class="pair-card">
+          <div class="pair-num">Curious-but-New — Pair 4</div>
+          <div class="names">Julian Hartnett + Meghan Morris</div>
+          <div class="orgs">Maxio · Aetna/CVS Health</div>
+          <div class="rationale">Agentic enthusiasm anchors the adoption layer. Julian can show Meghan what's possible without making her feel behind. Meghan's org-education angle will surface questions Julian hasn't thought about.</div>
+        </div>
+
+        <div class="pair-card">
+          <div class="pair-num">Curious-but-New — Pair 5</div>
+          <div class="names">Rachael Greene + Eric Leckband</div>
+          <div class="orgs">SageSure · USAA</div>
+          <div class="rationale">AI-ready design system meets multi-platform brand rollout. Rachael's technical appetite will help Eric see how CongaLine's isolation model maps to multi-platform governance. Eric's adoption expertise grounds Rachael's implementation thinking.</div>
+        </div>
+
+        <div class="pair-card">
+          <div class="pair-num">Curious-but-New — Pair 6</div>
+          <div class="names">Tambralyn Peterson + [float]</div>
+          <div class="orgs">Allegion</div>
+          <div class="rationale">Observer who wants to act. Deep question list about AI gains and design-dev handoff. Pair with someone already doing it — ideally someone from the advanced track who surfaces for a conversation. Tambralyn's questions are worth giving space.</div>
+        </div>
+
+        <div class="pair-card">
+          <div class="pair-num">Curious-but-New — Pair 7</div>
+          <div class="names">Rebecca Fanning + Lex ReganHolzheimer</div>
+          <div class="orgs">Engrain · ADP</div>
+          <div class="rationale">AI-emergent workflow leadership meets AI in craft (images, icons, illustrations). Both think in workflows and collaboration — not just components. Rebecca's VP lens gives Lex's practical concerns organizational context.</div>
+        </div>
+
+        <div class="pair-card">
+          <div class="pair-num">Curious-but-New — Pair 8</div>
+          <div class="names">Chris Holder + Ari Weissman</div>
+          <div class="orgs">Spirence · HealthEdge</div>
+          <div class="rationale">Ethics in AI-assisted design meets collaboration in AI workflows. Chris's mental health platform guardrails angle and Ari's human-AI collaboration framing are natural complements — both thinking about accountability and relationship, not just output.</div>
+        </div>
+
+        <div class="pair-card">
+          <div class="pair-num">Curious-but-New — Pair 9</div>
+          <div class="names">Bridget Higgins + Tony Walt</div>
+          <div class="orgs">Engrain · Spectrum/Charter</div>
+          <div class="rationale">Design execution meets strategic observation. Tony is a Sr. Director with no stated pain — give him space to roam. Pairing him with Bridget (who pushes design across the org) gives him someone concrete to think alongside. He may be the most valuable conversation in the room.</div>
+        </div>
+
+      </div>
+
+      <div class="card" style="margin-top:16px; border-color:#e8e4f0;">
+        <h3>Note on the Engrain pair</h3>
+        <p>
+          Rebecca Fanning and Bridget Higgins are from the same company. They are intentionally separated above.
+          Each needs outside perspective — pairing them together would mean they just continue an internal conversation.
+        </p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Knapsack Positioning Moment — Closing -->
+    <div class="card" style="margin-bottom:32px; border-color:#6436bf; background:#f8f5ff;">
+      <h3 style="color:#6436bf; margin-bottom:8px;">&#9873; Afternoon Close — 5-Minute Knapsack Moment</h3>
+      <p style="font-size:13px; color:#645e6e; margin-bottom:16px;">After gallery submissions open. Not a pitch — a demonstration of what scale looks like. 5 minutes max, then back to the room.</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div style="background:#fff; border-radius:8px; padding:14px 16px; border:1px solid #e8e4f0;">
+          <div style="font-size:11px; font-weight:700; color:#6436bf; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px;">Option A — Show Enable</div>
+          <p style="font-size:13px; color:#3d3847; margin:0;">Pull up the Enable platform live. "This is what happens when your org commits a knowledge base plus an agent workflow. We built this with Claude Code in the terminal — the same tool you've been using this afternoon."</p>
+        </div>
+        <div style="background:#fff; border-radius:8px; padding:14px 16px; border:1px solid #e8e4f0;">
+          <div style="font-size:11px; font-weight:700; color:#6436bf; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px;">Option B — Show the Knapsack MCP</div>
+          <p style="font-size:13px; color:#3d3847; margin:0;">Show the Knapsack MCP server / ingestion capability. "This is what Knapsack does at the platform layer so you don't have to rebuild this for each agent. Your design system becomes a live knowledge source."</p>
+        </div>
+      </div>
+      <div style="background:#fff; border-radius:8px; padding:14px 16px; border-left:3px solid #6436bf;">
+        <p style="font-size:14px; font-style:italic; color:#1a1a1a; margin:0;">"What you built today in a sandbox, Knapsack can make repeatable across your entire design system org."</p>
+      </div>
+      <p style="font-size:12px; color:#645e6e; margin-top:12px;">
+        <strong>Timing discipline:</strong> Hard stop at 5 minutes. Move to gallery submissions. The room just spent 2 hours doing real work — don't let the positioning moment crowd out the debrief energy.<br>
+        <strong>What this connects:</strong> No platform competitor can claim real-world enterprise deployment proof. The room just generated it. This is the moment that makes Patterns Denver a Knapsack story, not just a workshop.
+      </p>
+    </div>
+
+    <hr>
+
+    <!-- Open Questions -->
+    <div class="section-block">
+      <div class="section-label">Before June 11</div>
+      <h2 class="section-title">Open Questions</h2>
+      <p class="section-desc">All closeable this week. Most depend on today's prep call with Aaron.</p>
+
+      <ul class="question-list">
+        <li>
+          <span class="owner">Aaron — Today</span>
+          <div>
+            <strong>Aaron's story</strong> — What went wrong building CongaLine? What surprised you about running agents in production?
+            What do you want practitioners to believe when they leave? 3–4 minutes, first-person, includes a failure.
+          </div>
+        </li>
+        <li>
+          <span class="owner">Aaron — June 4</span>
+          <div>
+            <strong>Workshop repo live and dry-run tested</strong> — Public, two branches, WORKSHOP.md, triage card.
+            First-timer test completed and under 20 minutes to first heartbeat.
+          </div>
+        </li>
+        <li>
+          <span class="owner">Aaron — June 4</span>
+          <div>
+            <strong>Gallery wall platform</strong> — Figma file, GitHub repo, or shared URL? Crux decides since they own
+            the environment. Must be set up and tested before June 11.
+          </div>
+        </li>
+        <li>
+          <span class="owner">Angie — Before June 11</span>
+          <div>
+            <strong>Angie's story</strong> — What personal AI moment does she bring to the morning opener? Nail this
+            before the day so it lands clean alongside Amber's Enable story and Aaron's CongaLine story.
+          </div>
+        </li>
+        <li>
+          <span class="owner">Amber — Before June 11</span>
+          <div>
+            <strong>Anonymous input format</strong> — Index cards (analog, no friction) or shared doc (digital, easier
+            to synthesize afterward)? Pick one and commit. Don't improvise this on the day.
+          </div>
+        </li>
+        <li>
+          <span class="owner">Amber — Within 48hrs</span>
+          <div>
+            <strong>Practitioner anxiety map</strong> — Draft and send within 48 hours of June 11. Anonymous, themed,
+            no attribution. Schedule the write time before leaving the venue.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+      <p>Patterns Denver AI Sandbox Workshop — June 11, 2026</p>
+      <p style="margin-top:4px;">Knapsack × Crux Digital × FuegoUX &nbsp;·&nbsp; Facilitators: Amber Atkins, Angie Stevenson, Aaron Stone, Nate Wearin (FuegoUX)</p>
+    </footer>
+
+  </div>
+</body>
+</html>
