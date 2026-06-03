@@ -74,7 +74,7 @@ You just did that.
 
 When you've found something worth sharing, submit it to the gallery wall — no git required:
 
-1. Open **[patterns-denver.netlify.app](https://patterns-denver.netlify.app)** on your phone or laptop
+1. Open **[patterns-denver-2026.netlify.app](https://patterns-denver-2026.netlify.app)** on your phone or laptop
 2. Scroll to "Add your pair's output"
 3. Fill in: your pair, your starting sentence, what you built, what surprised you
 4. Hit submit — it goes live on the gallery

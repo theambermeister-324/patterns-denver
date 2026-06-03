@@ -38,7 +38,7 @@ A sample design system (`raw/sample-design-system.md`) is pre-loaded so you can 
 ## Gallery wall
 
 All pair outputs live in `gallery/`. The deployed gallery is at:
-**[patterns-denver.netlify.app](https://patterns-denver.netlify.app)**
+**[patterns-denver-2026.netlify.app](https://patterns-denver-2026.netlify.app)**
 
 ## Advanced track
 

@@ -34,7 +34,7 @@ Scan to open:
 
 | Workshop Repo | Gallery Wall |
 |---|---|
-| github.com/theambermeister-324/patterns-denver | patterns-denver.netlify.app |
+| github.com/theambermeister-324/patterns-denver | patterns-denver-2026.netlify.app |
 
 ---
 
