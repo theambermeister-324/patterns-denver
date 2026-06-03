@@ -65,7 +65,7 @@ If not found:
 If `wiki/` contains any `.md` files, run:
 
 ```bash
-npx mdbase validate wiki/
+find wiki/ -name "*.md" | xargs npx mdbase validate
 ```
 
 Report a summary: how many files passed, warned, failed. List failures — do not auto-fix.
