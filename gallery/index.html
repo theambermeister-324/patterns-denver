@@ -438,10 +438,10 @@
     </div>
 
     <!-- Gallery submission form — Netlify processes this natively -->
-    <div class="submit-section">
+    <div class="submit-section" id="submit-section">
       <h3>Add your pair's output</h3>
       <p class="form-note">Fill this out from your phone or laptop. No git required — your output goes straight to the gallery.</p>
-      <form name="gallery-submissions" method="POST" action="/success.html" data-netlify="true" netlify-honeypot="bot-field">
+      <form id="gallery-form" name="gallery-submissions" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="gallery-submissions">
         <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
 
@@ -479,7 +479,31 @@
 
         <button type="submit" class="submit-btn">Add to gallery →</button>
       </form>
+
+      <div id="submit-success" style="display:none; text-align:center; padding:32px 0;">
+        <div style="font-size:36px; margin-bottom:12px;">✓</div>
+        <div style="font-size:18px; font-weight:700; color:#1a1a1a; margin-bottom:8px;">Output submitted</div>
+        <div style="font-size:14px; color:#645e6e;">Your pair's work is in the gallery. The facilitators will share the full gallery after the session.</div>
+      </div>
     </div>
+
+    <script>
+      const form = document.getElementById('gallery-form');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const data = new FormData(form);
+        fetch('/', { method: 'POST', body: data })
+          .then(() => {
+            form.style.display = 'none';
+            document.getElementById('submit-success').style.display = 'block';
+          })
+          .catch(() => {
+            // fallback: let the form submit normally
+            form.removeEventListener('submit', arguments.callee);
+            form.submit();
+          });
+      });
+    </script>
 
     <div class="meta-section">
       <h3>Facilitators</h3>
