@@ -72,14 +72,14 @@ You just did that.
 
 ## Capture your output
 
-When you've found something worth sharing, add it to the gallery:
+When you've found something worth sharing, submit it to the gallery wall — no git required:
 
-1. Open `gallery/` — find your pair's folder
-2. Drop in a screenshot or paste your query + response into `pair-notes.md`
-3. One sentence: what you built and what it showed you
-4. One sentence: what surprised you or what broke
+1. Open **[patterns-denver.netlify.app](https://patterns-denver.netlify.app)** on your phone or laptop
+2. Scroll to "Add your pair's output"
+3. Fill in: your pair, your starting sentence, what you built, what surprised you
+4. Hit submit — it goes live on the gallery
 
-The gallery URL will be shared with everyone after the session.
+The gallery link will be on screen and on the QR code at the front of the room.
 
 ---
 
