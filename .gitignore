@@ -3,3 +3,4 @@ node_modules/
 /.claude/settings.local.json
 /.mdbase/
 package-lock.json
+.DS_Store
