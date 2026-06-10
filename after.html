@@ -86,7 +86,7 @@
     .page-header p {
       font-size: 15px;
       color: #645e6e;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     /* Main content */
@@ -105,16 +105,152 @@
       margin-bottom: 14px;
     }
 
-    .card-title {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
+    .card-eyebrow {
+      font-size: 10px;
       font-weight: 800;
       text-transform: uppercase;
-      color: #226633;
-      letter-spacing: .08em;
+      letter-spacing: .1em;
+      margin-bottom: 6px;
+    }
+
+    .card-eyebrow.green { color: #226633; }
+    .card-eyebrow.indigo { color: #412FE4; }
+    .card-eyebrow.muted { color: #9893a1; }
+
+    .card h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1F2937;
+      margin-bottom: 10px;
+      letter-spacing: -.02em;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #645e6e;
+      line-height: 1.6;
       margin-bottom: 14px;
+    }
+
+    /* PCRI primary card */
+    .card-primary {
+      background: #F5F4FD;
+      border: 1.5px solid #C5BEF7;
+      border-left: 4px solid #412FE4;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 14px;
+    }
+
+    .card-primary h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1F2937;
+      margin-bottom: 10px;
+      letter-spacing: -.02em;
+    }
+
+    .card-primary p {
+      font-size: 14px;
+      color: #3a3550;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: #412FE4;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background .15s;
+    }
+
+    .btn-primary:hover { background: #271C88; }
+
+    /* Pills */
+    .pill {
+      background: #f5f4f7;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: #645e6e;
+      margin-bottom: 6px;
+      display: block;
+      line-height: 1.5;
+    }
+
+    /* Slack link */
+    .slack-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F5F4FD;
+      border: 1px solid #C5BEF7;
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #412FE4;
+      text-decoration: none;
+      transition: background .15s;
+    }
+
+    .slack-link:hover { background: #E0DCF8; }
+
+    /* Partners grid */
+    .partners-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      margin-top: 4px;
+    }
+
+    .partner-block {
+      padding: 14px 16px;
+      border-right: 1px solid #E0DCF8;
+    }
+
+    .partner-block:last-child { border-right: none; }
+    .partner-block:first-child { padding-left: 0; }
+
+    .partner-name {
+      font-size: 14px;
+      font-weight: 800;
+      color: #412FE4;
+      margin-bottom: 5px;
+    }
+
+    .partner-desc {
+      font-size: 12px;
+      color: #645e6e;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .partner-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: #412FE4;
+      text-decoration: none;
+    }
+
+    .partner-link:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .partners-grid {
+        grid-template-columns: 1fr;
+      }
+      .partner-block {
+        border-right: none;
+        border-bottom: 1px solid #E0DCF8;
+        padding: 14px 0;
+      }
+      .partner-block:last-child { border-bottom: none; }
+      .partner-block:first-child { padding-left: 0; }
     }
 
     /* Dashed placeholder */
@@ -126,18 +262,6 @@
       color: #9893a1;
       font-style: italic;
       font-size: 13px;
-      line-height: 1.5;
-    }
-
-    /* Pills */
-    .pill {
-      background: #f5f4f7;
-      border-radius: 6px;
-      padding: 6px 10px;
-      font-size: 12px;
-      color: #645e6e;
-      margin-bottom: 6px;
-      display: block;
       line-height: 1.5;
     }
 
@@ -170,52 +294,72 @@
   <div class="page-header">
     <div class="page-header-inner">
       <div class="page-label">After June 11</div>
-      <h1>Take it home</h1>
-      <p>Resources, highlights, and ways to keep going.</p>
+      <h1>What's next</h1>
+      <p>You've seen what AI can do with your design system. The next step is knowing where you actually stand — and who can help you get there.</p>
     </div>
   </div>
 
   <main>
 
-    <!-- Card 1: What the room built -->
+    <!-- PCRI CTA — primary -->
+    <div class="card-primary">
+      <div class="card-eyebrow indigo">Your next step</div>
+      <h2>Take your PCRI assessment</h2>
+      <p>The Platform Capability Readiness Index benchmarks where your design system stands today — documentation coverage, AI readiness, adoption health. Takes about 10 minutes. Your score tells you what to prioritize next.</p>
+      <a class="btn-primary" href="https://www.knapsack-enable.com/app/ipe-intake" target="_blank">Start your assessment →</a>
+    </div>
+
+    <!-- Denver cohort -->
     <div class="card">
-      <div class="card-title">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#226633" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-        </svg>
-        What the room built
-      </div>
-      <div class="placeholder">
-        Coming June 13 — Amber will add the anxiety map and gallery highlights within 48 hours of the workshop.
+      <div class="card-eyebrow green">Stay connected</div>
+      <h2>The Denver cohort</h2>
+      <p>The people who were in the room today are your best peer resource. Questions, wins, frustrations — keep the conversation going.</p>
+      <a class="slack-link" href="https://knapsack-cloud.slack.com/archives/C0B9J16ENKV" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Join the Slack channel →
+      </a>
+    </div>
+
+    <!-- Partners -->
+    <div class="card">
+      <div class="card-eyebrow muted">Once you know your benchmark</div>
+      <h2>Who can help</h2>
+      <div class="partners-grid">
+        <div class="partner-block">
+          <div class="partner-name">Knapsack</div>
+          <div class="partner-desc">Platform infrastructure: component governance, token management, multi-framework publishing.</div>
+          <a class="partner-link" href="https://www.knapsack.cloud" target="_blank">knapsack.cloud →</a>
+        </div>
+        <div class="partner-block">
+          <div class="partner-name">FuegoUX</div>
+          <div class="partner-desc">Design system strategy and adoption: org alignment, contribution models, practice building.</div>
+          <a class="partner-link" href="https://www.fuegoUX.com" target="_blank">fuegoUX.com →</a>
+        </div>
+        <div class="partner-block">
+          <div class="partner-name">Crux Digital</div>
+          <div class="partner-desc">Engineering implementation: CI/CD integration, automated audits, developer tooling.</div>
+          <a class="partner-link" href="https://www.cruxdigital.io" target="_blank">cruxdigital.io →</a>
+        </div>
       </div>
     </div>
 
-    <!-- Card 2: Run it on your own system -->
+    <!-- Run it yourself -->
     <div class="card">
-      <div class="card-title">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#226633" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14"/>
-          <path d="M12 5l7 7-7 7"/>
-        </svg>
-        Run it on your own system
-      </div>
-      <span class="pill">Clone the repo, use your own docs</span>
+      <div class="card-eyebrow green">Run it on your own system</div>
+      <h2>Take it home</h2>
+      <span class="pill">Clone the repo and drop in your real docs</span>
       <span class="pill"><a href="https://claude.ai/code" style="color:#412FE4;font-weight:600;text-decoration:none;">Claude Code</a> · <a href="https://github.com/theambermeister-324/patterns-denver" style="color:#412FE4;font-weight:600;text-decoration:none;">Workshop repo</a> · <a href="https://www.knapsack.cloud" style="color:#412FE4;font-weight:600;text-decoration:none;">Knapsack</a></span>
     </div>
 
-    <!-- Card 3: Stay connected -->
+    <!-- Gallery placeholder -->
     <div class="card">
-      <div class="card-title">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#226633" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-        Stay connected
+      <div class="card-eyebrow green">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#226633" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;margin-right:4px;vertical-align:middle;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        What the room built
       </div>
-      <span class="pill">Reach out to Amber — <a href="mailto:amber@knapsack.cloud" style="color:#412FE4;font-weight:600;text-decoration:none;">amber@knapsack.cloud</a></span>
-      <span class="pill">Follow-up thread for continued peer conversation</span>
+      <div class="placeholder" style="margin-top:8px;">
+        Coming June 13 — Amber will add the anxiety map and gallery highlights within 48 hours of the workshop.
+      </div>
     </div>
 
   </main>
