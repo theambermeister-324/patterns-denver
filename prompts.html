@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompts · Patterns Denver 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #faf9fc;
+      color: #1a1a2e;
+      min-height: 100vh;
+    }
+
+    /* Nav */
+    .site-nav {
+      background: #6436bf;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      color: #fff;
+      font-weight: 800;
+      font-size: 15px;
+      text-decoration: none;
+      letter-spacing: -.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 4px;
+    }
+    .nav-link {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 5px 10px;
+      border-radius: 6px;
+      transition: background .15s, color .15s;
+    }
+    .nav-link:hover { color: #fff; background: rgba(255,255,255,.12); }
+    .nav-link.active { color: #fff; background: rgba(255,255,255,.18); font-weight: 700; }
+
+    /* Page header */
+    .page-header {
+      background: #fff;
+      border-bottom: 1.5px solid #e8e4f0;
+      padding: 36px 24px 32px;
+      text-align: center;
+    }
+    .page-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: #6436bf;
+      letter-spacing: .12em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .page-header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1a1a2e;
+      letter-spacing: -.02em;
+      margin-bottom: 10px;
+    }
+    .page-subtitle {
+      font-size: 15px;
+      color: #645e6e;
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* Main content */
+    .main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px 24px 60px;
+    }
+
+    /* Prompt cards */
+    .prompt-card {
+      background: #fff;
+      border: 1.5px solid #e8e4f0;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+    .prompt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
+    .prompt-title { font-size: 15px; font-weight: 700; }
+    .copy-btn {
+      font-size: 11px;
+      font-weight: 700;
+      color: #6436bf;
+      background: #f0ebfa;
+      border: 1px solid #c4aef0;
+      border-radius: 6px;
+      padding: 4px 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-left: 12px;
+      transition: background .15s;
+    }
+    .copy-btn:hover { background: #e8e0f7; }
+    .prompt-desc { font-size: 13px; color: #645e6e; line-height: 1.5; margin-bottom: 10px; }
+    .prompt-text {
+      background: #f8f5ff;
+      border: 1px solid #e8e0f5;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 13px;
+      color: #4a1fa0;
+      line-height: 1.5;
+    }
+
+    /* Write your own */
+    .write-your-own {
+      background: #f8f5ff;
+      border: 1.5px solid #e8e0f5;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-top: 4px;
+    }
+    .wyo-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #6436bf;
+      margin-bottom: 8px;
+    }
+    .write-your-own p { font-size: 13px; color: #3a3a3a; line-height: 1.6; margin-bottom: 10px; }
+    .write-your-own ul { font-size: 13px; color: #645e6e; line-height: 1.8; padding-left: 18px; }
+    .write-your-own code {
+      background: #fff;
+      border: 1px solid #e8e0f5;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #4a1fa0;
+    }
+
+    /* Footer */
+    .site-footer {
+      text-align: center;
+      font-size: 12px;
+      color: #a09ab0;
+      padding: 24px;
+      border-top: 1px solid #e8e4f0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a class="nav-logo" href="index.html">Patterns Denver</a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="before.html">Before</a>
+      <a class="nav-link" href="guide.html">Guide</a>
+      <a class="nav-link active" href="prompts.html">Prompts</a>
+      <a class="nav-link" href="gallery.html">Gallery</a>
+      <a class="nav-link" href="after.html">After</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-label">Day of · Prompt library</div>
+    <h1>Ready-to-run prompts</h1>
+    <p class="page-subtitle">Copy any prompt and paste directly into Claude Code. Start with the first one if you're not sure where to begin.</p>
+  </div>
+
+  <main class="main">
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <h3 class="prompt-title">Surface documentation gaps</h3>
+        <button class="copy-btn" data-prompt="/query What are the documentation gaps in this design system?">Copy</button>
+      </div>
+      <p class="prompt-desc">A broad first pass. Claude will scan what's missing — components with no usage examples, accessibility gaps, rationale that was never written down.</p>
+      <div class="prompt-text">/query What are the documentation gaps in this design system?</div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <h3 class="prompt-title">Find accessibility gaps</h3>
+        <button class="copy-btn" data-prompt="/query Which components are missing accessibility guidance?">Copy</button>
+      </div>
+      <p class="prompt-desc">Narrows to a11y specifically. Useful if accessibility coverage is uneven across your component library.</p>
+      <div class="prompt-text">/query Which components are missing accessibility guidance?</div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <h3 class="prompt-title">Think like a new engineer</h3>
+        <button class="copy-btn" data-prompt="/query What would a new engineer need to know that isn't in these docs?">Copy</button>
+      </div>
+      <p class="prompt-desc">Forces a perspective shift. What do people learn by asking a human instead of reading the docs? That gap is your first automation target.</p>
+      <div class="prompt-text">/query What would a new engineer need to know that isn't in these docs?</div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <h3 class="prompt-title">Find contradictions</h3>
+        <button class="copy-btn" data-prompt="/query Where does this system have contradictions or inconsistencies?">Copy</button>
+      </div>
+      <p class="prompt-desc">Good for mature systems with multiple authors. Token values that disagree, usage guidance that conflicts, patterns that have drifted.</p>
+      <div class="prompt-text">/query Where does this system have contradictions or inconsistencies?</div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <h3 class="prompt-title">AI-readiness audit</h3>
+        <button class="copy-btn" data-prompt="/query What documentation would I need to add to make this system AI-ready?">Copy</button>
+      </div>
+      <p class="prompt-desc">Surfaces the difference between docs written for humans and docs an AI can reliably act on.</p>
+      <div class="prompt-text">/query What documentation would I need to add to make this system AI-ready?</div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <h3 class="prompt-title">Onboarding summary</h3>
+        <button class="copy-btn" data-prompt="/query Write a 3-sentence onboarding summary for a developer joining this team">Copy</button>
+      </div>
+      <p class="prompt-desc">A generative test. If the AI can write a coherent summary, your docs have enough signal. If it hedges or hallucinates, you've found the gaps.</p>
+      <div class="prompt-text">/query Write a 3-sentence onboarding summary for a developer joining this team</div>
+    </div>
+
+    <div class="write-your-own">
+      <div class="wyo-label">Write your own</div>
+      <p>The best prompts start with your sentence from the Before page:<br>
+      <em>"I want to see if AI can help me with ___."</em></p>
+      <ul>
+        <li>Be specific about what you want to know</li>
+        <li>Name a component or token if you have one</li>
+        <li>Ask for a list, not an essay</li>
+        <li>Follow up: <code>/query Tell me more about [the gap you mentioned]</code></li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    Patterns Denver 2026 · Knapsack × FuegoUX
+  </footer>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const text = btn.dataset.prompt;
+        navigator.clipboard.writeText(text).then(() => {
+          const original = btn.textContent;
+          btn.textContent = 'Copied!';
+          btn.style.color = '#226633';
+          setTimeout(() => {
+            btn.textContent = original;
+            btn.style.color = '';
+          }, 2000);
+        }).catch(() => {
+          // Fallback: select text in prompt-text div
+          const card = btn.closest('.prompt-card');
+          const range = document.createRange();
+          range.selectNodeContents(card.querySelector('.prompt-text'));
+          window.getSelection().removeAllRanges();
+          window.getSelection().addRange(range);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
