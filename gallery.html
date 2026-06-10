@@ -338,8 +338,108 @@
       margin-top: 4px;
     }
 
-    .submit-btn:hover {
-      background: #5429a8;
+    .submit-btn:hover { background: #5429a8; }
+    .submit-btn:disabled { background: #a089d8; cursor: not-allowed; }
+
+    /* Live gallery wall */
+    .live-section {
+      margin-bottom: 32px;
+    }
+    .live-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .live-dot {
+      width: 8px; height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 3px #dcfce7;
+      animation: pulse-ring 2s ease-out infinite;
+    }
+    .live-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+    }
+    .live-count {
+      font-size: 11px;
+      color: #9893a1;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .live-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 640px) { .live-grid { grid-template-columns: 1fr; } }
+    .live-empty {
+      grid-column: 1 / -1;
+      background: #fff;
+      border: 1.5px dashed #d8d4e4;
+      border-radius: 10px;
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #c4c0cb;
+      font-style: italic;
+    }
+    .live-card {
+      background: #fff;
+      border: 1.5px solid #e8e4f0;
+      border-radius: 10px;
+      padding: 18px 20px;
+      animation: card-in 0.4s ease;
+    }
+    .live-card.new-card {
+      border-color: #6436bf;
+      box-shadow: 0 0 0 3px rgba(100,54,191,0.1);
+      animation: card-in 0.4s ease, highlight-fade 2s ease 0.4s forwards;
+    }
+    @keyframes card-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes highlight-fade {
+      from { border-color: #6436bf; box-shadow: 0 0 0 3px rgba(100,54,191,0.1); }
+      to   { border-color: #e8e4f0; box-shadow: none; }
+    }
+    .card-session {
+      font-size: 13px;
+      font-weight: 700;
+      color: #6436bf;
+      margin-bottom: 8px;
+    }
+    .card-sentence {
+      font-size: 12px;
+      font-style: italic;
+      color: #3d3847;
+      background: #f3f0f9;
+      border-left: 3px solid #6436bf;
+      border-radius: 4px;
+      padding: 7px 10px;
+      margin-bottom: 10px;
+    }
+    .card-field {
+      font-size: 12px;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    .card-field strong {
+      color: #6436bf;
+      font-weight: 700;
+    }
+    .card-time {
+      font-size: 11px;
+      color: #c4c0cb;
+      margin-top: 10px;
     }
 
     footer {
@@ -388,13 +488,23 @@
     </div>
 
 
-    <!-- Gallery submission form — Netlify processes this natively -->
+    <!-- Live gallery wall -->
+    <div class="live-section">
+      <div class="live-header">
+        <div class="live-dot"></div>
+        <span class="live-label">What the room is building</span>
+        <span class="live-count" id="live-count"></span>
+      </div>
+      <div class="live-grid" id="live-grid">
+        <div class="live-empty" id="live-empty">Outputs will appear here as groups submit — check back during the afternoon</div>
+      </div>
+    </div>
+
+    <!-- Gallery submission form -->
     <div class="submit-section" id="submit-section">
       <h3>Add your output</h3>
       <p class="form-note">Fill this out from your phone or laptop. No git required — your output goes straight to the gallery.</p>
-      <form id="gallery-form" name="gallery-submissions" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="gallery-submissions">
-        <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+      <form id="gallery-form" autocomplete="off">
 
         <div class="form-row">
           <label for="group-name">Name your session</label>
@@ -431,20 +541,124 @@
     </div>
 
     <script>
+      const SUPABASE_URL = 'https://pgxzwrweczytjtgrnqao.supabase.co';
+      const SUPABASE_KEY = 'sb_publishable_Q8JZGX47t5ETWnkNE-gc4w_9TSwwtJp';
+      const HEADERS = {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json'
+      };
+
+      // ── Relative time ──────────────────────────────────────────
+      function relTime(iso) {
+        const diff = Math.floor((Date.now() - new Date(iso)) / 1000);
+        if (diff < 60)  return 'just now';
+        if (diff < 3600) return Math.floor(diff / 60) + ' min ago';
+        return Math.floor(diff / 3600) + ' hr ago';
+      }
+
+      // ── Render live cards ──────────────────────────────────────
+      let knownIds = new Set();
+
+      function renderCards(rows) {
+        const grid = document.getElementById('live-grid');
+        const empty = document.getElementById('live-empty');
+        const count = document.getElementById('live-count');
+
+        if (!rows || rows.length === 0) { empty.style.display = ''; return; }
+        empty.style.display = 'none';
+        count.textContent = rows.length + ' submission' + (rows.length !== 1 ? 's' : '');
+
+        rows.forEach(row => {
+          if (knownIds.has(row.id)) {
+            // update timestamp only
+            const el = document.getElementById('card-' + row.id);
+            if (el) el.querySelector('.card-time').textContent = relTime(row.created_at);
+            return;
+          }
+          knownIds.add(row.id);
+          const card = document.createElement('div');
+          card.className = 'live-card new-card';
+          card.id = 'card-' + row.id;
+          card.innerHTML = `
+            <div class="card-session">${esc(row.group_name)}</div>
+            <div class="card-sentence">"${esc(row.sentence)}"</div>
+            <div class="card-field"><strong>Built:</strong> ${esc(row.built)}</div>
+            <div class="card-field"><strong>Surprised by:</strong> ${esc(row.surprise)}</div>
+            <div class="card-time">${relTime(row.created_at)}</div>
+          `;
+          grid.insertBefore(card, grid.firstChild);
+          setTimeout(() => card.classList.remove('new-card'), 2500);
+        });
+      }
+
+      function esc(str) {
+        return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      }
+
+      // ── Poll Supabase ──────────────────────────────────────────
+      async function fetchSubmissions() {
+        try {
+          const res = await fetch(
+            SUPABASE_URL + '/rest/v1/gallery_submissions?select=*&order=created_at.desc',
+            { headers: HEADERS }
+          );
+          if (res.ok) renderCards(await res.json());
+        } catch(e) { /* silent — offline or CORS, just skip this poll */ }
+      }
+
+      fetchSubmissions();
+      setInterval(fetchSubmissions, 20000);
+      setInterval(() => {
+        // refresh timestamps every minute
+        document.querySelectorAll('.card-time').forEach(el => {
+          const card = el.closest('.live-card');
+          if (card) {
+            const id = card.id.replace('card-', '');
+            // timestamps refresh on next poll; this is a lightweight visual-only pass
+          }
+        });
+      }, 60000);
+
+      // ── Form submit → Supabase insert ─────────────────────────
       const form = document.getElementById('gallery-form');
-      form.addEventListener('submit', function(e) {
+      const btn  = form.querySelector('.submit-btn');
+
+      form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        const data = new FormData(form);
-        fetch('/', { method: 'POST', body: data })
-          .then(() => {
+        btn.disabled = true;
+        btn.textContent = 'Submitting…';
+
+        const payload = {
+          group_name: form.querySelector('#group-name').value.trim(),
+          sentence:   form.querySelector('#sentence').value.trim(),
+          built:      form.querySelector('#built').value.trim(),
+          surprise:   form.querySelector('#surprise').value.trim()
+        };
+
+        try {
+          const res = await fetch(SUPABASE_URL + '/rest/v1/gallery_submissions', {
+            method: 'POST',
+            headers: { ...HEADERS, 'Prefer': 'return=minimal' },
+            body: JSON.stringify(payload)
+          });
+
+          if (res.ok || res.status === 201) {
             form.style.display = 'none';
             document.getElementById('submit-success').style.display = 'block';
-          })
-          .catch(() => {
-            // fallback: let the form submit normally
-            form.removeEventListener('submit', arguments.callee);
-            form.submit();
-          });
+            fetchSubmissions(); // refresh wall immediately
+          } else {
+            const err = await res.text();
+            btn.disabled = false;
+            btn.textContent = 'Add to gallery →';
+            alert('Something went wrong — please try again. (' + res.status + ')');
+            console.error(err);
+          }
+        } catch(err) {
+          btn.disabled = false;
+          btn.textContent = 'Add to gallery →';
+          alert('Network error — check your connection and try again.');
+        }
       });
     </script>
 
