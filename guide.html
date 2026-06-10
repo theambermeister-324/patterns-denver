@@ -116,6 +116,51 @@
     flex-shrink: 0;
   }
 
+  /* Knapsack bonus step */
+  .bonus-step {
+    margin-top: 20px;
+    background: #fffbeb;
+    border: 1.5px dashed #e0c86a;
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .bonus-step-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .bonus-step-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #8a6e00;
+  }
+  .bonus-step-badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: #8a6e00;
+    background: #fff8d6;
+    border: 1px solid #e0c86a;
+    border-radius: 20px;
+    padding: 2px 8px;
+  }
+  .bonus-step p {
+    font-size: 13px;
+    color: #4a3800;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .bonus-step ol {
+    font-size: 13px;
+    color: #5c4400;
+    line-height: 1.8;
+    padding-left: 18px;
+  }
+  .bonus-step ol li { margin-bottom: 2px; }
+  .bonus-step a { color: #7a5c00; font-weight: 600; }
+
   /* Triage */
   .triage-section {
     margin-top: 28px;
@@ -259,6 +304,21 @@
 
   </div>
 
+  <!-- Knapsack bonus step -->
+  <div class="bonus-step">
+    <div class="bonus-step-header">
+      <span class="bonus-step-label">Bonus: connect Knapsack</span>
+      <span class="bonus-step-badge">optional</span>
+    </div>
+    <p>Add the Knapsack design system as a live reference so you can run comparison queries — "what does Knapsack have that my system lacks?" This takes 2 minutes and unlocks the bonus prompts on the Prompts page.</p>
+    <ol>
+      <li>Go to <a href="https://claude.ai/settings/integrations" target="_blank">claude.ai/settings/integrations</a></li>
+      <li>Add a new MCP server with URL: <code style="background:#fff8d6; padding:1px 6px; border-radius:4px; font-size:12px; color:#5c4400;">https://mcp.knapsack.cloud/mcp/demo</code></li>
+      <li>Restart Claude Code — the Knapsack tools will be available automatically</li>
+      <li>Try: <code style="background:#fff8d6; padding:1px 6px; border-radius:4px; font-size:12px; color:#5c4400;">/query What does Knapsack have that my system lacks?</code></li>
+    </ol>
+  </div>
+
   <!-- Triage -->
   <div class="triage-section">
     <div class="triage-label">
@@ -281,6 +341,10 @@
       <div class="triage-row">
         <div class="triage-problem">"I don't know what to ask"</div>
         <div class="triage-who">Open Prompts — or find Amber or Nate, this is the real question</div>
+      </div>
+      <div class="triage-row">
+        <div class="triage-problem">Knapsack bonus prompts not working</div>
+        <div class="triage-who">Add MCP at claude.ai/settings/integrations, then restart Claude Code</div>
       </div>
     </div>
   </div>
