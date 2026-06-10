@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remaining Pages Overview — Patterns Denver</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f7; color: #1a1a1a; }
+
+  .site-nav {
+    background: #6436bf; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 48px; position: sticky; top: 0; z-index: 100;
+  }
+  .nav-logo { color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-link { color: rgba(255,255,255,0.6); font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 6px; text-decoration: none; }
+
+  .overview { max-width: 960px; margin: 0 auto; padding: 32px 24px; }
+  .overview-label { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #9893a1; margin-bottom: 20px; }
+
+  .page-preview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .page-preview { background: #fff; border-radius: 12px; border: 1.5px solid #e8e4f0; overflow: hidden; }
+  .preview-label {
+    padding: 12px 14px 10px;
+    border-bottom: 1px solid #e8e4f0;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .preview-label h3 { font-size: 13px; font-weight: 700; }
+  .preview-phase {
+    font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 10px;
+  }
+  .phase-before { background: #f5f4f7; color: #9893a1; }
+  .phase-during { background: #f0ebfa; color: #6436bf; }
+  .phase-after  { background: #e8f5ec; color: #226633; }
+
+  .preview-body { padding: 14px; }
+
+  /* Before page preview */
+  .checklist-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 7px 0; border-bottom: 1px solid #f5f4f7; font-size: 12px;
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .checkbox {
+    width: 14px; height: 14px; border: 1.5px solid #c4aef0; border-radius: 3px;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .checkbox.checked { background: #6436bf; border-color: #6436bf; display: flex; align-items: center; justify-content: center; }
+  .item-text { color: #3a3a3a; line-height: 1.4; }
+  .item-sub { font-size: 11px; color: #9893a1; margin-top: 2px; }
+  .section-mini-label { font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #c4aef0; margin: 8px 0 4px; }
+
+  /* Prompts page preview */
+  .prompt-card-mini {
+    background: #f8f5ff; border-radius: 8px; padding: 9px 11px;
+    margin-bottom: 7px; border: 1px solid #e8e4f0;
+  }
+  .prompt-card-mini:last-child { margin-bottom: 0; }
+  .prompt-title-mini { font-size: 12px; font-weight: 700; margin-bottom: 3px; }
+  .prompt-copy-mini {
+    font-size: 11px; font-family: 'SF Mono', monospace;
+    color: #4a1fa0; background: #fff; padding: 4px 7px;
+    border-radius: 5px; border: 1px solid #e8e0f5;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .copy-btn { font-size: 9px; font-weight: 700; color: #9b72ef; font-family: system-ui; letter-spacing: .05em; text-transform: uppercase; }
+
+  /* After page preview */
+  .after-section {
+    margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #f5f4f7;
+  }
+  .after-section:last-child { border-bottom: none; margin-bottom: 0; }
+  .after-section-title { font-size: 11px; font-weight: 800; color: #226633; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 5px; display: flex; align-items: center; gap: 5px; }
+  .after-pill {
+    background: #f5f4f7; border-radius: 6px; padding: 5px 9px;
+    font-size: 11px; color: #645e6e; margin-bottom: 4px; line-height: 1.4;
+  }
+  .after-pill a { color: #6436bf; font-weight: 600; }
+
+  /* Notes below previews */
+  .preview-note {
+    font-size: 12px; color: #645e6e; line-height: 1.5;
+    padding: 10px 14px 14px;
+    border-top: 1px solid #f5f4f7;
+    background: #fafafa;
+  }
+
+  /* Gallery note */
+  .gallery-note {
+    background: #fff; border-radius: 12px; border: 1.5px solid #e8e4f0;
+    padding: 18px 20px; margin-top: 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .gallery-icon { width: 36px; height: 36px; background: #f0ebfa; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .gallery-note-text h4 { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+  .gallery-note-text p { font-size: 13px; color: #645e6e; line-height: 1.5; }
+
+  footer { text-align: center; padding: 24px; font-size: 11px; color: #bbb; border-top: 1px solid #e8e4f0; background: #fff; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="nav-logo" href="#">Patterns Denver</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#">Home</a>
+    <a class="nav-link" href="#">Before</a>
+    <a class="nav-link" href="#">Guide</a>
+    <a class="nav-link" href="#">Prompts</a>
+    <a class="nav-link" href="#">Gallery</a>
+    <a class="nav-link" href="#">After</a>
+  </div>
+</nav>
+
+<div class="overview">
+  <div class="overview-label">Remaining pages — Before, Prompts, After + Gallery note</div>
+
+  <div class="page-preview-grid">
+
+    <!-- BEFORE -->
+    <div class="page-preview">
+      <div class="preview-label">
+        <h3>Before page</h3>
+        <span class="preview-phase phase-before">Before workshop</span>
+      </div>
+      <div class="preview-body">
+        <div class="section-mini-label">What to install</div>
+        <div class="checklist-item">
+          <div class="checkbox checked">
+            <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div><div class="item-text">Node.js 20+</div><div class="item-sub">node --version to check</div></div>
+        </div>
+        <div class="checklist-item">
+          <div class="checkbox"></div>
+          <div><div class="item-text">Claude Code</div><div class="item-sub">npm install -g @anthropic-ai/claude-code</div></div>
+        </div>
+        <div class="checklist-item">
+          <div class="checkbox"></div>
+          <div><div class="item-text">Anthropic account</div><div class="item-sub">claude.ai — 2 minutes to create</div></div>
+        </div>
+
+        <div class="section-mini-label" style="margin-top:12px;">What to bring</div>
+        <div class="checklist-item">
+          <div class="checkbox"></div>
+          <div><div class="item-text">Personal laptop (not work-managed)</div></div>
+        </div>
+        <div class="checklist-item">
+          <div class="checkbox"></div>
+          <div><div class="item-text">Design system doc</div><div class="item-sub">Any component spec, README, token ref</div></div>
+        </div>
+        <div class="checklist-item">
+          <div class="checkbox"></div>
+          <div><div class="item-text">Your sentence</div><div class="item-sub">"I want to see if AI can help me with ___"</div></div>
+        </div>
+      </div>
+      <div class="preview-note">Interactive checklist — state saves in localStorage so participants can check items off across visits.</div>
+    </div>
+
+    <!-- PROMPTS -->
+    <div class="page-preview">
+      <div class="preview-label">
+        <h3>Prompts page</h3>
+        <span class="preview-phase phase-during">Day of</span>
+      </div>
+      <div class="preview-body">
+        <div class="prompt-card-mini">
+          <div class="prompt-title-mini">Surface documentation gaps</div>
+          <div class="prompt-copy-mini">
+            <span>/query What are the documentation gaps...</span>
+            <span class="copy-btn">Copy</span>
+          </div>
+        </div>
+        <div class="prompt-card-mini">
+          <div class="prompt-title-mini">Find accessibility gaps</div>
+          <div class="prompt-copy-mini">
+            <span>/query Where does this design system...</span>
+            <span class="copy-btn">Copy</span>
+          </div>
+        </div>
+        <div class="prompt-card-mini">
+          <div class="prompt-title-mini">New engineer test</div>
+          <div class="prompt-copy-mini">
+            <span>/query What would a new engineer need...</span>
+            <span class="copy-btn">Copy</span>
+          </div>
+        </div>
+        <div class="prompt-card-mini">
+          <div class="prompt-title-mini">AI-readiness audit</div>
+          <div class="prompt-copy-mini">
+            <span>/query What would I need to add to...</span>
+            <span class="copy-btn">Copy</span>
+          </div>
+        </div>
+      </div>
+      <div class="preview-note">All 6 prompts from prompt-templates.md with one-click copy. Full prompt text visible on expand. "Write your own" guidance at bottom.</div>
+    </div>
+
+    <!-- AFTER -->
+    <div class="page-preview">
+      <div class="preview-label">
+        <h3>After page</h3>
+        <span class="preview-phase phase-after">After June 11</span>
+      </div>
+      <div class="preview-body">
+        <div class="after-section">
+          <div class="after-section-title">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#226633" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            What the room built
+          </div>
+          <div class="after-pill">Practitioner anxiety map — themed, no attribution</div>
+          <div class="after-pill">Gallery highlights from 7 pairs</div>
+        </div>
+        <div class="after-section">
+          <div class="after-section-title">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#226633" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            Run it on your own system
+          </div>
+          <div class="after-pill">Clone the repo, use your own docs</div>
+          <div class="after-pill"><a href="#">Claude Code</a> · <a href="#">Workshop repo</a> · <a href="#">Knapsack</a></div>
+        </div>
+        <div class="after-section">
+          <div class="after-section-title">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#226633" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Stay connected
+          </div>
+          <div class="after-pill">Reach out to Amber — amber@knapsack.cloud</div>
+          <div class="after-pill">Follow-up thread for continued peer conversation</div>
+        </div>
+      </div>
+      <div class="preview-note">Populated by Amber within 48hrs of June 11 — anxiety map and gallery highlights added manually. Resources section is live immediately.</div>
+    </div>
+
+  </div>
+
+  <!-- Gallery note -->
+  <div class="gallery-note">
+    <div class="gallery-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6436bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    </div>
+    <div class="gallery-note-text">
+      <h4>Gallery page — minimal changes</h4>
+      <p>The existing <code style="font-size:12px; background:#f5f4f7; padding:1px 5px; border-radius:4px;">gallery/index.html</code> stays largely as-is. It gets the shared nav bar added and moves to <code style="font-size:12px; background:#f5f4f7; padding:1px 5px; border-radius:4px;">gallery.html</code> in the site root so it's part of the navigation flow. The submission form and pair cards are unchanged.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>Patterns Denver 2026 · Knapsack × FuegoUX</footer>
+</body>
+</html>

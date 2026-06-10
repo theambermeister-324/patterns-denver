@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homepage Mockup — Patterns Denver</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0ebfa; color: #1a1a1a; }
+
+  /* ── Shared nav ── */
+  .site-nav {
+    background: #6436bf;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo { color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-link {
+    color: rgba(255,255,255,0.65);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all .15s;
+  }
+  .nav-link:hover, .nav-link.active { color: #fff; background: rgba(255,255,255,.15); }
+
+  /* ── Hero ── */
+  .hero {
+    background: #6436bf;
+    color: #fff;
+    padding: 48px 24px 56px;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,.75);
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-meta span {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,.7);
+    background: rgba(255,255,255,.12);
+    padding: 5px 14px;
+    border-radius: 20px;
+  }
+
+  /* ── Prompt banner ── */
+  .prompt-banner {
+    background: #fff;
+    border-bottom: 2px solid #6436bf;
+    padding: 14px 24px;
+    text-align: center;
+    font-size: 14px;
+    font-style: italic;
+    color: #4a1fa0;
+    font-weight: 600;
+  }
+
+  /* ── Nav cards ── */
+  .page-cards {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 36px 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .page-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1.5px solid #e8e4f0;
+    padding: 22px 20px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .15s, box-shadow .15s;
+    display: block;
+  }
+  .page-card:hover { border-color: #6436bf; box-shadow: 0 2px 12px rgba(100,54,191,.1); }
+  .card-icon { font-size: 22px; margin-bottom: 10px; display: block; }
+  .card-phase {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .card-phase.before { color: #888; }
+  .card-phase.during { color: #6436bf; }
+  .card-phase.after  { color: #226633; }
+  .page-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .page-card p { font-size: 13px; color: #645e6e; line-height: 1.5; }
+  .card-arrow { float: right; color: #c4aef0; font-size: 16px; margin-top: 2px; }
+
+  /* ── Today's phase callout ── */
+  .phase-callout {
+    max-width: 860px;
+    margin: 0 auto 0;
+    padding: 0 24px 36px;
+  }
+  .phase-inner {
+    background: #fff;
+    border: 1.5px solid #6436bf;
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .phase-dot { width: 10px; height: 10px; background: #6436bf; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 4px #e8d5ff; }
+  .phase-text { font-size: 14px; color: #4a1fa0; font-weight: 600; }
+  .phase-text span { color: #9893a1; font-weight: 400; }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 11px;
+    color: #bbb;
+    border-top: 1px solid #e8e4f0;
+    background: #fff;
+  }
+</style>
+</head>
+<body>
+
+<!-- Shared nav — same on every page -->
+<nav class="site-nav">
+  <a class="nav-logo" href="#">Patterns Denver</a>
+  <div class="nav-links">
+    <a class="nav-link active" href="#">Home</a>
+    <a class="nav-link" href="#">Before</a>
+    <a class="nav-link" href="#">Guide</a>
+    <a class="nav-link" href="#">Prompts</a>
+    <a class="nav-link" href="#">Gallery</a>
+    <a class="nav-link" href="#">After</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-eyebrow">AI Sandbox Workshop</div>
+  <h1>Patterns Denver<br>2026</h1>
+  <p class="hero-sub">Design system practitioners. One afternoon.<br>Real AI agents. Real design system docs.</p>
+  <div class="hero-meta">
+    <span>📅 June 11, 2026</span>
+    <span>📍 Zero Hour Cafe · Denver</span>
+    <span>👥 14 practitioners · 7 pairs</span>
+  </div>
+</section>
+
+<!-- Prompt banner -->
+<div class="prompt-banner">
+  "Your design system has a documentation gap. You have an AI agent. What's the first thing you'd automate?"
+</div>
+
+<!-- Today's phase indicator -->
+<div class="phase-callout" style="padding-top:28px;">
+  <div class="phase-inner">
+    <div class="phase-dot"></div>
+    <div class="phase-text">
+      You're in the <strong>afternoon sandbox</strong> right now. &nbsp;<span>→ Go to the Guide or open your Prompts.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Page navigation cards -->
+<div class="page-cards">
+
+  <a class="page-card" href="#">
+    <span class="card-icon">📋</span>
+    <div class="card-phase before">Before the workshop</div>
+    <h3>Setup checklist <span class="card-arrow">→</span></h3>
+    <p>What to install, what to bring, what to expect. Complete before June 11.</p>
+  </a>
+
+  <a class="page-card" href="#" style="border-color:#c4aef0;">
+    <span class="card-icon">🗺</span>
+    <div class="card-phase during">Day of</div>
+    <h3>Workshop guide <span class="card-arrow" style="color:#6436bf;">→</span></h3>
+    <p>Step-by-step: clone, setup, ingest, query. Triage help if you get stuck.</p>
+  </a>
+
+  <a class="page-card" href="#" style="border-color:#c4aef0;">
+    <span class="card-icon">✦</span>
+    <div class="card-phase during">Day of</div>
+    <h3>Prompt library <span class="card-arrow" style="color:#6436bf;">→</span></h3>
+    <p>6 ready-to-run queries. Copy and paste into Claude Code.</p>
+  </a>
+
+  <a class="page-card" href="#" style="border-color:#c4aef0;">
+    <span class="card-icon">🖼</span>
+    <div class="card-phase during">Day of</div>
+    <h3>Gallery wall <span class="card-arrow" style="color:#6436bf;">→</span></h3>
+    <p>See what your pairs are building. Submit your output here.</p>
+  </a>
+
+  <a class="page-card" href="#">
+    <span class="card-icon">🌱</span>
+    <div class="card-phase after">After June 11</div>
+    <h3>Take it home <span class="card-arrow">→</span></h3>
+    <p>Anxiety map, gallery highlights, resources to run this on your own system.</p>
+  </a>
+
+</div>
+
+<footer>
+  Patterns Denver 2026 · Knapsack × FuegoUX · <a href="https://github.com/theambermeister-324/patterns-denver" style="color:#bbb;">github</a>
+</footer>
+
+</body>
+</html>

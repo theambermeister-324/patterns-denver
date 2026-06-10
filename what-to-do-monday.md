@@ -48,4 +48,4 @@ Amber Atkins — amber@knapsack.cloud
 
 *Your system's documentation gaps are your first AI agent target.*
 
-**Knapsack × Crux Digital × FuegoUX · Patterns Denver 2026**
+**Knapsack × FuegoUX · Patterns Denver 2026**

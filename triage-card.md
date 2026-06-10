@@ -40,9 +40,9 @@ Then try your command again.
 | Problem | Who to ask |
 |---|---|
 | Claude isn't responding or errors out | Angie (circulating) |
-| The environment won't start / npm errors | Aaron (primary tech resolver) |
+| The environment won't start / npm errors | Angie or Amber — they have a script for this |
 | "I don't know what to ask" | Amber or Nate — this is the real question |
-| Git / clone issues | Aaron |
+| Git / clone issues | Angie or Amber |
 
 ---
 

@@ -472,14 +472,14 @@
 
     <!-- Header -->
     <header>
-      <div class="logo">Knapsack + Crux Digital</div>
+      <div class="logo">Knapsack × FuegoUX</div>
       <h1>Patterns Denver<br>AI Sandbox Workshop</h1>
       <p class="subtitle">Run-of-show, prompts, repo setup, and pairing map for facilitators</p>
       <div class="meta-row">
         <span>📅 <strong>June 11, 2026</strong></span>
         <span>📍 <strong>Denver, CO — Patterns Conference</strong></span>
         <span>👥 <strong>14 participants</strong></span>
-        <span>🎯 <strong>CongaLine sandbox</strong></span>
+        <span>🎯 <strong>Claude Code sandbox</strong></span>
       </div>
     </header>
 
@@ -488,7 +488,7 @@
       <div class="eyebrow">Session premise</div>
       <h2>You already know what's scary — let's make that the first jump.</h2>
       <p>
-        Participants deploy a real AI agent fleet using Crux Digital's open-source CongaLine platform, tethered to a
+        Participants deploy a real AI agent against their own design system docs, tethered to a
         problem they named themselves. Not a demo. Not a deck. If they leave still calling this "scary," the session failed.
       </p>
     </div>
@@ -501,12 +501,7 @@
           <div class="tag tag-everyone" style="margin-bottom:6px;">Amber</div>
           <p><strong>The Enable story.</strong> How Knapsack built an AI-powered sales toolkit in the terminal. What it took, what surprised them, what it means for design system teams thinking about their own AI workflows.</p>
         </div>
-        <div>
-          <div class="tag tag-advanced" style="margin-bottom:6px;">Aaron Stone — Crux Digital</div>
-          <p><strong>The CongaLine story.</strong> It started with an Nvidia engagement right before OpenClaw landed. Their stakeholder called and said: <em>"Research securing open claw — that's the biggest problem we have."</em> Agents were being given access to email, calendar, GitHub, everything — and they were doing things they <em>thought</em> were right. Reading all your email. Sending messages to the wrong people. C-suite headlines. The enterprise question became: will organizations adopt this? Answer: they won't (security) or they'll be super loose about it and absorb the fallout.</p>
-          <p style="margin-top:8px;">CongaLine is the third option. Zero ingress, zero egress, complete isolation, zero trust starting point. One agent can't see the next agent. The UI is Slack. The surprise: a team agent adapted to their personality and sense of humor within days — and months later, connected a stakeholder's name from a conversation it had quietly read four weeks earlier. It's a team member. And it never spilled a thing.</p>
-          <p style="margin-top:8px;">His honest framing: <em>"CongaLine is an experiment. Whatever's the right format to give people tools to play with and a problem to solve — that's my happy place."</em></p>
-        </div>
+        <!-- Advanced track story — to be confirmed after June 10 prep call -->
         <div>
           <div class="tag tag-curious" style="margin-bottom:6px;">Nate Wearin — FuegoUX</div>
           <p><strong>The "should we" story.</strong> Cross-client view on the central tension: research, design, and dev workflows being reshaped — and the anxiety of not knowing which pieces should stay manual vs. AI-assisted. Where human judgment, critical thinking, and design differentiation still matter. Better outcomes, not just faster ones.</p>
@@ -555,19 +550,7 @@
         </div>
       </div>
 
-      <!-- Advanced prompt -->
-      <div class="prompt-card advanced">
-        <div class="track-label">Advanced track — revealed after onboarding is confirmed</div>
-        <div class="prompt-text">
-          Deploy a CongaLine agent fleet that runs a design system linting agent — one agent per platform (web, native, email).
-          Configure isolation policies that mirror your organization's governance model. What breaks first?
-        </div>
-        <div class="prompt-note">
-          <strong>Who sees this:</strong> Scott, Julian, Patrick, Rachael (and Tony if he's engaged)<br>
-          <strong>Environment:</strong> Full CongaLine CLI, empty agent manifest. They define the fleet architecture.<br>
-          <strong>Note:</strong> They should hit real walls. That's the point. Don't rescue them too quickly.
-        </div>
-      </div>
+      <!-- Advanced track prompt — to be added after June 10 prep call -->
 
       <!-- Pairing prompt -->
       <div class="prompt-card everyone">
@@ -599,7 +582,7 @@
             <div class="step-detail">
               <a href="https://github.com/theambermeister-324/patterns-denver" style="color:#6436bf;">theambermeister-324/patterns-denver</a> is public, pre-configured, and deployed.
               Participants clone it, run <code>npm install &amp;&amp; claude</code>, and use <code>/ingest all</code> + <code>/query</code> against pre-loaded design system docs.
-              No Docker required for this track. Gallery wall live at <a href="https://patterns-denver-2026.netlify.app" style="color:#6436bf;">patterns-denver-2026.netlify.app</a>.
+              No setup beyond Claude Code required for this track. Gallery wall live at <a href="https://patterns-denver-2026.netlify.app" style="color:#6436bf;">patterns-denver-2026.netlify.app</a>.
             </div>
             <div class="code-block">
               <span class="comment"># What curious-but-new participants run on the day</span><br>
@@ -610,22 +593,7 @@
             </div>
           </div>
         </li>
-        <li>
-          <div class="step-content">
-            <div class="step-title">Advanced track — CongaLine config (Owner: Aaron, due June 4)</div>
-            <div class="step-detail">
-              If Aaron delivers a pre-configured CongaLine Docker setup by June 4, add it to the repo or link to it from
-              <code>WORKSHOP.md</code>. Two branches still the goal:
-              <ul style="margin: 10px 0 0 16px; font-size:14px; line-height:1.8; color:#4a4456;">
-                <li><code>main</code> — curious-but-new (Claude Code KB — already live)</li>
-                <li><code>advanced</code> — CongaLine Docker, empty agent manifest</li>
-              </ul>
-              If the CongaLine config doesn't arrive by June 4, advanced track uses raw
-              <a href="https://github.com/cruxdigital-llc/CongaLine" style="color:#6436bf;">cruxdigital-llc/CongaLine</a> directly
-              — Scott, Julian, Patrick, Rachael can handle it.
-            </div>
-          </div>
-        </li>
+        <!-- Advanced track setup — to be confirmed after June 10 prep call -->
         <li>
           <div class="step-content">
             <div class="step-title">Print triage cards before leaving for the venue</div>
@@ -637,10 +605,10 @@
         </li>
         <li>
           <div class="step-content">
-            <div class="step-title">Dry run by June 4 (Owner: Aaron)</div>
+            <div class="step-title">Dry run by June 10 (Owner: Amber + Angie)</div>
             <div class="step-detail">
               Put a first-timer in front of the curious-but-new config cold. Time to first useful query output.
-              Target: under 15 minutes. If it takes longer, fix it before June 11.
+              Target: under 15 minutes. If it takes longer, fix the config — not the protocol.
             </div>
           </div>
         </li>
@@ -656,7 +624,7 @@
           <li><strong>Did you run <code>/setup</code> first?</strong> If things feel broken, run it and try again.</li>
         </ol>
         <p style="margin-top:12px; font-size:13px; color:#6d4c41;">
-          Still stuck → <strong>Angie</strong> (curious-but-new track) · <strong>Aaron</strong> (advanced track / environment) · <strong>"I don't know what to ask"</strong> → Amber or Nate
+          Still stuck → <strong>Angie</strong> (circulating) · <strong>"I don't know what to ask"</strong> → Amber or Nate
         </p>
       </div>
     </div>
@@ -701,7 +669,7 @@
           <span class="time">T+3</span>
           <strong>Everyone runs <code>npm install &amp;&amp; claude</code> simultaneously.</strong>
           Angie circulates to confirm everyone is in the right directory and Claude Code is launching.
-          Aaron watches from the front.
+          Amber watches from the front.
         </li>
         <li>
           <span class="time">T+7</span>
@@ -712,14 +680,14 @@
           <span class="time">T+10</span>
           <strong>Drop docs → run <code>/ingest all</code>.</strong>
           "Use the sample file for now if you don't have your own. You can replace it later."
-          Triage card is already on every table. Angie handles blocks. Aaron circulates to advanced track.
+          Triage card is already on every table. Angie handles blocks.
         </li>
         <li>
           <span class="time">T+13</span>
           <strong>Everyone runs their first <code>/query</code>.</strong>
           Curious-but-new starting prompt on screen:
           <em>"What are the documentation gaps in this design system?"</em>
-          First real output visible. Advanced track has branched to CongaLine.
+          First real output visible.
         </li>
         <li>
           <span class="time">T+15</span>
@@ -747,17 +715,17 @@
       <h2 class="section-title">Pairing Map</h2>
       <p class="section-desc">
         7 pairs. Pre-assigned based on maturity spectrum — confirm against the one-sentence prompts before announcing.
-        Track assignment is fluid: anyone can self-select into CongaLine. Scott + Connie are the most likely CongaLine pair.
+        Confirm pairings against the one-sentence prompts before announcing.
         Engrain pair is separated by design — Rebecca and Bridget are from the same org and need outside perspective.
       </p>
 
       <div class="pairing-grid">
 
         <div class="pair-card advanced-pair">
-          <div class="pair-num">Pair 1 — Most likely CongaLine</div>
+          <div class="pair-num">Pair 1</div>
           <div class="names">Scott Johns + Connie Benedict</div>
           <div class="orgs">Intuit · Independent Consulting</div>
-          <div class="rationale">Strategic ceiling meets metrics obsession. Scott has mapped the full landscape — SaaS collapse, accountability, homogenization. Connie wants to know how you measure outcomes. Give them the hard prompt and the CongaLine CLI.</div>
+          <div class="rationale">Strategic ceiling meets metrics obsession. Scott has mapped the full landscape — SaaS collapse, accountability, homogenization. Connie wants to know how you measure outcomes. Give them the hardest prompt available.</div>
         </div>
 
         <div class="pair-card">
@@ -855,13 +823,7 @@
       <p class="section-desc">All closeable this week. Most depend on today's prep call with Aaron.</p>
 
       <ul class="question-list">
-        <li>
-          <span class="owner">Aaron — Today</span>
-          <div>
-            <strong>Aaron's story</strong> — What went wrong building CongaLine? What surprised you about running agents in production?
-            What do you want practitioners to believe when they leave? 3–4 minutes, first-person, includes a failure.
-          </div>
-        </li>
+        <!-- Aaron's story slot — to be confirmed after June 10 prep call -->
         <li>
           <span class="owner">Aaron — June 4</span>
           <div>
@@ -880,7 +842,7 @@
           <span class="owner">Angie — Before June 11</span>
           <div>
             <strong>Angie's story</strong> — What personal AI moment does she bring to the morning opener? Nail this
-            before the day so it lands clean alongside Amber's Enable story and Aaron's CongaLine story.
+            before the day so it lands clean alongside Amber's Enable story and Nate's "should we" story.
           </div>
         </li>
         <li>
@@ -905,7 +867,7 @@
     <!-- Footer -->
     <footer>
       <p>Patterns Denver AI Sandbox Workshop — June 11, 2026</p>
-      <p style="margin-top:4px;">Knapsack × Crux Digital × FuegoUX &nbsp;·&nbsp; Facilitators: Amber Atkins, Angie Stevenson, Aaron Stone, Nate Wearin (FuegoUX)</p>
+      <p style="margin-top:4px;">Knapsack × FuegoUX &nbsp;·&nbsp; Facilitators: Amber Atkins, Angie Stevenson, Nate Wearin (FuegoUX)</p>
     </footer>
 
   </div>

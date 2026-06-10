@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Council Report — Patterns Denver Workshop</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f7; color: #1a1a1a; padding: 32px 24px; }
+    .container { max-width: 780px; margin: 0 auto; }
+    .header { margin-bottom: 32px; }
+    .header h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.4px; color: #1a1a1a; }
+    .header .meta { font-size: 13px; color: #888; margin-top: 6px; }
+    .question-block { background: #fff; border: 1.5px solid #e8e4f0; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; }
+    .question-block h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9893a1; margin-bottom: 10px; }
+    .question-block p { font-size: 15px; line-height: 1.6; color: #2a2a2a; }
+
+    /* Verdict */
+    .verdict { background: #fff; border: 1.5px solid #6436bf; border-radius: 12px; padding: 28px 28px; margin-bottom: 28px; }
+    .verdict h2 { font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #6436bf; margin-bottom: 20px; }
+    .verdict-section { margin-bottom: 22px; }
+    .verdict-section:last-child { margin-bottom: 0; }
+    .verdict-section h3 { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; border-left: 3px solid #6436bf; padding-left: 10px; }
+    .verdict-section p, .verdict-section li { font-size: 14px; line-height: 1.65; color: #2a2a2a; }
+    .verdict-section ul { padding-left: 20px; }
+    .verdict-section li { margin-bottom: 6px; }
+    .one-thing { background: #f0ebfa; border-radius: 10px; padding: 18px 20px; margin-top: 4px; }
+    .one-thing p { font-size: 15px; font-weight: 600; color: #4a1fa0; line-height: 1.55; }
+
+    /* Agreement grid */
+    .alignment-grid { background: #fff; border: 1.5px solid #e8e4f0; border-radius: 12px; padding: 24px; margin-bottom: 28px; }
+    .alignment-grid h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9893a1; margin-bottom: 18px; }
+    .topic-row { display: flex; align-items: center; margin-bottom: 14px; gap: 12px; }
+    .topic-label { font-size: 13px; font-weight: 600; color: #444; width: 200px; flex-shrink: 0; }
+    .dots { display: flex; gap: 6px; flex-wrap: wrap; }
+    .dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .dot.agree { background: #6436bf; }
+    .dot.disagree { background: #e8e0f5; color: #9893a1; }
+    .dot.partial { background: #a87de0; }
+    .legend { display: flex; gap: 16px; margin-top: 16px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #888; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+    /* Collapsible advisor sections */
+    .advisors { margin-bottom: 28px; }
+    .advisors h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9893a1; margin-bottom: 14px; }
+    details { background: #fff; border: 1.5px solid #e8e4f0; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+    details[open] { border-color: #c4aef0; }
+    summary { padding: 14px 18px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 700; color: #1a1a1a; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary .role-chip { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; }
+    .chip-contrarian { background: #fce8e8; color: #b33; }
+    .chip-fp { background: #e8f0fc; color: #2255aa; }
+    .chip-expansionist { background: #e8fce8; color: #226633; }
+    .chip-outsider { background: #fdf6e8; color: #885500; }
+    .chip-executor { background: #f0ebfa; color: #6436bf; }
+    .advisor-body { padding: 4px 18px 18px; font-size: 14px; line-height: 1.65; color: #333; }
+    .advisor-body p { margin-bottom: 8px; }
+
+    /* Peer review */
+    .peer-review { margin-bottom: 28px; }
+    .peer-review h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9893a1; margin-bottom: 14px; }
+    .review-item { background: #fff; border: 1.5px solid #e8e4f0; border-radius: 10px; padding: 16px 18px; margin-bottom: 10px; }
+    .review-q { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #9893a1; margin-bottom: 6px; }
+    .review-a { font-size: 13px; line-height: 1.6; color: #333; }
+
+    .footer { text-align: center; font-size: 11px; color: #bbb; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e8e4f0; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>LLM Council Report</h1>
+    <div class="meta">Patterns Denver Workshop · June 9, 2026 · 5 advisors · 5 peer reviews · chairman synthesis</div>
+  </div>
+
+  <div class="question-block">
+    <h2>The Question</h2>
+    <p>Three changes are needed before the June 10 prep call: (1) add a second sample design system to the workshop sandbox, (2) create non-technical facilitator support for Amber and Angie, and (3) remove CongaLine/Docker references until after the Crux Digital prep call. What's the right approach for each, and what's the one most important thing to do first?</p>
+  </div>
+
+  <div class="verdict">
+    <h2>Chairman's Verdict</h2>
+
+    <div class="verdict-section">
+      <h3>Where the Council Agrees</h3>
+      <p>All five advisors agree on CongaLine removal sequencing — it has a hard external deadline (prep call tomorrow) and zero upside in leaving it visible. All advisors agree the facilitator support problem is structural, not documentary. And every peer review landed on the same missed item: <strong>no one confirmed the full participant flow has been run end-to-end on the actual workshop machine.</strong></p>
+    </div>
+
+    <div class="verdict-section">
+      <h3>Where the Council Clashes</h3>
+      <p>The real dispute is between the Expansionist and everyone else. The Expansionist argues the second sample DS is highest-leverage and should drive sequencing. The other four push back correctly: adding a second DS before the floor is stable optimizes for upside while the floor is on fire. Four out of five peer reviews flagged this as the biggest blind spot. That's a verdict, not a debate.</p>
+      <p style="margin-top:8px;">The secondary clash — architecture problem (Contrarian) vs. README rewrite (Executor) — is a false binary. Both are right at different levels. The architecture insight is correct. The Executor's tactical framing is what you actually ship by tomorrow.</p>
+    </div>
+
+    <div class="verdict-section">
+      <h3>Blind Spots the Council Caught</h3>
+      <ul>
+        <li><strong>Enterprise machine readiness.</strong> VPN policies, locked npm registries, and restricted shell execution will silently break the flow on participant laptops. No mitigation exists.</li>
+        <li><strong>Silent failure modes.</strong> <code>/ingest all</code> can fail without surfacing a clear error. <code>/query</code> run before ingest completes returns empty results. Participants lose confidence quietly.</li>
+        <li><strong>No designated technical bailout.</strong> Amber and Angie cannot debug a broken Node environment mid-session. A pre-ingested fallback repo state — or one technical person with standing authority — is not optional. It's the floor.</li>
+      </ul>
+    </div>
+
+    <div class="verdict-section">
+      <h3>The Recommendation</h3>
+      <ul>
+        <li><strong>CongaLine removal:</strong> Do it now. Grep for all references, remove or comment out. 20 minutes. Do not let it be last.</li>
+        <li><strong>Facilitator support:</strong> Not a FACILITATOR.md. A <em>pre-ingested repo state</em> — commit a version where setup has already run and both sample DSes are already ingested. Layer a one-page cheat sheet (three commands, expected output, what to say if it fails) on top. The cheat sheet means nothing without the floor.</li>
+        <li><strong>Second sample DS:</strong> Use Carbon or Polaris — public, credible to enterprise practitioners, structurally different from Meridian. Do this after facilitator support is locked.</li>
+        <li><strong>Enterprise machine readiness:</strong> State the fallback explicitly before the prep call: if a participant's machine can't run the flow, they use the pre-ingested state. Don't improvise this on June 11.</li>
+      </ul>
+    </div>
+
+    <div class="verdict-section">
+      <h3>The One Thing to Do First</h3>
+      <div class="one-thing">
+        <p>Run the full participant flow — <code>/setup</code> → <code>/ingest all</code> → <code>/query</code> — on a clean machine today, before writing a single doc or removing a single line. If it breaks, you need to know now while there's still time to build the pre-ingested fallback. If it works, you have ground truth for what the facilitator cheat sheet should actually say. CongaLine removal takes 20 minutes and can happen in parallel. But the end-to-end run is the gate.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="alignment-grid">
+    <h2>Advisor Alignment by Topic</h2>
+
+    <div class="topic-row">
+      <div class="topic-label">CongaLine removal first</div>
+      <div class="dots">
+        <div class="dot disagree" title="Contrarian">C</div>
+        <div class="dot disagree" title="First Principles">FP</div>
+        <div class="dot disagree" title="Expansionist">E</div>
+        <div class="dot agree" title="Outsider">O</div>
+        <div class="dot agree" title="Executor">Ex</div>
+      </div>
+    </div>
+
+    <div class="topic-row">
+      <div class="topic-label">Facilitator support is structural</div>
+      <div class="dots">
+        <div class="dot agree" title="Contrarian">C</div>
+        <div class="dot agree" title="First Principles">FP</div>
+        <div class="dot partial" title="Expansionist">E</div>
+        <div class="dot agree" title="Outsider">O</div>
+        <div class="dot agree" title="Executor">Ex</div>
+      </div>
+    </div>
+
+    <div class="topic-row">
+      <div class="topic-label">Second DS is highest priority</div>
+      <div class="dots">
+        <div class="dot disagree" title="Contrarian">C</div>
+        <div class="dot disagree" title="First Principles">FP</div>
+        <div class="dot agree" title="Expansionist">E</div>
+        <div class="dot disagree" title="Outsider">O</div>
+        <div class="dot disagree" title="Executor">Ex</div>
+      </div>
+    </div>
+
+    <div class="topic-row">
+      <div class="topic-label">Use real public DS (not invented)</div>
+      <div class="dots">
+        <div class="dot disagree" title="Contrarian">C</div>
+        <div class="dot disagree" title="First Principles">FP</div>
+        <div class="dot agree" title="Expansionist">E</div>
+        <div class="dot agree" title="Outsider">O</div>
+        <div class="dot agree" title="Executor">Ex</div>
+      </div>
+    </div>
+
+    <div class="topic-row">
+      <div class="topic-label">Run flow on clean machine first</div>
+      <div class="dots">
+        <div class="dot agree" title="Contrarian">C</div>
+        <div class="dot agree" title="First Principles">FP</div>
+        <div class="dot disagree" title="Expansionist">E</div>
+        <div class="dot disagree" title="Outsider">O</div>
+        <div class="dot disagree" title="Executor">Ex</div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#6436bf"></div> Agrees</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#a87de0"></div> Partial</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#e8e0f5"></div> Disagrees / silent</div>
+    </div>
+  </div>
+
+  <div class="advisors">
+    <h2>Advisor Responses (click to expand)</h2>
+
+    <details>
+      <summary>The Contrarian <span class="role-chip chip-contrarian">Contrarian</span></summary>
+      <div class="advisor-body">
+        <p>The framing buries the actual crisis: two non-technical facilitators are running a live technical workshop with no safety net, and you're asking about content changes the day before. Adding a second sample design system is cosmetically useful but solves nothing if participants hit npm errors during <code>/ingest all</code> and Amber can't tell them what to do.</p>
+        <p>The right approach isn't "add docs to raw/" — it's a pre-baked, already-ingested repo state that participants clone. If setup can fail, it will fail, in front of 14 practitioners from enterprise orgs, with facilitators who can't recover it.</p>
+        <p>Hiding CongaLine is straightforward — delete or move the files, done in five minutes. Do not overthink this.</p>
+        <p>The non-technical facilitator support isn't a support doc problem. It's an architecture problem. The workshop flow assumes a working Node environment, no permission errors, no path issues, no silent failures. None of that is guaranteed on 14 different enterprise laptops.</p>
+        <p><strong>One thing to do first:</strong> Run the full participant flow on a clean machine, from scratch, before tomorrow's prep call. Not write docs. Not add a second sample DS. Run it.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>The First Principles Thinker <span class="role-chip chip-fp">First Principles</span></summary>
+      <div class="advisor-body">
+        <p>The framing assumes these are three parallel tasks. They're not. They share a single dependency: the repo must be in a stable, working state before any of these changes have value.</p>
+        <p>The real question is: "What is the minimum viable repo state that lets two non-technical facilitators run a workshop without calling anyone?" That reframe changes the priority order completely.</p>
+        <p><strong>Do first:</strong> The facilitator support layer. Not because it's on the list, but because building it forces you to discover every sharp edge in the current flow. Second: hide CongaLine — 10 minutes. Third: add the second DS last, once you know exactly what "working" looks like.</p>
+        <p>The wrong question is "what do we add?" The right question is "what breaks these non-technical facilitators, and how do we eliminate every one of those failure points before June 10?"</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>The Expansionist <span class="role-chip chip-expansionist">Expansionist</span></summary>
+      <div class="advisor-body">
+        <p>14 enterprise practitioners are about to run AI agents against their own design system docs in a live setting. That's a sales demo disguised as education. Every person who gets a "it just worked" moment walks out with a proof point they can take back to their org.</p>
+        <p>The second sample design system is the highest-leverage change on the list. One sample feels like a toy. Two samples feels like a pattern. Pick a second sample that contrasts with Meridian on a meaningful axis — different scale, different token philosophy, different component naming convention.</p>
+        <p>The non-technical facilitator support is a "green path" script, not defensive documentation. Amber and Angie should have a single laminated card: here are the three things that go wrong, here's the exact command that fixes each one, here's how to buy 2 minutes while the participant recovers.</p>
+        <p><strong>One thing to do first:</strong> Lock the second design system choice right now, before the facilitator doc or anything else.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>The Outsider <span class="role-chip chip-outsider">Outsider</span></summary>
+      <div class="advisor-body">
+        <p>The most important thing to do first is #3 — hide CongaLine. If a participant stumbles on an unfinished track before the prep call, that's a support conversation you can't undo. Confusion compounds. Do that first, today.</p>
+        <p>Second sample design system: add a real, publicly documented one — Carbon (IBM) or Polaris (Shopify) are both enterprise-familiar. Don't invent a fake one. Participants will recognize it, which reduces cognitive load.</p>
+        <p>Non-technical facilitator support: "Non-technical" doesn't just mean they can't fix npm errors — it means they can't confidently read an npm error and know whether to panic. The fix is a one-page cheat sheet printed on paper, taped to the wall. Amber and Angie need a human fallback — one person reachable by text who can unstick a broken terminal in under 2 minutes.</p>
+        <p><strong>Order:</strong> Hide CongaLine now, add the second DS tonight, finish the facilitator cheat sheet before the prep call.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>The Executor <span class="role-chip chip-executor">Executor</span></summary>
+      <div class="advisor-body">
+        <p><strong>CongaLine removal first.</strong> It's the only one with a hard deadline (prep call tomorrow) and the highest risk if missed. Search the repo right now for every instance of "CongaLine" and "Docker" — delete or gate behind "Advanced Track — coming soon." This takes 15 minutes.</p>
+        <p><strong>Second sample DS is a content task, not an engineering task.</strong> IBM Carbon, Atlassian, Salesforce Lightning — grab their public token documentation and component guidelines as plain text, drop into <code>raw/</code>, commit. Don't overthink the source.</p>
+        <p><strong>Facilitator support is a README rewrite.</strong> Write a <code>FACILITATOR.md</code>: here is what you type, here is what you should see, here is what it means if you see something else. Three commands, three expected outputs, three fallbacks. No npm troubleshooting required.</p>
+        <p><strong>One thing to do first:</strong> CongaLine removal. Do it before you touch anything else.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="peer-review">
+    <h2>Peer Review Highlights</h2>
+
+    <details>
+      <summary>Reviewer consensus on strongest response <span class="role-chip chip-executor" style="font-size:10px; padding:2px 8px;">3 of 5 → Response E (Executor)</span></summary>
+      <div class="advisor-body">
+        <p>Three reviewers named Response E (Executor) strongest: correctly sequences all three tasks by deadline, gives concrete implementation path for each, delivers a practical facilitator support spec. Reviewers A and B named Response B and A respectively, both for the same reason: correctly identifying the shared dependency (stable repo state) before any changes matter.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Reviewer consensus on biggest blind spot <span class="role-chip chip-expansionist" style="font-size:10px; padding:2px 8px;">4 of 5 → Response C (Expansionist)</span></summary>
+      <div class="advisor-body">
+        <p>Four out of five reviewers named Response C (Expansionist) as having the biggest blind spot: it treats "second DS" as highest priority and ignores the CongaLine deadline entirely — optimizing for upside while an active, time-bound risk goes unaddressed.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>What all five responses missed</summary>
+      <div class="advisor-body">
+        <p><strong>Enterprise machine readiness</strong> (Review 1): VPN policies, locked npm registries, restricted shell execution silently break the flow on participant machines. No pre-flight check exists.</p>
+        <p><strong>No technical bailout designated</strong> (Review 2): Amber and Angie cannot debug broken Node environments. A pre-ingested fallback state or one standing technical authority is not optional.</p>
+        <p><strong>End-to-end verification never done</strong> (Reviews 3, 4): Has the full <code>/setup → /ingest all → /query</code> flow been run with both sample datasets on the actual workshop machine? Pre-flight verification is the real first task.</p>
+        <p><strong>Participant onboarding state</strong> (Review 5): Participants may run <code>/query</code> before <code>/ingest all</code> completes and get empty results, silently losing confidence. A pre-populated repo state is the missing safeguard.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="footer">
+    LLM Council · Patterns Denver Workshop · June 9, 2026 · 5 advisors · 5 peer reviews · 1 chairman synthesis<br>
+    Generated by Claude Code
+  </div>
+
+</div>
+</body>
+</html>

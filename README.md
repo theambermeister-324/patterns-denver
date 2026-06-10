@@ -40,15 +40,10 @@ A sample design system (`raw/sample-design-system.md`) is pre-loaded so you can 
 All pair outputs live in `gallery/`. The deployed gallery is at:
 **[patterns-denver-2026.netlify.app](https://patterns-denver-2026.netlify.app)**
 
-## Advanced track
-
-The advanced track is running [CongaLine](https://github.com/cruxdigital-llc/CongaLine) by Crux Digital — an open-source platform for deploying isolated AI agent fleets with zero ingress, zero egress, and zero trust.
-
 ## Facilitators
 
 - **Amber Atkins** — Knapsack
 - **Angie Stevenson** — Knapsack
-- **Aaron Stone** — Crux Digital
 - **Nate Wearin** — FuegoUX
 
 ---

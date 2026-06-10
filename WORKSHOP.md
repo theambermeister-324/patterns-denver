@@ -1,6 +1,6 @@
 # Patterns Denver — AI Sandbox Workshop
 **June 11, 2026 · Rhino District, Denver**
-Facilitated by Amber Atkins (Knapsack) · Aaron Stone (Crux Digital) · Nate Wearin (FuegoUX) · Angie Stevenson (Knapsack)
+Facilitated by Amber Atkins (Knapsack) · Nate Wearin (FuegoUX) · Angie Stevenson (Knapsack)
 
 ---
 
@@ -98,4 +98,4 @@ Technical questions about the environment: **Aaron**
 
 ---
 
-*This sandbox runs on [Claude Code](https://claude.ai/code) and the [knapsack-labs/llm-knowledge-base-template](https://github.com/knapsack-labs/llm-knowledge-base-template). The advanced track is running [CongaLine](https://github.com/cruxdigital-llc/CongaLine) by Crux Digital.*
+*This sandbox runs on [Claude Code](https://claude.ai/code) and the [knapsack-labs/llm-knowledge-base-template](https://github.com/knapsack-labs/llm-knowledge-base-template).*

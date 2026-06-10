@@ -1,6 +1,6 @@
 # Facilitator Onboarding — Patterns Denver 2026
 **June 11 · Zero Hour Cafe · Denver**
-Facilitators: Amber Atkins · Angie Stevenson · Aaron Stone · Nate Wearin
+Facilitators: Amber Atkins · Angie Stevenson · Nate Wearin
 
 This guide gets you from "I know the concept" to "I've run the thing." Complete your section before the June 10 prep call. Estimated time: 30–45 minutes depending on your role.
 
@@ -19,7 +19,7 @@ Their anxiety is the starting material. The morning surfaces it. The afternoon w
 | Block | Time | What's happening |
 |---|---|---|
 | Arrivals + coffee | 11:00–11:30 AM | People find their seat |
-| Storytelling | 11:30 AM–12:30 PM | Amber, Aaron, Nate share their stories |
+| Storytelling | 11:30 AM–12:30 PM | Amber and Nate share their stories |
 | Lunch | 12:30–1:00 PM | |
 | Sandbox kickoff | 1:00–1:30 PM | Pairs form, prompts handed out |
 | Outdoor break | 1:30–1:45 PM | Short reset |
@@ -34,11 +34,7 @@ Their anxiety is the starting material. The morning surfaces it. The afternoon w
 - Pre-scaffolded, constrained, guided by `WORKSHOP.md` and `prompt-templates.md`
 - The prompt that anchors it: *"I want to see if AI can help me with ___."*
 
-**Advanced** (4–5 participants) — Aaron is the technical resolver here.
-- Tool: CongaLine by Crux Digital (`advanced` branch)
-- What they do: Deploy an isolated AI agent fleet using Docker, run governance/policy prompts
-- Open-ended, minimal scaffolding, participants bring their own challenge
-- Participants likely include: Scott Johns (Intuit), Julian Hartnett (Maxio), Rachael Greene (SageSure)
+<!-- Advanced track details coming after June 10 prep call -->
 
 ### The gallery wall
 
@@ -89,36 +85,12 @@ Find your role below. Complete the checklist before June 10.
 
 ---
 
-### Aaron — CongaLine technical resolver / Advanced track lead
-
-*Two jobs: (1) get the advanced branch participant-ready, (2) understand the curious-but-new track so you know what the other 9 people are doing.*
-
-**Advanced track setup:**
-- [ ] Check out the `advanced` branch:
-  ```
-  git checkout advanced
-  ```
-- [ ] Read `ADVANCED.md` — this is the participant-facing guide. Flag anything that's wrong or missing.
-- [ ] Drop your config files into `conga/`:
-  - `demo.yaml`
-  - `demo.env.example`
-  - `conga-policy.yaml.example`
-- [ ] Run the dry run script in `conga/DRY-RUN.md` (5 steps, ~20 minutes total)
-- [ ] Review your CongaLine origin story framing in `facilitator-runofshow.html` — confirm it's accurate
-
-**Curious-but-new walkthrough (so you understand the other track):**
-- [ ] Check out `main` branch and run Angie's steps above (clone → `/setup` → `/ingest all` → `/query`)
-
-**Bring to June 10:** Config files committed to `advanced` branch, dry run results (pass/fail + blockers), your story timing (~5 min), anything participants will need that isn't in `ADVANCED.md`
-
----
-
 ### Nate — Strategic counterweight / "Should we" story
 
-*Your role in the morning is the human judgment counterweight — the "should we" to Aaron's "here's what we built." You're also floating support during the afternoon sandbox.*
+*Your role in the morning is the human judgment counterweight — you're also floating support during the afternoon sandbox.*
 
 - [ ] Read `WORKSHOP.md` — the participant-facing overview (5 min)
-- [ ] Open `facilitator-runofshow.html` — read the morning storytelling section; note where your story lands (after Aaron, before sandbox kickoff)
+- [ ] Open `facilitator-runofshow.html` — read the morning storytelling section; note where your story lands (after Amber, before sandbox kickoff)
 - [ ] Run the curious-but-new track (clone → `/setup` → `/ingest all` → `/query`) — you'll likely be coaching people through this in the afternoon
 - [ ] Read `prompt-templates.md` — especially "When you're stuck" — these are the rescue prompts you'll use when pairs get frozen
 - [ ] Draft or outline your story (target: ~5 min). It should answer: *"Here's a moment where I had to decide whether AI should be doing this at all — and what I learned from that."*
@@ -132,7 +104,7 @@ Find your role below. Complete the checklist before June 10.
 Everyone comes with these four things:
 
 1. **Dry run status** — Did the flow work? What broke or surprised you?
-2. **Your story** — Roughly timed. Amber: Enable story (90 sec). Aaron: CongaLine/OpenClaw origin (~5 min). Nate: should-we story (~5 min). Angie: TBD.
+2. **Your story** — Roughly timed. Amber: Enable story (90 sec). Nate: should-we story (~5 min). Angie: TBD.
 3. **Open questions** — Anything unresolved about your role or the day-of logistics
 4. **One thing you'd change** — From running it. This is the useful input.
 
@@ -155,8 +127,7 @@ The June 10 call agenda:
 | Participant guide | `WORKSHOP.md` |
 | Prompt templates | `prompt-templates.md` |
 | Amber's story | `amber-enable-story.md` |
-| Advanced track guide | `ADVANCED.md` (on `advanced` branch) |
-| CongaLine dry run | `conga/DRY-RUN.md` (on `advanced` branch) |
+| Facilitator cheat sheet | `facilitator-cheatsheet.md` |
 
 ---
 

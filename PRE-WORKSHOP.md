@@ -49,11 +49,7 @@ If you're not sure what to bring, bring whatever feels most unfinished. That's u
 
 ## What to expect
 
-The afternoon has two tracks:
-
-**Curious-but-new** — You'll point a Claude Code-powered knowledge base at your design system docs and ask it real questions: What are the documentation gaps? What would a new engineer need to know that isn't in these docs? You deploy something real. No prior AI experience required.
-
-**Advanced** — You'll work with CongaLine, an open-source AI agent fleet management platform built by Crux Digital. Zero ingress, zero egress, complete isolation. If you're already shipping agentic workflows and want to work at the infrastructure layer, this is your track. Talk to Aaron Stone when you arrive.
+The afternoon is a hands-on sandbox session. You'll point a Claude Code-powered knowledge base at your design system docs and ask it real questions: What are the documentation gaps? What would a new engineer need to know that isn't in these docs? You deploy something real. No prior AI experience required.
 
 You'll be paired with someone from a different org. You'll have one sentence to finish before the pairing begins. You'll build something together in the time you have.
 
@@ -77,5 +73,5 @@ Reach out to Amber Atkins — amber@knapsack.cloud
 
 See you June 11.
 
-**Amber, Angie, Aaron + Nate**
-Knapsack × Crux Digital × FuegoUX
+**Amber, Angie + Nate**
+Knapsack × FuegoUX

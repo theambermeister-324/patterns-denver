@@ -1,0 +1,88 @@
+<h2>What should the expanded site be?</h2>
+<p class="subtitle">The current site at patterns-denver-2026.netlify.app is just a gallery wall. You want it to do more — but there are very different ways to scope this. Pick the vision that resonates.</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f0ebfa; padding:20px; border-radius:8px 8px 0 0;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#6436bf; margin-bottom:10px;">Option A</div>
+      <div style="background:#fff; border-radius:8px; padding:14px; border:1.5px solid #e8e4f0; margin-bottom:8px;">
+        <div style="font-size:11px; color:#9893a1; font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px;">Nav</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <span style="background:#6436bf; color:#fff; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700;">Home</span>
+          <span style="background:#f5f4f7; color:#555; padding:3px 10px; border-radius:20px; font-size:11px;">Guide</span>
+          <span style="background:#f5f4f7; color:#555; padding:3px 10px; border-radius:20px; font-size:11px;">Prompts</span>
+          <span style="background:#f5f4f7; color:#555; padding:3px 10px; border-radius:20px; font-size:11px;">Gallery</span>
+        </div>
+      </div>
+      <div style="background:#fff; border-radius:8px; padding:14px; border:1.5px solid #e8e4f0;">
+        <div style="font-size:13px; font-weight:700; margin-bottom:6px;">Workshop Guide</div>
+        <div style="height:6px; background:#f0ebfa; border-radius:3px; margin-bottom:5px;"></div>
+        <div style="height:6px; background:#f0ebfa; border-radius:3px; width:70%; margin-bottom:5px;"></div>
+        <div style="height:6px; background:#f0ebfa; border-radius:3px; width:85%;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Reference site</h3>
+      <p>Multi-page site: Home, Step-by-step guide, Prompt library, Gallery wall. Participants open it on their phone/laptop and use it as a reference while working in Claude Code. Replaces the markdown files.</p>
+      <p style="margin-top:8px; font-size:12px; color:#9893a1;"><strong>Effort:</strong> Medium · 4–5 HTML pages · No backend needed</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f0ebfa; padding:20px; border-radius:8px 8px 0 0;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#6436bf; margin-bottom:10px;">Option B</div>
+      <div style="background:#fff; border-radius:8px; padding:14px; border:1.5px solid #e8e4f0; margin-bottom:8px;">
+        <div style="font-size:12px; font-weight:700; margin-bottom:8px;">&#9654; Step 1 of 4 — Getting started</div>
+        <div style="height:4px; background:#e8e4f0; border-radius:2px; margin-bottom:8px;">
+          <div style="height:4px; width:25%; background:#6436bf; border-radius:2px;"></div>
+        </div>
+        <div style="background:#f0ebfa; border-radius:6px; padding:10px; font-size:12px; color:#4a1fa0; font-family:monospace;">
+          git clone https://github.com/...<br>cd patterns-denver<br>claude
+        </div>
+      </div>
+      <div style="background:#fff; border-radius:8px; padding:10px; border:1.5px solid #e8e4f0; font-size:12px; color:#555;">
+        ✓ Cloned &nbsp; → &nbsp; <span style="color:#6436bf; font-weight:700;">Running setup...</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Guided walkthrough</h3>
+      <p>Step-by-step wizard that walks participants through setup, ingestion, and their first query — with progress tracking. They check off each step as they go. The site IS the workshop guide.</p>
+      <p style="margin-top:8px; font-size:12px; color:#9893a1;"><strong>Effort:</strong> Medium-high · Progress state in localStorage · Mobile-friendly</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f0ebfa; padding:20px; border-radius:8px 8px 0 0;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#6436bf; margin-bottom:10px;">Option C</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+        <div style="background:#fff; border-radius:8px; padding:10px; border:1.5px solid #e8e4f0;">
+          <div style="font-size:10px; font-weight:700; color:#9893a1; text-transform:uppercase; margin-bottom:4px;">Before you arrive</div>
+          <div style="height:5px; background:#f0ebfa; border-radius:3px; margin-bottom:3px;"></div>
+          <div style="height:5px; background:#f0ebfa; border-radius:3px; width:80%;"></div>
+        </div>
+        <div style="background:#fff; border-radius:8px; padding:10px; border:1.5px solid #e8e4f0;">
+          <div style="font-size:10px; font-weight:700; color:#9893a1; text-transform:uppercase; margin-bottom:4px;">Prompt library</div>
+          <div style="height:5px; background:#f0ebfa; border-radius:3px; margin-bottom:3px;"></div>
+          <div style="height:5px; background:#f0ebfa; border-radius:3px; width:60%;"></div>
+        </div>
+        <div style="background:#fff; border-radius:8px; padding:10px; border:1.5px solid #e8e4f0;">
+          <div style="font-size:10px; font-weight:700; color:#6436bf; text-transform:uppercase; margin-bottom:4px;">&#9679; Live gallery</div>
+          <div style="height:5px; background:#f0ebfa; border-radius:3px; margin-bottom:3px;"></div>
+          <div style="height:5px; background:#f0ebfa; border-radius:3px; width:70%;"></div>
+        </div>
+        <div style="background:#fff; border-radius:8px; padding:10px; border:1.5px solid #e8e4f0;">
+          <div style="font-size:10px; font-weight:700; color:#9893a1; text-transform:uppercase; margin-bottom:4px;">After June 11</div>
+          <div style="height:5px; background:#f0ebfa; border-radius:3px; margin-bottom:3px;"></div>
+          <div style="height:5px; background:#f0ebfa; border-radius:3px; width:50%;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Full event hub</h3>
+      <p>A complete participant-facing site covering before, during, and after the workshop. Pre-workshop checklist, day-of guide, prompt library, live gallery, and a post-session resource page. Evergreen, shareable link.</p>
+      <p style="margin-top:8px; font-size:12px; color:#9893a1;"><strong>Effort:</strong> High · 6–8 pages · Most reusable for future events</p>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:24px;">Open <strong>http://localhost:62582</strong> to see this. Click a card to select, or just tell me in the terminal.</p>
