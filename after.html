@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>After — Patterns Denver 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f5f4f7;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #2d2838;
+      min-height: 100vh;
+    }
+
+    /* Nav */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: 52px;
+      background: #fff;
+      border-bottom: 1.5px solid #e8e4f0;
+    }
+    .nav-logo {
+      font-weight: 800;
+      font-size: 15px;
+      color: #2d2838;
+      text-decoration: none;
+      letter-spacing: -.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 4px;
+    }
+    .nav-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: #645e6e;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+    .nav-link:hover { background: #f5f4f7; color: #2d2838; }
+    .nav-link.active { color: #6436bf; font-weight: 700; background: #f0ecfb; }
+
+    /* Page header */
+    .page-header {
+      background: #fff;
+      border-bottom: 1.5px solid #e8e4f0;
+      padding: 32px 24px 28px;
+      text-align: center;
+    }
+    .page-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #226633;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 10px;
+    }
+    .page-header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #2d2838;
+      letter-spacing: -.02em;
+      margin-bottom: 8px;
+    }
+    .page-subtitle {
+      font-size: 15px;
+      color: #9893a1;
+      font-weight: 400;
+    }
+
+    /* Main */
+    .main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px 24px;
+    }
+
+    /* Section cards */
+    .section-card {
+      background: #fff;
+      border: 1.5px solid #e8e4f0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: #226633;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Placeholder note */
+    .placeholder-note {
+      background: #f8f9fa;
+      border: 1.5px dashed #e8e4f0;
+      border-radius: 10px;
+      padding: 16px 18px;
+      color: #9893a1;
+      font-style: italic;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* Pills */
+    .after-pill {
+      background: #f5f4f7;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: #645e6e;
+      margin-bottom: 6px;
+      line-height: 1.5;
+      display: block;
+    }
+    .after-pill:last-child { margin-bottom: 0; }
+
+    .after-pill a {
+      color: #6436bf;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .after-pill a:hover { text-decoration: underline; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 11px;
+      color: #bbb;
+      border-top: 1px solid #e8e4f0;
+      background: #fff;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a class="nav-logo" href="index.html">Patterns Denver</a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="before.html">Before</a>
+      <a class="nav-link" href="guide.html">Guide</a>
+      <a class="nav-link" href="prompts.html">Prompts</a>
+      <a class="nav-link" href="gallery.html">Gallery</a>
+      <a class="nav-link active" href="after.html">After</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-label">After June 11</div>
+    <h1>Take it home</h1>
+    <p class="page-subtitle">Resources, highlights, and ways to keep going.</p>
+  </div>
+
+  <main class="main">
+
+    <!-- Section 1: What the room built -->
+    <div class="section-card">
+      <div class="section-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#226633" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        What the room built
+      </div>
+      <div class="placeholder-note">
+        Coming June 13 — Amber will add the anxiety map and gallery highlights within 48 hours of the workshop.
+      </div>
+    </div>
+
+    <!-- Section 2: Run it on your own system -->
+    <div class="section-card">
+      <div class="section-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#226633" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        Run it on your own system
+      </div>
+      <span class="after-pill">Clone the repo, use your own docs</span>
+      <span class="after-pill">
+        <a href="https://claude.ai/code">Claude Code</a> · <a href="https://github.com/theambermeister-324/patterns-denver">Workshop repo</a> · <a href="https://www.knapsack.cloud">Knapsack</a>
+      </span>
+    </div>
+
+    <!-- Section 3: Stay connected -->
+    <div class="section-card">
+      <div class="section-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#226633" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Stay connected
+      </div>
+      <span class="after-pill">Reach out to Amber — <a href="mailto:amber@knapsack.cloud">amber@knapsack.cloud</a></span>
+      <span class="after-pill">Follow-up thread for continued peer conversation</span>
+    </div>
+
+  </main>
+
+  <footer>Patterns Denver 2026 · Knapsack × FuegoUX</footer>
+
+</body>
+</html>
