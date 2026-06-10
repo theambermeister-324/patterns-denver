@@ -155,6 +155,60 @@
       color: #4a1fa0;
     }
 
+    /* Knapsack bonus section */
+    .bonus-section {
+      margin-top: 32px;
+      border-top: 1.5px dashed #e0c86a;
+      padding-top: 24px;
+    }
+    .bonus-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .bonus-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #8a6e00;
+    }
+    .bonus-badge {
+      font-size: 10px;
+      font-weight: 700;
+      color: #8a6e00;
+      background: #fff8d6;
+      border: 1px solid #e0c86a;
+      border-radius: 20px;
+      padding: 2px 8px;
+    }
+    .bonus-intro {
+      font-size: 13px;
+      color: #645e6e;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .bonus-card {
+      background: #fffbeb;
+      border: 1.5px solid #e8d87a;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .bonus-card .prompt-header { justify-content: space-between; }
+    .bonus-card .copy-btn {
+      background: #fff8d6;
+      border-color: #d4b84a;
+      color: #7a5c00;
+    }
+    .bonus-card .copy-btn:hover { background: #fff0a0; }
+    .bonus-card .prompt-text {
+      background: #fff8d6;
+      border-color: #e8d87a;
+      color: #5c4400;
+    }
+
     /* Footer */
     .site-footer {
       text-align: center;
@@ -251,6 +305,41 @@
         <li>Ask for a list, not an essay</li>
         <li>Follow up: <code>/query Tell me more about [the gap you mentioned]</code></li>
       </ul>
+    </div>
+
+    <div class="bonus-section">
+      <div class="bonus-header">
+        <span class="bonus-label">Bonus prompts</span>
+        <span class="bonus-badge">requires Knapsack MCP</span>
+      </div>
+      <p class="bonus-intro">If your facilitator has connected the Knapsack MCP, you can use a real enterprise design system as a reference benchmark. Instead of asking "what's missing?" in the abstract, compare directly against a production system.</p>
+
+      <div class="bonus-card">
+        <div class="prompt-header">
+          <h3 class="prompt-title">Comparative gap analysis</h3>
+          <button class="copy-btn" data-prompt="/query Using the Knapsack design system as a reference, what's in my system that Knapsack's lacks — and what does Knapsack have that I'm missing?">Copy</button>
+        </div>
+        <p class="prompt-desc">Surfaces what each system prioritizes. You'll often find your system is strong in areas Knapsack isn't, and vice versa.</p>
+        <div class="prompt-text">/query Using the Knapsack design system as a reference, what's in my system that Knapsack's lacks — and what does Knapsack have that I'm missing?</div>
+      </div>
+
+      <div class="bonus-card">
+        <div class="prompt-header">
+          <h3 class="prompt-title">Component deep-dive</h3>
+          <button class="copy-btn" data-prompt="/query Compare how my design system documents the Button component versus how Knapsack documents it. What's missing from mine?">Copy</button>
+        </div>
+        <p class="prompt-desc">Narrow to one component for concrete, actionable output. Button is a good starting point — every system has one.</p>
+        <div class="prompt-text">/query Compare how my design system documents the Button component versus how Knapsack documents it. What's missing from mine?</div>
+      </div>
+
+      <div class="bonus-card">
+        <div class="prompt-header">
+          <h3 class="prompt-title">AI-readiness benchmark</h3>
+          <button class="copy-btn" data-prompt="/query What would I need to add to my documentation to make it as AI-queryable as Knapsack's design system?">Copy</button>
+        </div>
+        <p class="prompt-desc">The north star question for this workshop. Uses Knapsack as a concrete target instead of an abstract ideal.</p>
+        <div class="prompt-text">/query What would I need to add to my documentation to make it as AI-queryable as Knapsack's design system?</div>
+      </div>
     </div>
 
   </main>

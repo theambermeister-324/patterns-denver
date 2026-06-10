@@ -125,6 +125,34 @@ Once you have results, follow the suggestion Claude offers at the end of each `/
 
 ---
 
+## With Knapsack as reference
+
+If the Knapsack MCP is connected, you can compare your design system directly against a real production enterprise system. These prompts only work when the MCP is active — ask your facilitator.
+
+### 7. Comparative gap analysis
+```
+/query Using the Knapsack design system as a reference, what's in my system that Knapsack's lacks — and what does Knapsack have that I'm missing?
+```
+Surfaces what each system prioritizes. You'll often find your system is strong in areas Knapsack isn't, and vice versa — both gaps are useful.
+
+---
+
+### 8. Component deep-dive
+```
+/query Compare how my design system documents the Button component versus how Knapsack documents it. What's missing from mine?
+```
+Narrow to one component for concrete, actionable output. Button is a good starting point — every system has one.
+
+---
+
+### 9. AI-readiness benchmark
+```
+/query What would I need to add to my documentation to make it as AI-queryable as Knapsack's design system?
+```
+The north star question for this workshop. Uses Knapsack as a concrete target instead of an abstract ideal — "as AI-queryable as Knapsack's" is a real bar you can measure against.
+
+---
+
 ## Prompts that don't work (and why)
 
 | Don't do this | Do this instead | Why |
