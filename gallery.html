@@ -370,7 +370,7 @@
     <header>
       <div class="logo">Knapsack × FuegoUX</div>
       <h1>Patterns Denver — Workshop Gallery</h1>
-      <p class="subtitle">June 11, 2026 &nbsp;·&nbsp; Rhino District, Denver &nbsp;·&nbsp; 14 practitioners, 7 pairs, one afternoon</p>
+      <p class="subtitle">June 11, 2026 &nbsp;·&nbsp; Rhino District, Denver</p>
     </header>
 
     <!-- QR codes — scan to get started / open gallery -->
@@ -387,99 +387,19 @@
       </div>
     </div>
 
-    <div class="prompt-bar">
-      <strong>The afternoon prompt</strong>
-      <em>"Your design system has a documentation gap. You have an AI agent. What's the first thing you'd automate? Deploy it."</em>
-    </div>
-
-    <div class="section-label">Workshop pairs</div>
-    <div class="grid">
-
-      <!-- Pair 1 -->
-      <div class="pair-card">
-        <div class="pair-name">Julian Hartnett + Meghan Morris</div>
-        <div class="pair-orgs">Maxio · Aetna/CVS Health</div>
-        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
-        <div class="empty-state">Output pending — check back after June 11</div>
-      </div>
-
-      <!-- Pair 2 -->
-      <div class="pair-card">
-
-        <div class="pair-name">Rachael Greene + Eric Leckband</div>
-        <div class="pair-orgs">SageSure · USAA</div>
-        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
-        <div class="empty-state">Output pending — check back after June 11</div>
-      </div>
-
-      <!-- Pair 3 -->
-      <div class="pair-card">
-
-        <div class="pair-name">Rebecca Fanning + Lex ReganHolzheimer</div>
-        <div class="pair-orgs">Engrain · ADP</div>
-        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
-        <div class="empty-state">Output pending — check back after June 11</div>
-      </div>
-
-      <!-- Pair 4 -->
-      <div class="pair-card">
-
-        <div class="pair-name">Patrick Farrell + Tambralyn Peterson</div>
-        <div class="pair-orgs">M&amp;T Bank · Allegion</div>
-        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
-        <div class="empty-state">Output pending — check back after June 11</div>
-      </div>
-
-      <!-- Pair 5 -->
-      <div class="pair-card">
-
-        <div class="pair-name">Chris Holder + Ari Weissman</div>
-        <div class="pair-orgs">Spirence · HealthEdge</div>
-        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
-        <div class="empty-state">Output pending — check back after June 11</div>
-      </div>
-
-      <!-- Pair 6 -->
-      <div class="pair-card">
-
-        <div class="pair-name">Bridget Higgins + Tony Walt</div>
-        <div class="pair-orgs">Engrain · Spectrum</div>
-        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
-        <div class="empty-state">Output pending — check back after June 11</div>
-      </div>
-
-    </div>
-
-      <!-- Pair 7 -->
-      <div class="pair-card">
-        <div class="pair-name">Scott Johns + Connie Benedict</div>
-        <div class="pair-orgs">Intuit · Independent</div>
-        <div class="pair-sentence">"I want to see if AI can help me with ___."</div>
-        <div class="empty-state">Output pending — check back after June 11</div>
-      </div>
-
-    </div>
 
     <!-- Gallery submission form — Netlify processes this natively -->
     <div class="submit-section" id="submit-section">
-      <h3>Add your pair's output</h3>
+      <h3>Add your output</h3>
       <p class="form-note">Fill this out from your phone or laptop. No git required — your output goes straight to the gallery.</p>
       <form id="gallery-form" name="gallery-submissions" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="gallery-submissions">
         <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
 
         <div class="form-row">
-          <label for="pair">Your pair</label>
-          <select id="pair" name="pair" required>
-            <option value="" disabled selected>Select your pair…</option>
-            <option>Julian Hartnett + Meghan Morris</option>
-            <option>Rachael Greene + Eric Leckband</option>
-            <option>Rebecca Fanning + Lex ReganHolzheimer</option>
-            <option>Patrick Farrell + Tambralyn Peterson</option>
-            <option>Chris Holder + Ari Weissman</option>
-            <option>Bridget Higgins + Tony Walt</option>
-            <option>Scott Johns + Connie Benedict</option>
-          </select>
+          <label for="group-name">Name your session</label>
+          <input type="text" id="group-name" name="group-name" placeholder="e.g. Accessibility audit, Token explorer, Button docs…" required>
+          <p class="form-hint">Give your session a short descriptive name — no names needed.</p>
         </div>
 
         <div class="form-row">
@@ -529,10 +449,10 @@
     </script>
 
     <div class="meta-section">
-      <h3>Facilitators</h3>
+      <h3>Speakers</h3>
       <div class="facilitators">
         <span class="facilitator-chip">Amber Atkins — Knapsack</span>
-        <span class="facilitator-chip">Angie Stevenson — Knapsack</span>
+        <span class="facilitator-chip">Aaron Stone — Crux Digital</span>
         <span class="facilitator-chip">Nate Wearin — FuegoUX</span>
       </div>
     </div>
