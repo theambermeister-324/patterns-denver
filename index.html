@@ -153,7 +153,7 @@
   }
   .facilitators-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 0;
   }
   .facilitator-block {
@@ -185,6 +185,7 @@
   }
   .avatar.nate { background: #271C88; }
   .avatar.aaron { background: #897EEE; }
+  .avatar.zach { background: #226633; }
   .facilitator-name {
     font-size: 13px;
     font-weight: 800;
@@ -277,7 +278,7 @@
   @media (max-width: 640px) {
     .cards-row-primary,
     .cards-row { grid-template-columns: 1fr; }
-    .facilitators-grid { grid-template-columns: 1fr; gap: 16px; }
+    .facilitators-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
     .facilitator-block { border-right: none; padding-right: 0; margin-right: 0; border-bottom: 1px solid #E0DCF8; padding-bottom: 16px; margin-bottom: 0; }
     .facilitator-block:last-child { border-bottom: none; padding-bottom: 0; }
     .hero h1 { font-size: 34px; }
@@ -349,6 +350,13 @@
         <div>
           <div class="facilitator-name">Nate Wearin</div>
           <div class="facilitator-org">FuegoUX</div>
+        </div>
+      </div>
+      <div class="facilitator-block">
+        <div class="avatar zach">ZH</div>
+        <div>
+          <div class="facilitator-name">Zach Hendershot</div>
+          <div class="facilitator-org">Crux Digital</div>
         </div>
       </div>
     </div>
