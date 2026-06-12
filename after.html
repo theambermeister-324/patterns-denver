@@ -132,6 +132,30 @@
       margin-bottom: 14px;
     }
 
+    .pcri-list {
+      list-style: none;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .pcri-list li {
+      font-size: 13px;
+      color: #3a3550;
+      line-height: 1.45;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .pcri-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #412FE4;
+      font-weight: 700;
+    }
+
     /* PCRI primary card */
     .card-primary {
       background: #F5F4FD;
@@ -305,9 +329,15 @@
     <!-- PCRI CTA — primary -->
     <div class="card-primary">
       <div class="card-eyebrow indigo">Your next step</div>
-      <h2>Take your PCRI assessment</h2>
-      <p>The Platform Capability Readiness Index benchmarks where your design system stands today — documentation coverage, AI readiness, adoption health. Takes about 10 minutes. Your score tells you what to prioritize next.</p>
-      <a class="btn-primary" href="https://www.knapsack-enable.com/app/ipe-intake" target="_blank">Start your assessment →</a>
+      <h2>AI doesn't consume components — it consumes context</h2>
+      <p>Today you ran queries against your design system docs. The PCRI tells you how AI-ready that context really is — scored against 158 enterprises. 10 minutes. You'll leave knowing your archetype and exactly what to prioritize next.</p>
+      <ul class="pcri-list">
+        <li><strong>Your archetype</strong> — Builder, Adopter, Optimizer, or Transformer</li>
+        <li><strong>Industry benchmark</strong> — compare to 158 enterprises in your sector</li>
+        <li><strong>AI governance score</strong> — not just tools, can you adopt AI safely?</li>
+        <li><strong>Priority roadmap</strong> — personalized actions, not a generic checklist</li>
+      </ul>
+      <a class="btn-primary" href="https://www.knapsack-enable.com/app/ipe-intake" target="_blank">Start the PCRI →</a>
     </div>
 
     <!-- Denver cohort -->
