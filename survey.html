@@ -291,6 +291,13 @@
       margin-top: 10px;
     }
 
+    .privacy-note {
+      font-size: 11px;
+      color: #9893a1;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
     /* Error */
     .field-error {
       font-size: 12px;
@@ -540,9 +547,32 @@
           <textarea class="textarea-input" id="open-feedback" placeholder="Other thoughts, requests, shoutouts..."></textarea>
         </div>
 
+        <hr class="question-divider" />
+
+        <!-- Contact for follow-up -->
+        <div class="question">
+          <div class="question-label">Your name</div>
+          <div class="question-hint">Optional — only used if you'd like us to follow up</div>
+          <input class="text-input" type="text" id="respondent-name" placeholder="First name or full name" autocomplete="name" />
+        </div>
+
+        <div class="question">
+          <div class="question-label">Your work email</div>
+          <div class="question-hint">Optional — only if you'd like us to reach out</div>
+          <input class="text-input" type="email" id="respondent-email" placeholder="you@company.com" autocomplete="email" />
+        </div>
+
+        <div class="question" id="consent-block" style="display:none">
+          <div class="option-item">
+            <input type="checkbox" id="consent-checkbox" />
+            <label for="consent-checkbox">I agree to be contacted by the workshop organizers (Knapsack, FuegoUX, and Crux Digital) for follow-up support related to this workshop. My details won't be shared beyond these three organizations or used for unrelated marketing.</label>
+          </div>
+          <div class="field-error" id="consent-error">Please check the box to confirm consent before submitting your email.</div>
+        </div>
+
         <div class="submit-row">
           <button type="submit" class="btn-submit" id="submit-btn">Submit feedback →</button>
-          <div class="submit-note">Responses are anonymous unless you include your name.</div>
+          <p class="privacy-note">Responses without an email are anonymous. Contact details are stored securely and only accessible to workshop organizers.</p>
         </div>
 
       </form>
@@ -588,6 +618,11 @@
       starBtns.forEach(b => b.classList.toggle('selected', selectedRating && parseInt(b.dataset.value) <= selectedRating));
     });
 
+    // Consent show/hide
+    document.getElementById('respondent-email').addEventListener('input', function() {
+      document.getElementById('consent-block').style.display = this.value.trim() ? 'block' : 'none';
+    });
+
     // NPS
     let selectedNps = null;
     const npsBtns = document.querySelectorAll('.nps-btn');
@@ -628,6 +663,16 @@
         document.getElementById('continuation-error').style.display = 'none';
       }
 
+      // Validate consent if email provided
+      const email = document.getElementById('respondent-email').value.trim();
+      const consentChecked = document.getElementById('consent-checkbox').checked;
+      if (email && !consentChecked) {
+        document.getElementById('consent-error').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('consent-error').style.display = 'none';
+      }
+
       if (!valid) return;
 
       const submitBtn = document.getElementById('submit-btn');
@@ -646,7 +691,10 @@
         support_needs: supportNeeds.length ? supportNeeds : null,
         slack_intent: slackIntent ? slackIntent.value : null,
         nps: selectedNps,
-        open_feedback: document.getElementById('open-feedback').value.trim() || null
+        open_feedback: document.getElementById('open-feedback').value.trim() || null,
+        respondent_name: document.getElementById('respondent-name').value.trim() || null,
+        respondent_email: email || null,
+        consent_given: email ? consentChecked : false
       };
 
       try {
