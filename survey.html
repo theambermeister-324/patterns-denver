@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Survey — Patterns Denver 2026</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f4f7;
+      color: #1F2937;
+    }
+
+    /* Nav */
+    .site-nav {
+      background: #412FE4;
+      height: 48px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+
+    .nav-logo {
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, .6);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    .nav-link.active {
+      color: #fff;
+      background: rgba(255, 255, 255, .18);
+    }
+
+    /* Page header */
+    .page-header {
+      background: #fff;
+      border-bottom: 1.5px solid #e8e4f0;
+    }
+
+    .page-header-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 28px 24px 24px;
+    }
+
+    .page-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: #412FE4;
+      letter-spacing: .12em;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .page-header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1F2937;
+      margin-bottom: 8px;
+    }
+
+    .page-header p {
+      font-size: 15px;
+      color: #645e6e;
+      line-height: 1.55;
+    }
+
+    /* Main */
+    main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 28px 24px 60px;
+    }
+
+    /* Form card */
+    .form-card {
+      background: #fff;
+      border: 1.5px solid #e8e4f0;
+      border-radius: 12px;
+      padding: 28px;
+    }
+
+    /* Question */
+    .question {
+      margin-bottom: 28px;
+    }
+
+    .question:last-child {
+      margin-bottom: 0;
+    }
+
+    .question-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .question-hint {
+      font-size: 12px;
+      color: #9893a1;
+      margin-bottom: 10px;
+    }
+
+    .question-divider {
+      border: none;
+      border-top: 1px solid #f0eef4;
+      margin: 28px 0;
+    }
+
+    /* Star rating */
+    .star-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .star-btn {
+      font-size: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #d8d4e4;
+      transition: color .1s, transform .1s;
+      padding: 2px;
+      line-height: 1;
+    }
+
+    .star-btn:hover,
+    .star-btn.selected {
+      color: #C88400;
+    }
+
+    .star-btn:hover { transform: scale(1.15); }
+
+    /* Text inputs */
+    .text-input,
+    .textarea-input {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #1F2937;
+      background: #F9FAFB;
+      border: 1.5px solid #e8e4f0;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    .text-input:focus,
+    .textarea-input:focus {
+      border-color: #897EEE;
+      background: #fff;
+    }
+
+    .textarea-input {
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.5;
+    }
+
+    /* Radio / checkbox options */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border: 1.5px solid #e8e4f0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color .1s, background .1s;
+    }
+
+    .option-item:hover {
+      border-color: #C5BEF7;
+      background: #F5F4FD;
+    }
+
+    .option-item input[type="radio"],
+    .option-item input[type="checkbox"] {
+      accent-color: #412FE4;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .option-item label {
+      font-size: 14px;
+      color: #1F2937;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+
+    /* NPS scale */
+    .nps-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nps-btn {
+      width: 40px;
+      height: 40px;
+      border: 1.5px solid #e8e4f0;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      color: #645e6e;
+      cursor: pointer;
+      transition: border-color .1s, background .1s, color .1s;
+    }
+
+    .nps-btn:hover {
+      border-color: #C5BEF7;
+      background: #F5F4FD;
+      color: #412FE4;
+    }
+
+    .nps-btn.selected {
+      background: #412FE4;
+      border-color: #412FE4;
+      color: #fff;
+    }
+
+    .nps-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+
+    .nps-label {
+      font-size: 11px;
+      color: #9893a1;
+    }
+
+    /* Submit */
+    .submit-row {
+      margin-top: 28px;
+    }
+
+    .btn-submit {
+      background: #412FE4;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .btn-submit:hover:not(:disabled) { background: #271C88; }
+    .btn-submit:disabled { opacity: .55; cursor: not-allowed; }
+
+    .submit-note {
+      font-size: 12px;
+      color: #9893a1;
+      margin-top: 10px;
+    }
+
+    /* Error */
+    .field-error {
+      font-size: 12px;
+      color: #9B2626;
+      margin-top: 5px;
+      display: none;
+    }
+
+    /* Success state */
+    #success-state {
+      display: none;
+      background: #fff;
+      border: 1.5px solid #e8e4f0;
+      border-radius: 12px;
+      padding: 40px 28px;
+      text-align: center;
+    }
+
+    .success-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    #success-state h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1F2937;
+      margin-bottom: 10px;
+    }
+
+    #success-state p {
+      font-size: 14px;
+      color: #645e6e;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .success-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .success-link {
+      display: inline-block;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .15s;
+    }
+
+    .success-link.primary {
+      background: #412FE4;
+      color: #fff;
+    }
+
+    .success-link.primary:hover { background: #271C88; }
+
+    .success-link.secondary {
+      background: #F5F4FD;
+      border: 1px solid #C5BEF7;
+      color: #412FE4;
+    }
+
+    .success-link.secondary:hover { background: #E0DCF8; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 11px;
+      color: #bbb;
+      border-top: 1px solid #e8e4f0;
+      background: #fff;
+      padding: 24px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 480px) {
+      .nps-btn { width: 34px; height: 34px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a class="nav-logo" href="index.html">Patterns Denver</a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="before.html">Before</a>
+      <a class="nav-link" href="guide.html">Guide</a>
+      <a class="nav-link" href="prompts.html">Prompts</a>
+      <a class="nav-link" href="gallery.html">Gallery</a>
+      <a class="nav-link" href="after.html">After</a>
+      <a class="nav-link active" href="survey.html">Survey</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-label">After June 11</div>
+      <h1>Share your feedback</h1>
+      <p>Takes about 3 minutes. Your answers help us improve and help us figure out who needs follow-up support.</p>
+    </div>
+  </div>
+
+  <main>
+
+    <div id="form-card" class="form-card">
+      <form id="survey-form" novalidate>
+
+        <!-- Q1: Star rating -->
+        <div class="question">
+          <div class="question-label">How would you rate today's workshop? <span style="color:#9B2626">*</span></div>
+          <div class="question-hint">1 = not what I expected, 5 = exceeded expectations</div>
+          <div class="star-row" id="star-row" role="group" aria-label="Rating">
+            <button type="button" class="star-btn" data-value="1" aria-label="1 star">★</button>
+            <button type="button" class="star-btn" data-value="2" aria-label="2 stars">★</button>
+            <button type="button" class="star-btn" data-value="3" aria-label="3 stars">★</button>
+            <button type="button" class="star-btn" data-value="4" aria-label="4 stars">★</button>
+            <button type="button" class="star-btn" data-value="5" aria-label="5 stars">★</button>
+          </div>
+          <div class="field-error" id="rating-error">Please select a rating.</div>
+        </div>
+
+        <hr class="question-divider" />
+
+        <!-- Q2: Most useful -->
+        <div class="question">
+          <div class="question-label">What was the most useful thing you learned or tried today? <span style="color:#9B2626">*</span></div>
+          <input class="text-input" type="text" id="most-useful" placeholder="e.g. Running a query against my own docs for the first time" />
+          <div class="field-error" id="most-useful-error">Please share something — even one word helps.</div>
+        </div>
+
+        <!-- Q3: Biggest friction -->
+        <div class="question">
+          <div class="question-label">What was the hardest part of the afternoon?</div>
+          <div class="question-hint">Optional — no wrong answers here</div>
+          <input class="text-input" type="text" id="biggest-friction" placeholder="e.g. Getting Claude Code set up, not knowing where to start, etc." />
+        </div>
+
+        <hr class="question-divider" />
+
+        <!-- Q4: Continuation intent -->
+        <div class="question">
+          <div class="question-label">Are you planning to keep experimenting with AI and your design system? <span style="color:#9B2626">*</span></div>
+          <div class="options-list" id="continuation-options">
+            <div class="option-item">
+              <input type="radio" name="continuation" id="cont-yes" value="Yes" />
+              <label for="cont-yes">Yes — I want to keep going</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="continuation" id="cont-maybe" value="Not sure" />
+              <label for="cont-maybe">Not sure yet</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="continuation" id="cont-no" value="No" />
+              <label for="cont-no">No — not right now</label>
+            </div>
+          </div>
+          <div class="field-error" id="continuation-error">Please select one.</div>
+        </div>
+
+        <hr class="question-divider" />
+
+        <!-- Q5: Support needs (multi-select) -->
+        <div class="question">
+          <div class="question-label">What would be most useful to you right now?</div>
+          <div class="question-hint">Select all that apply</div>
+          <div class="options-list">
+            <div class="option-item">
+              <input type="checkbox" name="support" id="sup-setup" value="Help finishing my setup" />
+              <label for="sup-setup">Help finishing my setup</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="support" id="sup-slack" value="Peer connections via the Slack channel" />
+              <label for="sup-slack">Peer connections via the Slack channel</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="support" id="sup-call" value="A follow-up call with Knapsack, FuegoUX, or Crux" />
+              <label for="sup-call">A follow-up call with Knapsack, FuegoUX, or Crux</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="support" id="sup-pcri" value="Taking the PCRI assessment" />
+              <label for="sup-pcri">Taking the PCRI assessment</label>
+            </div>
+            <div class="option-item">
+              <input type="checkbox" name="support" id="sup-none" value="Just exploring on my own" />
+              <label for="sup-none">I'm good — just exploring on my own</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q6: Slack intent -->
+        <div class="question">
+          <div class="question-label">Would you actively use a Slack channel to share wins, ask questions, and stay connected with today's cohort?</div>
+          <div class="options-list">
+            <div class="option-item">
+              <input type="radio" name="slack_intent" id="slack-yes" value="Yes" />
+              <label for="slack-yes">Yes — I'm in</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="slack_intent" id="slack-maybe" value="Maybe" />
+              <label for="slack-maybe">Maybe — I'll see how it goes</label>
+            </div>
+            <div class="option-item">
+              <input type="radio" name="slack_intent" id="slack-no" value="No" />
+              <label for="slack-no">Probably not</label>
+            </div>
+          </div>
+        </div>
+
+        <hr class="question-divider" />
+
+        <!-- Q7: NPS -->
+        <div class="question">
+          <div class="question-label">How likely are you to recommend a similar workshop to a colleague?</div>
+          <div class="question-hint">0 = not at all likely, 10 = extremely likely</div>
+          <div class="nps-row" id="nps-row" role="group" aria-label="NPS score">
+            <button type="button" class="nps-btn" data-value="0">0</button>
+            <button type="button" class="nps-btn" data-value="1">1</button>
+            <button type="button" class="nps-btn" data-value="2">2</button>
+            <button type="button" class="nps-btn" data-value="3">3</button>
+            <button type="button" class="nps-btn" data-value="4">4</button>
+            <button type="button" class="nps-btn" data-value="5">5</button>
+            <button type="button" class="nps-btn" data-value="6">6</button>
+            <button type="button" class="nps-btn" data-value="7">7</button>
+            <button type="button" class="nps-btn" data-value="8">8</button>
+            <button type="button" class="nps-btn" data-value="9">9</button>
+            <button type="button" class="nps-btn" data-value="10">10</button>
+          </div>
+          <div class="nps-labels">
+            <span class="nps-label">Not likely</span>
+            <span class="nps-label">Extremely likely</span>
+          </div>
+        </div>
+
+        <!-- Q8: Open -->
+        <div class="question">
+          <div class="question-label">Anything else you want us to know?</div>
+          <div class="question-hint">Optional — open field</div>
+          <textarea class="textarea-input" id="open-feedback" placeholder="Other thoughts, requests, shoutouts..."></textarea>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn-submit" id="submit-btn">Submit feedback →</button>
+          <div class="submit-note">Responses are anonymous unless you include your name.</div>
+        </div>
+
+      </form>
+    </div>
+
+    <div id="success-state">
+      <div class="success-icon">🙌</div>
+      <h2>Thank you</h2>
+      <p>Your feedback is in. We'll use it to improve the workshop and make sure everyone gets the follow-up they need.</p>
+      <div class="success-links">
+        <a class="success-link primary" href="https://www.knapsack-enable.com/app/ipe-intake" target="_blank">Take the PCRI assessment →</a>
+        <a class="success-link secondary" href="https://join.slack.com/share/enQtMTEzMzIyNTMyMTU3NzctNWJiMDM5OTVhZGJhODZmODFjNmVmMWZmNmI5OWYxZGZlMjhmODNjZmI3MzNlYWQ4YmM4MzUwNTAyNDlmNThhOA" target="_blank">Join the Slack channel</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>Patterns Denver 2026 · Knapsack</footer>
+
+  <script>
+    const SUPABASE_URL = 'https://pgxzwrweczytjtgrnqao.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_Q8JZGX47t5ETWnkNE-gc4w_9TSwwtJp';
+    const HEADERS = {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'application/json'
+    };
+
+    // Star rating
+    let selectedRating = null;
+    const starBtns = document.querySelectorAll('.star-btn');
+    starBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedRating = parseInt(btn.dataset.value);
+        starBtns.forEach(b => b.classList.toggle('selected', parseInt(b.dataset.value) <= selectedRating));
+      });
+      btn.addEventListener('mouseenter', () => {
+        const hovered = parseInt(btn.dataset.value);
+        starBtns.forEach(b => b.classList.toggle('selected', parseInt(b.dataset.value) <= hovered));
+      });
+    });
+    document.getElementById('star-row').addEventListener('mouseleave', () => {
+      starBtns.forEach(b => b.classList.toggle('selected', selectedRating && parseInt(b.dataset.value) <= selectedRating));
+    });
+
+    // NPS
+    let selectedNps = null;
+    const npsBtns = document.querySelectorAll('.nps-btn');
+    npsBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedNps = parseInt(btn.dataset.value);
+        npsBtns.forEach(b => b.classList.toggle('selected', b === btn));
+      });
+    });
+
+    // Form submit
+    document.getElementById('survey-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Validate required fields
+      let valid = true;
+
+      if (!selectedRating) {
+        document.getElementById('rating-error').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('rating-error').style.display = 'none';
+      }
+
+      const mostUseful = document.getElementById('most-useful').value.trim();
+      if (!mostUseful) {
+        document.getElementById('most-useful-error').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('most-useful-error').style.display = 'none';
+      }
+
+      const continuation = document.querySelector('input[name="continuation"]:checked');
+      if (!continuation) {
+        document.getElementById('continuation-error').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('continuation-error').style.display = 'none';
+      }
+
+      if (!valid) return;
+
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      // Gather support needs (multi-select)
+      const supportNeeds = Array.from(document.querySelectorAll('input[name="support"]:checked')).map(cb => cb.value);
+      const slackIntent = document.querySelector('input[name="slack_intent"]:checked');
+
+      const payload = {
+        rating: selectedRating,
+        most_useful: mostUseful,
+        biggest_friction: document.getElementById('biggest-friction').value.trim() || null,
+        continuation: continuation ? continuation.value : null,
+        support_needs: supportNeeds.length ? supportNeeds : null,
+        slack_intent: slackIntent ? slackIntent.value : null,
+        nps: selectedNps,
+        open_feedback: document.getElementById('open-feedback').value.trim() || null
+      };
+
+      try {
+        const res = await fetch(SUPABASE_URL + '/rest/v1/survey_responses', {
+          method: 'POST',
+          headers: { ...HEADERS, 'Prefer': 'return=minimal' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok || res.status === 201) {
+          document.getElementById('form-card').style.display = 'none';
+          document.getElementById('success-state').style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          throw new Error('Server responded with ' + res.status);
+        }
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit feedback →';
+        alert('Something went wrong. Please try again in a moment.');
+        console.error(err);
+      }
+    });
+  </script>
+
+</body>
+</html>
