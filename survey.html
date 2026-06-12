@@ -709,13 +709,14 @@
           document.getElementById('success-state').style.display = 'block';
           window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
-          throw new Error('Server responded with ' + res.status);
+          const body = await res.json().catch(() => ({}));
+          throw new Error('HTTP ' + res.status + ': ' + (body.message || body.error || JSON.stringify(body)));
         }
       } catch (err) {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Submit feedback →';
-        alert('Something went wrong. Please try again in a moment.');
-        console.error(err);
+        console.error('Survey submit error:', err.message);
+        alert('Something went wrong: ' + err.message);
       }
     });
   </script>
