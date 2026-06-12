@@ -19,9 +19,11 @@
   padding-block: $spacing-10 $spacing-12;
 }
 
+// NOTE: no opacity on hero text — white on blue-60 is ~5.2:1 (passes WCAG AA),
+// but reducing opacity drops it below 4.5:1. Hierarchy comes from the type
+// scale + letter-spacing, not transparency.
 .pd-hero__eyebrow {
   color: var(--cds-text-on-color);
-  opacity: 0.65;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   margin-bottom: $spacing-05;
@@ -33,18 +35,12 @@
 
 .pd-hero__sub {
   color: var(--cds-text-on-color);
-  opacity: 0.8;
   max-width: 36rem;
   margin-bottom: $spacing-07;
 }
 
 .pd-hero__presenter {
   color: var(--cds-text-on-color);
-  opacity: 0.7;
-
-  strong {
-    opacity: 1;
-  }
 }
 
 // ---- Sections -------------------------------------------------------------

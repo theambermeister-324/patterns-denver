@@ -17,6 +17,9 @@ function App() {
     const onHash = () => {
       setRoute(readRoute())
       window.scrollTo(0, 0)
+      // Move focus to the main region so keyboard/screen-reader users land on
+      // the new page content instead of staying on the clicked nav link.
+      document.getElementById('main-content')?.focus()
     }
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)

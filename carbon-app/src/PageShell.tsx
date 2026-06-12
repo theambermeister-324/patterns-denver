@@ -38,7 +38,8 @@ export default function PageShell({
         </HeaderNavigation>
       </Header>
 
-      <main className="pd-main" id="main-content">
+      {/* tabIndex=-1 lets us move focus here on route change for keyboard/SR users */}
+      <main className="pd-main" id="main-content" tabIndex={-1}>
         {children}
       </main>
 

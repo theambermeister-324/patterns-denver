@@ -82,7 +82,7 @@ function BlockView({ block, idx }: { block: Block; idx: number }) {
                     <h3 className="cds--type-heading-03">{step.title}</h3>
                     {step.body && <p className="cds--type-body-01 pd-block__body">{step.body}</p>}
                     {step.code && (
-                      <CodeSnippet type={step.code.includes('\n') ? 'multi' : 'single'} feedback="Copied!">
+                      <CodeSnippet type="multi" wrapText feedback="Copied!">
                         {step.code}
                       </CodeSnippet>
                     )}
@@ -103,7 +103,7 @@ function BlockView({ block, idx }: { block: Block; idx: number }) {
               <Tile className="pd-prompt">
                 <h3 className="cds--type-heading-03">{block.title}</h3>
                 <p className="cds--type-body-01 pd-block__body">{block.description}</p>
-                <CodeSnippet type="multi" feedback="Copied!">{block.prompt}</CodeSnippet>
+                <CodeSnippet type="multi" wrapText feedback="Copied!">{block.prompt}</CodeSnippet>
               </Tile>
             </Column>
           </Grid>
