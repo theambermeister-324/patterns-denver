@@ -250,3 +250,164 @@
     color: var(--cds-text-helper);
   }
 }
+
+// ---- Progress strip (day-of flow) -----------------------------------------
+.pd-progress {
+  background: var(--cds-layer-01);
+  border-bottom: 1px solid var(--cds-border-subtle-01);
+  padding-block: $spacing-04;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: $spacing-05;
+  }
+  &__label {
+    color: var(--cds-text-secondary);
+    white-space: nowrap;
+  }
+  &__track {
+    flex: 1;
+    block-size: $spacing-03;
+    background: var(--cds-border-subtle-01);
+    border-radius: $spacing-03;
+    overflow: hidden;
+  }
+  &__fill {
+    block-size: 100%;
+    background: var(--cds-background-brand);
+    transition: width 0.3s ease;
+  }
+  &__dots {
+    display: flex;
+    gap: $spacing-03;
+  }
+  &__dot {
+    inline-size: $spacing-04;
+    block-size: $spacing-04;
+    border-radius: 50%;
+    background: var(--cds-border-strong-01);
+    &.is-done {
+      background: var(--cds-support-success);
+    }
+  }
+}
+
+// ---- Pinned sentence ------------------------------------------------------
+.pd-sentence-pin {
+  border-inline-start: 3px solid var(--cds-background-brand);
+  background: var(--cds-layer-01);
+  padding: $spacing-05 $spacing-06;
+  border-radius: 0 8px 8px 0;
+
+  &__label {
+    color: var(--cds-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: $spacing-03;
+  }
+  &__text {
+    color: var(--cds-text-primary);
+  }
+}
+
+// ---- Steps: rails ---------------------------------------------------------
+.pd-step__head {
+  display: flex;
+  align-items: center;
+  gap: $spacing-05;
+  margin-bottom: $spacing-03;
+}
+.pd-copied {
+  margin-top: $spacing-04;
+}
+.pd-step__fillin {
+  color: var(--cds-text-primary);
+  background: var(--cds-layer-accent-01);
+  padding: $spacing-03 $spacing-05;
+  border-radius: 6px;
+  margin-top: $spacing-04;
+}
+.pd-step__output {
+  color: var(--cds-text-helper);
+  margin-top: $spacing-04;
+}
+.pd-step__broken {
+  margin-top: $spacing-04;
+  summary {
+    cursor: pointer;
+    color: var(--cds-link-primary);
+  }
+  p {
+    color: var(--cds-text-secondary);
+    margin-top: $spacing-03;
+  }
+}
+
+// ---- Agenda ---------------------------------------------------------------
+.pd-agenda-row {
+  display: flex;
+  gap: $spacing-05;
+  padding-block: $spacing-04;
+  border-bottom: 1px solid var(--cds-border-subtle-01);
+  &:last-child { border-bottom: none; }
+  &__time { color: var(--cds-text-brand, var(--cds-link-primary)); white-space: nowrap; min-inline-size: 3rem; }
+  &__label { color: var(--cds-text-primary); }
+}
+
+// ---- Readiness ------------------------------------------------------------
+.pd-readiness-q {
+  margin-bottom: $spacing-06;
+}
+.pd-result__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-05;
+  margin-bottom: $spacing-05;
+}
+.pd-result__score {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--cds-text-primary);
+}
+.pd-result__max {
+  font-size: 1.25rem;
+  color: var(--cds-text-secondary);
+}
+.pd-meter {
+  block-size: $spacing-05;
+  background: var(--cds-border-subtle-01);
+  border-radius: $spacing-05;
+  overflow: hidden;
+  &__fill {
+    block-size: 100%;
+    background: var(--cds-background-brand);
+    transition: width 0.4s ease;
+  }
+}
+.pd-result__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-04;
+  margin-top: $spacing-05;
+}
+.pd-consent {
+  margin-top: $spacing-07;
+  padding-top: $spacing-06;
+  border-top: 1px solid var(--cds-border-subtle-01);
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-05;
+}
+
+// ---- Stuck? help FAB ------------------------------------------------------
+.pd-help-fab {
+  position: fixed;
+  inset-block-end: $spacing-05;
+  inset-inline-end: $spacing-05;
+  z-index: 9000;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}

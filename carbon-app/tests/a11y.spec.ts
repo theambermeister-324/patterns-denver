@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 
 // All 7 hash routes ('' = home).
-const routes = ['', 'setup', 'playbook', 'prompts', 'gallery', 'next', 'feedback']
+const routes = ['', 'setup', 'playbook', 'prompts', 'readiness', 'gallery', 'next', 'feedback']
 
 for (const route of routes) {
   test(`a11y — #/${route} has no WCAG 2.2 AA violations`, async ({ page }) => {

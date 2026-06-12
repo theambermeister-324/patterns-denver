@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import PageShell from './PageShell'
 import HomePage from './pages/HomePage'
+import ReadinessPage from './pages/ReadinessPage'
+import GalleryPage from './pages/GalleryPage'
 import PageRenderer from './PageRenderer'
 import { standardPages } from './content'
 import './App.scss'
 
-// Hash routing — 7 fixed pages, no react-router. `#/setup` → 'setup', `#/` → home.
+// Hash routing — fixed pages, no react-router. `#/setup` → 'setup', `#/` → home.
 function readRoute(): string {
   return window.location.hash.replace(/^#\/?/, '')
 }
@@ -25,14 +27,17 @@ function App() {
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
 
-  const page = standardPages[route]
-  const active = page ? route : '' // unknown route falls back to home
+  const stdPage = standardPages[route]
+  const known = route === '' || route === 'readiness' || !!stdPage
+  const active = known ? route : '' // unknown route falls back to home
 
-  return (
-    <PageShell active={active}>
-      {page ? <PageRenderer page={page} /> : <HomePage />}
-    </PageShell>
-  )
+  let body
+  if (active === 'readiness') body = <ReadinessPage />
+  else if (active === 'gallery') body = <GalleryPage />
+  else if (stdPage) body = <PageRenderer page={stdPage} routeKey={active} />
+  else body = <HomePage />
+
+  return <PageShell active={active}>{body}</PageShell>
 }
 
 export default App

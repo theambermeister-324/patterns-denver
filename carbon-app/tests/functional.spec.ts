@@ -5,6 +5,7 @@ const routes = [
   { route: 'setup', label: 'Setup' },
   { route: 'playbook', label: 'Playbook' },
   { route: 'prompts', label: 'Prompts' },
+  { route: 'readiness', label: 'Readiness' },
   { route: 'gallery', label: 'Gallery' },
   { route: 'next', label: 'Next steps' },
   { route: 'feedback', label: 'Feedback' },

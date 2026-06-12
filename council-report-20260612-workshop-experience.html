@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Council — Workshop app experience enhancements</title>
+<style>
+  :root{--ink:#161616;--muted:#6f6f6f;--line:#e0e0e0;--bg:#f4f4f4;--card:#fff;--brand:#0f62fe;--good:#24a148;--warn:#c2410c;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
+  header.top{border-bottom:3px solid var(--brand);padding-bottom:20px;margin-bottom:26px;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin-bottom:8px;}
+  h1{font-size:26px;letter-spacing:-.4px;margin-bottom:10px;}
+  .q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px 18px;font-size:14px;color:#393939;}
+  .meta{font-size:12px;color:var(--muted);margin-top:12px;}
+  h2{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:34px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px;}
+  .verdict h3{font-size:14px;margin:16px 0 6px;}.verdict h3:first-child{margin-top:0;}
+  .verdict p,.verdict li{font-size:13.5px;color:#393939;}.verdict ul{padding-left:20px;}
+  .tier{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:10px;}
+  .tier .t{font-size:13px;font-weight:700;margin-bottom:6px;}
+  .tier.t0{border-left-color:#8d8d8d;}.tier.t1{border-left-color:var(--brand);}.tier.t2{border-left-color:#8a3ffc;}.tier.t3{border-left-color:#007d79;}
+  .tier ul{margin:4px 0 0 18px;}.tier li{font-size:13px;margin-bottom:4px;color:#393939;}
+  .rec{background:#edf5ff;border-left:3px solid var(--brand);border-radius:0 8px 8px 0;padding:14px 18px;margin-top:10px;}
+  .first{border-left:3px solid var(--good);background:#defbe6;padding:14px 18px;border-radius:0 8px 8px 0;margin-top:14px;font-size:14px;}.first b{color:var(--good);}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .col{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px;}
+  .col .l{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;}
+  .col.agree .l{color:var(--good);}.col.blind .l{color:var(--warn);}.col.clash .l{color:var(--brand);}.col.clash{grid-column:1/-1;}
+  .col li{font-size:12.5px;margin-bottom:5px;color:#393939;}.col ul{padding-left:16px;}
+  details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:9px;overflow:hidden;}
+  summary{cursor:pointer;padding:13px 18px;font-weight:700;font-size:14px;list-style:none;display:flex;align-items:center;gap:10px;}
+  summary::-webkit-details-marker{display:none;}
+  .pill{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:20px;background:#edf5ff;color:var(--brand);}
+  details p{padding:0 18px 15px;font-size:13.5px;color:#393939;}
+  code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.9em;background:#f4f4f4;padding:1px 5px;border-radius:4px;}
+  footer{margin-top:38px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">🏛️ LLM Council Verdict</div>
+    <h1>Workshop app experience — enhancement recommendations</h1>
+    <div class="q">How do we make the Patterns Denver 2026 companion app <em>best-in-class</em>,
+      benchmarked to high-quality hands-on / sandbox workshops? (Afternoon in-person; attendees run
+      Claude Code in their <strong>own terminal on their own docs</strong>; Carbon SPA + Supabase;
+      Knapsack's goal: make practitioners feel their docs aren't AI-ready → convert to a PCRI assessment.)</div>
+    <div class="meta">2026-06-12 · 5 advisors · anonymized peer review · benchmarked vs Instruqt, Qwiklabs, GitHub Skills, Scrimba, Stripe/Twilio onboarding</div>
+  </header>
+
+  <h2>The roadmap (prioritized)</h2>
+  <div class="tier t0">
+    <div class="t">Tier 0 — Guide rails · ship next workshop (~weekends, pure frontend)</div>
+    <ul>
+      <li>Persistent progress + "you are here": <code>localStorage</code> Setup checklist, global <code>ProgressIndicator</code> (Step X of Y), copy-✓ per snippet, per-page complete.</li>
+      <li>Anti-stuck rails on Playbook: per-command "fill in YOUR part" callouts, expected-output screenshot/GIF, inline "didn't work?" fix, and a persistent "Stuck?" affordance on every page.</li>
+      <li>Pin "your sentence" across Playbook + Prompts so the attendee's own goal follows them.</li>
+      <li>Offline-capable pages (conference wifi dies), a time-boxed agenda, and a done-early / falling-behind path.</li>
+    </ul>
+  </div>
+  <div class="tier t1">
+    <div class="t">Tier 1 — The conversion core (the actual point)</div>
+    <ul>
+      <li><strong>In-room AI-readiness score</strong> from running Claude on their <em>own</em> docs — a surprising number is the conversion (the "show their data" move).</li>
+      <li>Bind <strong>sentence → score → PCRI</strong> as one consented identity thread (a funnel, not 7 pages).</li>
+      <li>An <strong>in-room</strong> "start your PCRI / talk to us" path + warm AE handoff — don't defer the highest-intent moment to a 48h email.</li>
+      <li><strong>Consent &amp; privacy first-class</strong> — opt-in before any capture; local-by-default. Proprietary docs are involved; this <em>gates</em> the whole funnel.</li>
+    </ul>
+  </div>
+  <div class="tier t2">
+    <div class="t">Tier 2 — Compounding &amp; distribution</div>
+    <ul>
+      <li>Gallery as permanent, shareable artifacts: per-result permalinks + OG image ("I audited my design system at Patterns Denver…"), ranked by "biggest gap found", live counter on every page.</li>
+      <li>Bring the Supabase gallery + survey <em>natively</em> into Carbon (kills the link-out).</li>
+      <li>48h follow-up email with their result + "run this on your real repo" + PCRI CTA; Slack cohort as a standing community.</li>
+      <li>Workshop-in-a-box: a re-skin/config layer (content's already decoupled) to redeploy per conference / enterprise team.</li>
+    </ul>
+  </div>
+  <div class="tier t3">
+    <div class="t">Tier 3 — Resilience (right-sized, NOT a rebuild)</div>
+    <ul>
+      <li>A pre-seeded repo / Codespaces devcontainer link for the broken-laptop case — <em>fallback only</em>, not a hosted sandbox (that breaks the BYO-terminal premise).</li>
+      <li>Optional facilitator view of room progress (piggyback the Supabase wall).</li>
+    </ul>
+  </div>
+
+  <h2>Council verdict</h2>
+  <div class="verdict">
+    <h3>Where the council agrees</h3>
+    <ul>
+      <li>Today the app is a <strong>table of contents</strong>, not an experience — the missing layer is <strong>guide rails</strong> (where am I, am I stuck, did it work).</li>
+      <li>It's <strong>conversion instrumentation</strong> for an in-room "felt gap" → PCRI, not an LMS.</li>
+      <li>The <strong>Gallery</strong> is the underused engine — social proof in-room, distribution after.</li>
+      <li><strong>Don't build an in-browser terminal / hosted sandbox</strong> — BYO-terminal-on-own-docs is the advantage, not a gap.</li>
+    </ul>
+    <h3>Where the council clashes</h3>
+    <p><strong>Reliability vs. premise.</strong> The Contrarian wants a hosted environment so a broken
+    laptop ≠ a broken attendee; First Principles + Executor say that guts the value prop. Resolution:
+    keep BYO, add a <em>right-sized</em> fallback (pre-seeded repo / Codespaces + offline-capable pages),
+    not a rebuilt sandbox.</p>
+    <h3>Blind spots the peer round caught</h3>
+    <ul>
+      <li><strong>Consent / privacy</strong> on proprietary docs — gates whether the funnel is usable at all.</li>
+      <li><strong>In-room live conversion</strong> — the highest-intent moment is in the room, not a 48h email.</li>
+      <li><strong>Mixed-skill pacing</strong> — a path for early finishers and those falling behind.</li>
+    </ul>
+    <div class="rec">
+      <h3>The recommendation</h3>
+      <p>Treat the app as a consented <strong>funnel</strong>: ship Tier-0 guide rails by the next
+      workshop, then build the Tier-1 conversion core (readiness score + sentence→score→PCRI thread +
+      in-room CTA + consent). Tier 2 makes it compound and re-deployable; Tier 3 keeps it resilient
+      without betraying the BYO premise.</p>
+    </div>
+    <div class="first"><b>The one thing to do first:</b> define the success metric — <strong>% of
+    attendees who start a PCRI within 72h</strong> — and instrument the single thread
+    <em>sentence → readiness score → PCRI, with explicit consent.</em> Everything else serves that or is polish.</div>
+  </div>
+
+  <h2>How the advisors lined up</h2>
+  <div class="grid2">
+    <div class="col agree"><div class="l">✓ Converged</div><ul>
+      <li>It's a conversion event, not an LMS (First Principles, Expansionist)</li>
+      <li>Guide rails are the missing layer (Outsider, Executor)</li>
+      <li>Gallery is the underused engine</li>
+      <li>No in-browser terminal (Executor, First Principles)</li>
+    </ul></div>
+    <div class="col blind"><div class="l">⚠ Caught in review</div><ul>
+      <li>Consent/privacy on proprietary docs — unaddressed by all 5</li>
+      <li>In-room conversion deferred to email by all 5</li>
+      <li>Contrarian's hosted-sandbox breaks the premise</li>
+    </ul></div>
+    <div class="col clash"><div class="l">⟷ The clash</div><ul>
+      <li><strong>Hosted fallback</strong> (Contrarian) — reliability for 30 unmanaged laptops vs.
+      <strong>BYO is the advantage</strong> (First Principles, Executor). Resolved: right-sized fallback, not a rebuild.</li>
+    </ul></div>
+  </div>
+
+  <h2>Advisor responses</h2>
+  <details><summary><span class="pill">First Principles</span> It's a conversion event, not an LMS</summary>
+    <p>Sandbox-provisioning exemplars solve a problem you don't have — BYO-terminal-on-own-docs is the unfair
+    advantage. Make the gap measurable in-room (a readiness score on their own docs — the surprising number
+    is the conversion); bind sentence → score → follow-up as one thread; Gallery ranked by "biggest gap
+    found". Cut gamification/badges/terminals. Metric: % who start a PCRI within 72h.</p></details>
+  <details><summary><span class="pill">Expansionist</span> A distribution asset treated as a handout</summary>
+    <p>The Gallery is the product — permanent shareable artifacts + OG images ("I audited my design system at
+    Patterns Denver"), mint findings not badges. "Sentence → result" is a repeatable funnel → workshop-in-a-box,
+    re-skinnable per conference. Post-event: 48h result email + "run on your real repo" + PCRI CTA; Slack
+    cohort as a standing community. It's Knapsack's top-of-funnel demand engine disguised as a workshop.</p></details>
+  <details><summary><span class="pill">Outsider</span> The terminal is scary; the site pretends it isn't</summary>
+    <p>Add a screenshot/GIF of the terminal after each command (incl. success). Copy-paste betrays — add
+    "fill in YOUR part" + "what if it didn't work" under each command. Progress trail ("Step 2 of 4") + time
+    estimates. Pin the Setup "sentence" atop Playbook & Prompts. Live counter ("14 things made") on every page.
+    A "Stuck? common fixes" panic button everywhere — never a dead end.</p></details>
+  <details><summary><span class="pill">Executor</span> Ranked by effort, all shippable</summary>
+    <p>Weekend wins: localStorage Setup checklist; global progress indicator; copy-✓ per CodeSnippet; per-page
+    complete + deep links. Week: pull the Supabase gallery + survey natively into Carbon (supabase-js already
+    available) — kills the link-out, live wall = social proof. Trap: in-browser terminal/real sandbox — breaks
+    the premise, month+ infra. Ship 1–4 next workshop, 5 after.</p></details>
+  <details><summary><span class="pill">Contrarian</span> A beautiful table of contents needs guide rails</summary>
+    <p>Confuses "companion" with "sandbox" — will fail live when 30 unmanaged laptops run /setup (Node drift,
+    proxies, no-admin, expired auth). Ship a hosted/browser fallback. No progress/correctness validation
+    (GitHub Skills/freeCodeCamp validate; Qwiklabs scores) — add self-checkpoints + a facilitator dashboard.
+    The "sentence" is collected nowhere measurable. Missing: offline mode, a time-boxed agenda, a "raise a
+    flag → human" path.</p></details>
+
+  <footer>LLM Council · Patterns Denver workshop-experience review · 2026-06-12 · full transcript in council-transcript-20260612-workshop-experience.md</footer>
+</div>
+</body>
+</html>
