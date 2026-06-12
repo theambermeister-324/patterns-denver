@@ -127,6 +127,123 @@
   }
 }
 
+// ---- Standard page header band --------------------------------------------
+.pd-pagehead {
+  padding-block: $spacing-09 $spacing-07;
+  border-bottom: 1px solid var(--cds-border-subtle-01);
+  background: var(--cds-layer-01);
+}
+
+.pd-pagehead__eyebrow {
+  color: var(--cds-text-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: $spacing-05;
+}
+
+.pd-pagehead__title {
+  color: var(--cds-text-primary);
+  margin-bottom: $spacing-05;
+}
+
+.pd-pagehead__sub {
+  color: var(--cds-text-secondary);
+  max-width: 42rem;
+}
+
+// ---- Generic block bits ---------------------------------------------------
+.pd-block__heading {
+  color: var(--cds-text-primary);
+  margin-bottom: $spacing-05;
+}
+
+.pd-block__body {
+  color: var(--cds-text-secondary);
+  margin-bottom: $spacing-05;
+  max-width: 46rem;
+}
+
+.pd-bullets {
+  margin-bottom: $spacing-05;
+  color: var(--cds-text-secondary);
+}
+
+.pd-cta {
+  margin-top: $spacing-05;
+}
+
+// ---- Checklist ------------------------------------------------------------
+.pd-check {
+  margin-bottom: $spacing-05;
+
+  &__hint {
+    color: var(--cds-text-helper);
+    margin-left: $spacing-06;
+  }
+}
+
+// ---- Steps ----------------------------------------------------------------
+.pd-step {
+  display: flex;
+  gap: $spacing-05;
+  align-items: flex-start;
+  block-size: 100%;
+
+  &__num {
+    flex-shrink: 0;
+    inline-size: $spacing-07;
+    block-size: $spacing-07;
+    border-radius: 50%;
+    background: var(--cds-background-brand);
+    color: var(--cds-text-on-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+
+  &__body {
+    flex: 1;
+    min-inline-size: 0;
+
+    h3 {
+      margin-bottom: $spacing-03;
+    }
+  }
+
+  &__output {
+    color: var(--cds-text-helper);
+    margin-top: $spacing-04;
+  }
+}
+
+// CodeSnippet spacing inside steps + prompts
+.pd-step__body .cds--snippet,
+.pd-prompt .cds--snippet {
+  margin-top: $spacing-05;
+}
+
+// ---- Prompt / embed tiles -------------------------------------------------
+.pd-prompt,
+.pd-embed {
+  block-size: 100%;
+
+  h3 {
+    margin-bottom: $spacing-03;
+  }
+}
+
+.pd-tagnote {
+  margin-top: $spacing-04;
+  max-width: 46rem;
+}
+
+// ---- Info card grids ------------------------------------------------------
+.pd-card--info {
+  display: flex;
+  flex-direction: column;
+}
+
 // ---- Footer ---------------------------------------------------------------
 .pd-footer {
   padding-block: $spacing-09;
