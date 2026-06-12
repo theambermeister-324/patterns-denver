@@ -1,0 +1,139 @@
+// Token-only partials — these expose Carbon's Sass variables/mixins WITHOUT
+// re-emitting the full component CSS (that happens once, in index.scss).
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+
+// All colours below reference Carbon theme tokens via the --cds-* custom
+// properties Carbon emits for the active theme. No hardcoded hex anywhere.
+
+.pd-main {
+  // clear the fixed UI Shell header (3rem tall)
+  padding-top: $spacing-09;
+  background: var(--cds-background);
+}
+
+// ---- Hero -----------------------------------------------------------------
+.pd-hero {
+  background: var(--cds-background-brand);
+  color: var(--cds-text-on-color);
+  padding-block: $spacing-10 $spacing-12;
+}
+
+.pd-hero__eyebrow {
+  color: var(--cds-text-on-color);
+  opacity: 0.65;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: $spacing-05;
+}
+
+.pd-hero__title {
+  margin-bottom: $spacing-05;
+}
+
+.pd-hero__sub {
+  color: var(--cds-text-on-color);
+  opacity: 0.8;
+  max-width: 36rem;
+  margin-bottom: $spacing-07;
+}
+
+.pd-hero__presenter {
+  color: var(--cds-text-on-color);
+  opacity: 0.7;
+
+  strong {
+    opacity: 1;
+  }
+}
+
+// ---- Sections -------------------------------------------------------------
+.pd-section {
+  padding-block: $spacing-07;
+}
+
+.pd-section--tight {
+  padding-block: $spacing-07 0;
+}
+
+.pd-label {
+  color: var(--cds-text-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: $spacing-05;
+}
+
+.pd-callout {
+  max-width: 100%;
+}
+
+// ---- Facilitators ---------------------------------------------------------
+.pd-facilitator {
+  display: flex;
+  align-items: center;
+  gap: $spacing-05;
+  height: 100%;
+}
+
+.pd-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  inline-size: $spacing-09;
+  block-size: $spacing-09;
+  border-radius: 50%;
+  background: var(--cds-background-brand);
+  color: var(--cds-text-on-color);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.pd-facilitator__name {
+  display: block;
+  color: var(--cds-text-primary);
+}
+
+.pd-facilitator__org {
+  display: block;
+  color: var(--cds-text-secondary);
+}
+
+// ---- Navigation cards -----------------------------------------------------
+.pd-card {
+  block-size: 100%;
+  min-block-size: $spacing-12;
+
+  &__icon {
+    color: var(--cds-icon-primary);
+    margin-bottom: $spacing-05;
+  }
+
+  &__tag {
+    margin-bottom: $spacing-03;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: $spacing-03;
+    color: var(--cds-text-primary);
+    margin-bottom: $spacing-03;
+  }
+
+  &__desc {
+    color: var(--cds-text-secondary);
+  }
+}
+
+// ---- Footer ---------------------------------------------------------------
+.pd-footer {
+  padding-block: $spacing-09;
+  margin-top: $spacing-07;
+  border-top: 1px solid var(--cds-border-subtle-01);
+
+  p {
+    color: var(--cds-text-helper);
+  }
+}
