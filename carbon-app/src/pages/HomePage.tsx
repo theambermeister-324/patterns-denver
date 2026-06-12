@@ -19,9 +19,9 @@ function NavCard({ card }: { card: CardItem }) {
       <Tag type={PHASE_TAG[card.phase]} size="sm" className="pd-card__tag">
         {card.phaseLabel}
       </Tag>
-      <h3 className="cds--type-heading-03 pd-card__title">
+      <h2 className="cds--type-heading-03 pd-card__title">
         {card.title} <ArrowRight size={16} />
-      </h3>
+      </h2>
       <p className="cds--type-body-01 pd-card__desc">{card.description}</p>
     </ClickableTile>
   )

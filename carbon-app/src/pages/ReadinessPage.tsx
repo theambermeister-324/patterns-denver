@@ -125,7 +125,7 @@ export default function ReadinessPage() {
                 </div>
                 <p className="cds--type-body-02 pd-block__body" style={{ marginTop: '1rem' }}>{arch.gap}</p>
 
-                <h3 className="cds--type-heading-03" style={{ marginTop: '1.5rem' }}>Your next step — right now</h3>
+                <h2 className="cds--type-heading-03" style={{ marginTop: '1.5rem' }}>Your next step — right now</h2>
                 <p className="cds--type-body-01 pd-block__body">
                   Turn this snapshot into a benchmarked roadmap. The PCRI takes 10 minutes and tells you exactly what to prioritize.
                 </p>

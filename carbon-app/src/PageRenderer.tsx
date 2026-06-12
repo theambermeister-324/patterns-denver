@@ -195,7 +195,7 @@ function BlockView({ block, routeKey }: { block: Block; routeKey: string }) {
                     <span className="pd-step__num" aria-hidden="true">{i + 1}</span>
                     <div className="pd-step__body">
                       <div className="pd-step__head">
-                        <h3 className="cds--type-heading-03">{step.title}</h3>
+                        <h2 className="cds--type-heading-03">{step.title}</h2>
                         {step.time && <Tag type="cool-gray" size="sm">{step.time}</Tag>}
                       </div>
                       {step.body && <p className="cds--type-body-01 pd-block__body">{step.body}</p>}
@@ -231,7 +231,7 @@ function BlockView({ block, routeKey }: { block: Block; routeKey: string }) {
           <Grid><Column lg={10} md={8} sm={4}>
             <Tile className="pd-prompt">
               <div className="pd-step__head">
-                <h3 className="cds--type-heading-03">{block.title}</h3>
+                <h2 className="cds--type-heading-03">{block.title}</h2>
                 <CopiedTag id={pid} />
               </div>
               <p className="cds--type-body-01 pd-block__body">{block.description}</p>
@@ -280,7 +280,7 @@ function BlockView({ block, routeKey }: { block: Block; routeKey: string }) {
         <section className="pd-section">
           <Grid><Column lg={10} md={8} sm={4}>
             <Tile className="pd-embed">
-              {block.heading && <h3 className="cds--type-heading-03">{block.heading}</h3>}
+              {block.heading && <h2 className="cds--type-heading-03">{block.heading}</h2>}
               <p className="cds--type-body-01 pd-block__body">{block.note}</p>
               <CtaButton href={block.href} cta={block.cta} />
             </Tile>
@@ -297,7 +297,7 @@ function BlockView({ block, routeKey }: { block: Block; routeKey: string }) {
               <Column key={item.title} lg={span.lg} md={span.md} sm={span.sm}>
                 <Tile className="pd-card pd-card--info">
                   {item.eyebrow && <Tag type="blue" size="sm" className="pd-card__tag">{item.eyebrow}</Tag>}
-                  <h3 className="cds--type-heading-03 pd-card__title">{item.title}</h3>
+                  <h2 className="cds--type-heading-03 pd-card__title">{item.title}</h2>
                   <p className="cds--type-body-01 pd-card__desc">{item.description}</p>
                   {item.bullets && (
                     <UnorderedList className="pd-bullets">
