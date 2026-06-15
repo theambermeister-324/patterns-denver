@@ -26,6 +26,8 @@ All operations are handled by skills. Invoke the relevant skill — don't improv
 | "research [topic]", "find sources about…" | researcher agent |
 | any question about the knowledge base content | `/query` |
 | "lint", "health check", "audit wiki" | `/lint` |
+| "spec", "spec out", "build a spec for", "I want to build" | `/spec` |
+| "export spec", "compile spec", "finalize spec" | `/spec-export` |
 
 ## Directory Structure
 
@@ -36,7 +38,7 @@ All operations are handled by skills. Invoke the relevant skill — don't improv
 ├── _types/                ← mdbase type definitions (one per type)
 ├── .claude/
 │   ├── settings.json      ← permissions + hooks
-│   ├── skills/            ← setup, init-kb, ingest, query, lint
+│   ├── skills/            ← setup, init-kb, ingest, query, lint, spec, spec-export
 │   └── agents/
 │       └── researcher.md
 ├── raw/                   ← inbox: drop new source files here
