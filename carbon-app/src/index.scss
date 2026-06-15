@@ -1,0 +1,9 @@
+// Disable Carbon's own @font-face emission — it points at webpack-style
+// '~@ibm/plex' paths that Vite can't resolve (and would emit ~90 broken faces).
+// We ship the IBM Plex Sans weights we use ourselves, in fonts.scss.
+@use '@carbon/styles/scss/config' with (
+  $css--font-face: false
+);
+
+// Carbon Design System — full token set, reset, type, grid and component CSS.
+@use '@carbon/react';

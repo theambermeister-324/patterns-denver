@@ -1,0 +1,13 @@
+{
+  "name": "Patterns Denver — Claude Code sandbox",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "postCreateCommand": "npm install -g @anthropic-ai/claude-code && npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": ["anthropic.claude-code"]
+    }
+  },
+  "remoteEnv": {
+    "WORKSHOP": "patterns-denver"
+  }
+}

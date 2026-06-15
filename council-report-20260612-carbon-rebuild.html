@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Council — Rebuild Patterns Denver in Carbon</title>
+<style>
+  :root {
+    --ink: #1a1a2e; --muted: #6b6b80; --line: #e6e4ef; --bg: #f7f6fb;
+    --accent: #412fe4; --good: #1f8a4c; --warn: #c2410c; --card: #fff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+  header.top { border-bottom: 2px solid var(--accent); padding-bottom: 20px; margin-bottom: 28px; }
+  .eyebrow { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  h1 { font-size: 26px; letter-spacing: -.4px; margin-bottom: 10px; }
+  .q { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; font-size: 14px; color: var(--muted); }
+  .meta { font-size: 12px; color: var(--muted); margin-top: 12px; }
+  h2 { font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); margin: 36px 0 14px; }
+  .verdict { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; }
+  .verdict h3 { font-size: 15px; margin: 18px 0 6px; }
+  .verdict h3:first-child { margin-top: 0; }
+  .verdict p, .verdict li { font-size: 14px; color: #34344a; }
+  .verdict ul { padding-left: 20px; margin: 4px 0; }
+  .rec { border-left: 3px solid var(--accent); background: #f4f2ff; padding: 14px 18px; border-radius: 0 8px 8px 0; margin-top: 8px; }
+  .first { border-left: 3px solid var(--good); background: #effaf2; padding: 14px 18px; border-radius: 0 8px 8px 0; margin-top: 16px; }
+  .first b { color: var(--good); }
+  /* spectrum */
+  .spectrum { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 4px; }
+  .col { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .col.clash { grid-column: 1 / -1; }
+  .col .lbl { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+  .col.agree .lbl { color: var(--good); }
+  .col.blind .lbl { color: var(--warn); }
+  .col.clash .lbl { color: var(--accent); }
+  .col ul { padding-left: 18px; }
+  .col li { font-size: 13px; color: #34344a; margin-bottom: 5px; }
+  /* advisors */
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+  summary { cursor: pointer; padding: 14px 18px; font-weight: 700; font-size: 14px; list-style: none; display: flex; align-items: center; gap: 10px; }
+  summary::-webkit-details-marker { display: none; }
+  .pill { font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 20px; background: #efeefb; color: var(--accent); }
+  details p { padding: 0 18px 16px; font-size: 13.5px; color: #34344a; }
+  .decisions { background: #fffdf5; border: 1px solid #f0e6c0; border-radius: 12px; padding: 18px 22px; }
+  .decisions h3 { font-size: 14px; margin-bottom: 6px; }
+  .decisions .tag { display: inline-block; font-size: 11px; font-weight: 800; color: var(--good); background: #effaf2; padding: 2px 8px; border-radius: 20px; margin-left: 6px; }
+  footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">🏛️ LLM Council Verdict</div>
+    <h1>Rebuilding Patterns Denver in IBM Carbon — POC</h1>
+    <div class="q">Should we proceed with a proof-of-concept that rebuilds the workshop site's
+      <strong>home page</strong> in IBM's Carbon Design System — a standalone Vite + React + TypeScript
+      <code>@carbon/react</code> app in a subfolder, <strong>redesigned</strong> (not 1:1 ported),
+      deployed to a new Netlify URL — to test the thesis <em>"Can AI rebuild our site in Carbon?"</em></div>
+    <div class="meta">Counciled 2026-06-12 · 5 advisors · anonymized peer review · chairman synthesis</div>
+  </header>
+
+  <h2>Council Verdict</h2>
+  <div class="verdict">
+    <h3>Where the council agrees</h3>
+    <ul>
+      <li>Home-page-only + standalone app + new URL is the right shape. The plumbing is sound.</li>
+      <li>The real thesis is "can AI produce <strong>idiomatic</strong> Carbon" — not "can AI scaffold a Carbon app." Hardcoded hex where a token belongs = thesis failed, and DS practitioners spot it instantly.</li>
+      <li>The proof artifact is the build <strong>process</strong>, not the deployed URL.</li>
+    </ul>
+    <h3>Where the council clashes</h3>
+    <p><strong>Redesign vs. 1:1 port.</strong> Contrarian + Outsider argue a free redesign is
+      <em>unfalsifiable</em> (looks good → "AI freelanced"; looks bad → "Carbon doesn't fit") and want a
+      portable side-by-side. The counter-case: a faithful port of friendly purple content into enterprise
+      Carbon looks worse, and "AI speaks Carbon natively" is the more interesting claim. This is the one
+      decision that reshapes the plan.</p>
+    <h3>Blind spots the peer round caught</h3>
+    <ul>
+      <li><strong>Conflict of interest</strong> — Knapsack sells DS governance, yet the POC has no Knapsack product in the loop ("where's your platform?").</li>
+      <li>Carbon is IBM's governed/trademarked system — worth a glance before public use.</li>
+      <li>The build process (live or recorded) is more convincing than a finished screenshot.</li>
+    </ul>
+    <div class="rec">
+      <h3>The recommendation</h3>
+      <p><strong>Proceed — with three amendments:</strong> (1) define an idiomatic-Carbon pass/fail rubric
+      <em>before</em> building and grade against it; (2) capture wall-clock, interventions, and where Carbon
+      lacked a component; (3) adopt the Executor's build specifics (<code>sass-embedded</code> +
+      <code>loadPaths</code> + <code>quietDeps</code>/<code>silenceDeprecations</code>; <code>@ibm/plex</code>;
+      verify a styled Button first).</p>
+    </div>
+    <div class="first">
+      <b>The one thing to do first:</b> Write the Carbon-fidelity rubric before any code. It's the
+      difference between a demo and a vibe.
+    </div>
+  </div>
+
+  <h2>How the advisors lined up</h2>
+  <div class="spectrum">
+    <div class="col agree">
+      <div class="lbl">✓ Converged</div>
+      <ul>
+        <li>Idiomatic-Carbon fidelity is the true test (Contrarian, First Principles)</li>
+        <li>Process &gt; URL as the proof (Expansionist, Outsider)</li>
+        <li>Scope (home page only) is correct</li>
+      </ul>
+    </div>
+    <div class="col blind">
+      <div class="lbl">⚠ Caught in review</div>
+      <ul>
+        <li>No Knapsack product in the loop = self-undercut</li>
+        <li>Expansionist scaled the dream before the POC passed</li>
+        <li>Carbon trademark / appropriate-use</li>
+      </ul>
+    </div>
+    <div class="col clash">
+      <div class="lbl">⟷ The clash</div>
+      <ul>
+        <li><strong>Redesign</strong> (First Principles, Expansionist, Executor lean) — tests "AI speaks Carbon natively," harder to grade.</li>
+        <li><strong>1:1 port</strong> (Contrarian, Outsider) — falsifiable, demoable side-by-side, but may look worse.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Advisor responses</h2>
+  <details><summary><span class="pill">Contrarian</span> The test is rigged to lie to you</summary>
+    <p>Testing the wrong thesis: the POC measures "can AI scaffold a Carbon app," not governance (respecting
+    tokens, reusing components, not drifting). A greenfield page can't fail because there's nothing to drift
+    from. "Redesign not port" makes the result unfalsifiable. A room of practitioners will spot wrong
+    <code>$spacing-05</code>, misused Tiles, wrong type tokens — AI is good at "looks Carbon-ish," bad at "is
+    Carbon-correct," and faking it damages what Knapsack sells. Stack is gratuitous risk. Fix: 1:1 port,
+    define pass/fail before building, expert grader.</p></details>
+  <details><summary><span class="pill">First Principles</span> You're asking the wrong question</summary>
+    <p>You already know AI can do it mechanically. The real question: "Can Knapsack credibly say AI + a DS
+    produces idiomatic, on-brand output faster than humans?" A clean subfolder is the easy case; customers
+    have messy systems. Measure fidelity (real components/tokens vs hand-rolled), speed with honesty (log
+    wall-clock + interventions), and constraint adherence (what does AI do when Carbon lacks a component?).
+    Pick the <em>most awkward</em> section, not the cleanest. Test where it breaks.</p></details>
+  <details><summary><span class="pill">Expansionist</span> It's a productized motion, not a rebuild</summary>
+    <p>The valuable output is the transcript — proof AI can stand up a foreign, opinionated enterprise DS
+    idiomatically in an afternoon. That's a sales asset and a wedge into every company with a real design
+    system. Don't stop at one page: the same harness rebuilds in Material, Fluent, Polaris — a live
+    "design-system switcher." The real product surface is AI-assisted DS <em>migration</em>. Capture metrics;
+    build so the second design system is trivial to add.</p></details>
+  <details><summary><span class="pill">Outsider</span> One corporate page ≠ "rebuilt our site"</summary>
+    <p>"Rebuild OUR site" vs "redesign it" are different tests. A workshop event site is friendly, human;
+    Carbon is the suit-and-tie enterprise look — why dress a fun event in IBM's uniform? One page of seven,
+    redesigned so you can't compare it, on a URL nobody visits = a single screenshot. Honest headline: "AI
+    built one new page in a corporate style." Better: rebuild the home page to look like the current one,
+    side by side. Don't let scaffolding become the story.</p></details>
+  <details><summary><span class="pill">Executor</span> Three friction points, here's the fast path</summary>
+    <p><strong>Carbon + Vite Sass</strong> is the #1 time-sink: <code>@use '@carbon/react'</code> fails out of
+    the box — use <code>sass-embedded</code>, set <code>loadPaths: ['node_modules']</code>,
+    <code>quietDeps</code> + <code>silenceDeprecations</code>. <strong>IBM Plex:</strong> <code>@ibm/plex</code>,
+    not Google Fonts. <strong>Netlify subfolder</strong> is trivial (base/command/publish). <strong>Hero:</strong>
+    Carbon has no hero component — build from grid + type tokens + Button. Fastest path: scaffold, fix Sass
+    FIRST, verify one styled Button, then build the page.</p></details>
+
+  <h2>Decisions taken (post-verdict)</h2>
+  <div class="decisions">
+    <h3>Fidelity test <span class="tag">Redesign + rubric</span></h3>
+    <p style="font-size:13.5px;color:#34344a;">Keep the Carbon-native redesign, but add an explicit
+    idiomatic-Carbon pass/fail rubric and grade the output against it.</p>
+    <h3 style="margin-top:14px;">Knapsack angle <span class="tag">Design for the switcher</span></h3>
+    <p style="font-size:13.5px;color:#34344a;">Separate content (<code>content.ts</code>) from the Carbon
+    presentation layer so a second design system swaps in trivially — leaning into the on-brand AI-assisted
+    DS-migration story.</p>
+  </div>
+
+  <footer>
+    LLM Council · Patterns Denver Carbon rebuild · 2026-06-12 · Adapted from Karpathy's LLM Council methodology
+  </footer>
+</div>
+</body>
+</html>

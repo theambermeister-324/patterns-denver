@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QA · Accessibility Report — Carbon app</title>
+<style>
+  :root{--ink:#161616;--muted:#6f6f6f;--line:#e0e0e0;--bg:#f4f4f4;--card:#fff;--brand:#0f62fe;--good:#24a148;--warn:#f1c21b;--bad:#da1e28;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
+  header.top{border-bottom:3px solid var(--brand);padding-bottom:20px;margin-bottom:28px;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin-bottom:8px;}
+  h1{font-size:27px;letter-spacing:-.4px;margin-bottom:10px;}
+  .sub{font-size:14px;color:var(--muted);}
+  h2{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:36px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:8px;}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;text-align:center;}
+  .stat .n{font-size:30px;font-weight:600;line-height:1;}
+  .stat .n.good{color:var(--good);}
+  .stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:13.5px;margin-bottom:8px;}
+  th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{background:#fafafa;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}
+  tr:last-child td{border-bottom:none;}
+  td.c{text-align:center;font-variant-numeric:tabular-nums;font-weight:600;}
+  .pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:20px;}
+  .pill.fixed{background:#defbe6;color:var(--good);}
+  .pill.pass{background:#defbe6;color:var(--good);}
+  .pill.note{background:#fcf4d6;color:#8e6a00;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:10px;font-size:14px;}
+  code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.9em;background:#f4f4f4;padding:1px 5px;border-radius:4px;}
+  ul{margin:6px 0 6px 20px;}li{font-size:14px;margin-bottom:5px;}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center;}
+  .green-banner{background:#defbe6;border:1px solid #a7f0ba;border-radius:8px;padding:14px 18px;margin-bottom:8px;font-size:14px;color:#0e6027;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">QA · Accessibility · UAT cycle</div>
+    <h1>Carbon app — QA &amp; Accessibility Report</h1>
+    <p class="sub">All 7 pages (Home, Setup, Playbook, Prompts, Gallery, Next steps, Feedback) · WCAG 2.2 AA · 2026-06-12</p>
+  </header>
+
+  <div class="green-banner">✓ PASS — 50/50 automated tests green · 0 WCAG 2.2 AA violations across all 7 routes (desktop + mobile) · 2 serious a11y defects found &amp; fixed.</div>
+
+  <h2>At a glance</h2>
+  <div class="cards">
+    <div class="stat"><div class="n good">50/50</div><div class="l">Tests passing</div></div>
+    <div class="stat"><div class="n good">98</div><div class="l">Lighthouse a11y</div></div>
+    <div class="stat"><div class="n good">100</div><div class="l">Best practices</div></div>
+    <div class="stat"><div class="n good">89</div><div class="l">Performance</div></div>
+  </div>
+
+  <h2>Accessibility findings &amp; remediation</h2>
+  <table>
+    <tr><th>Finding</th><th>Severity</th><th>Where</th><th>Fix</th><th>Status</th></tr>
+    <tr>
+      <td><code>color-contrast</code><br><span style="color:var(--muted)">white text over blue-60 &lt; 4.5:1</span></td>
+      <td>Serious</td>
+      <td>Home hero (eyebrow, subtitle, presenter — 4 nodes)</td>
+      <td>Removed opacity; full <code>--cds-text-on-color</code> (~5.2:1). Hierarchy via type scale, not transparency.</td>
+      <td><span class="pill fixed">Fixed</span></td>
+    </tr>
+    <tr>
+      <td><code>scrollable-region-focusable</code><br><span style="color:var(--muted)">scroll region not keyboard-reachable</span></td>
+      <td>Serious</td>
+      <td>Prompts, Playbook (CodeSnippet)</td>
+      <td>All snippets <code>type="multi"</code> + <code>wrapText</code> → long lines wrap, no horizontal scroll region.</td>
+      <td><span class="pill fixed">Fixed</span></td>
+    </tr>
+    <tr>
+      <td>Focus on route change</td>
+      <td>Best practice</td>
+      <td>SPA hash nav</td>
+      <td>Focus moves to <code>&lt;main tabindex=-1&gt;</code> on navigation so keyboard/SR users land on new content.</td>
+      <td><span class="pill fixed">Added</span></td>
+    </tr>
+    <tr>
+      <td>Skip-to-content / nav semantics</td>
+      <td>—</td>
+      <td>Shell</td>
+      <td>Confirmed: <code>SkipToContent</code> targets <code>#main-content</code> (matches); active nav item already exposes <code>aria-current</code>.</td>
+      <td><span class="pill pass">Verified OK</span></td>
+    </tr>
+  </table>
+
+  <h2>Lighthouse (production build)</h2>
+  <table>
+    <tr><th>Page</th><th class="c">Performance</th><th class="c">Accessibility</th><th class="c">Best practices</th><th class="c">SEO</th></tr>
+    <tr><td>Home <code>#/</code></td><td class="c">89</td><td class="c">98</td><td class="c">100</td><td class="c">91</td></tr>
+    <tr><td>Prompts <code>#/prompts</code></td><td class="c">89</td><td class="c">98</td><td class="c">100</td><td class="c">91</td></tr>
+  </table>
+
+  <h2>Automated suite (left behind, re-runnable)</h2>
+  <div class="card">
+    <strong>Playwright + <code>@axe-core/playwright</code></strong>, two projects (desktop 1280×900 + mobile Pixel 5),
+    across all 7 routes — <strong>50 tests, all green</strong>.
+    <ul>
+      <li><strong>a11y.spec.ts</strong> — axe scan (<code>wcag2a/2aa/21aa/22aa</code>) per route, asserts zero violations.</li>
+      <li><strong>functional.spec.ts</strong> — each route loads with no console errors; correct <code>aria-current</code> nav state; hash deep-link + reload; unknown route → home fallback; CodeSnippet copy controls present; external links carry <code>rel=noopener</code>.</li>
+    </ul>
+    Run: <code>npx playwright install chromium</code> once, then <code>npm test</code> (or <code>npm run test:ui</code>).
+    Not wired to CI yet; Netlify only builds.
+  </div>
+
+  <h2>Functional QA — passing</h2>
+  <table>
+    <tr><th>Check</th><th>Result</th></tr>
+    <tr><td>All 7 routes render with an <code>h1</code>, no console errors (desktop + mobile)</td><td><span class="pill pass">Pass</span></td></tr>
+    <tr><td>Hash routing: nav, deep-link, reload, unknown-route fallback</td><td><span class="pill pass">Pass</span></td></tr>
+    <tr><td>CodeSnippet copy buttons present (Prompts, Playbook)</td><td><span class="pill pass">Pass</span></td></tr>
+    <tr><td>External links open in new tab with <code>rel=noopener</code></td><td><span class="pill pass">Pass</span></td></tr>
+    <tr><td>Responsive collapse to single column (mobile project)</td><td><span class="pill pass">Pass</span></td></tr>
+  </table>
+
+  <h2>Recommended human passes (not automatable)</h2>
+  <div class="card">
+    <ul>
+      <li><span class="pill note">Manual</span> Screen-reader spot-check (VoiceOver/NVDA) on Home + Playbook — confirm reading order and that route changes are announced.</li>
+      <li><span class="pill note">Manual</span> Safari + Firefox visual pass (automation is Chromium-only).</li>
+      <li><span class="pill note">UAT</span> Stakeholder content/acceptance sign-off — see <code>uat-checklist-20260612.md</code>.</li>
+    </ul>
+  </div>
+
+  <h2>Out of scope</h2>
+  <div class="card">
+    Gallery's live submission wall and the Feedback survey are <strong>Supabase-backed</strong> on the original site —
+    here they're intentional Carbon link-outs to the live originals (documented Phase 2 gap), tested as links only, not re-implemented as forms.
+  </div>
+
+  <footer>QA · Accessibility report · Patterns Denver Carbon app · 2026-06-12 · suite: carbon-app/tests/</footer>
+</div>
+</body>
+</html>

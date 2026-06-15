@@ -1,0 +1,36 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Playwright
+/test-results
+/playwright-report
+/blob-report
+/playwright/.cache
+
+# This sub-app builds with npm. The repo root is a pnpm project and ignores
+# package-lock.json globally; re-include ours so Netlify detects npm for the
+# carbon-app base directory instead of falling back to the root pnpm-lock.yaml
+# (whose strict node_modules can't resolve Carbon's Sass imports).
+!package-lock.json
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

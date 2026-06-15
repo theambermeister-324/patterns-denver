@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 1 Receipts — Carbon Rebuild Experiment</title>
+<style>
+  :root{--ink:#161616;--muted:#6f6f6f;--line:#e0e0e0;--bg:#f4f4f4;--card:#fff;--brand:#0f62fe;--good:#24a148;--warn:#da1e28;--accent:#0f62fe;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;}
+  .wrap{max-width:840px;margin:0 auto;padding:40px 24px 80px;}
+  header.top{border-bottom:3px solid var(--brand);padding-bottom:20px;margin-bottom:28px;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin-bottom:8px;}
+  h1{font-size:28px;letter-spacing:-.4px;margin-bottom:10px;}
+  .sub{font-size:14px;color:var(--muted);}
+  h2{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin:38px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:12px;}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:14px;}
+  th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);}
+  th{background:#fafafa;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;}
+  tr:last-child td{border-bottom:none;}
+  .total td{font-weight:700;background:#f4f7ff;}
+  /* ratio bar */
+  .ratio{display:flex;height:34px;border-radius:6px;overflow:hidden;margin:6px 0 4px;font-size:11px;font-weight:700;color:#fff;}
+  .ratio .plan{background:var(--brand);display:flex;align-items:center;justify-content:center;}
+  .ratio .build{background:var(--good);display:flex;align-items:center;justify-content:center;min-width:60px;}
+  .cap{font-size:12px;color:var(--muted);}
+  ol,ul{margin:4px 0 4px 20px;}
+  li{font-size:14px;margin-bottom:7px;}
+  .leak b,.keep b{font-weight:700;}
+  .pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-right:6px;}
+  .pill.leak{background:#fff1f1;color:var(--warn);}
+  .pill.keep{background:#defbe6;color:var(--good);}
+  .rec{background:#edf5ff;border-left:3px solid var(--brand);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:10px;}
+  .rec h3{font-size:14px;margin-bottom:4px;}
+  .rec p{font-size:13.5px;color:#393939;}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px 22px;}
+  .verdict h3{font-size:14px;margin:16px 0 6px;}
+  .verdict h3:first-child{margin-top:0;}
+  .verdict p,.verdict li{font-size:13.5px;color:#393939;}
+  .first{border-left:3px solid var(--good);background:#defbe6;padding:14px 18px;border-radius:0 8px 8px 0;margin-top:14px;font-size:14px;}
+  .first b{color:var(--good);}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center;}
+  .note{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:6px;}
+  code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.92em;background:#f4f4f4;padding:1px 5px;border-radius:4px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Experiment receipts · Patterns Denver × Carbon</div>
+    <h1>Phase 1 Report — AI rebuild in IBM Carbon</h1>
+    <p class="sub">Home-page proof-of-concept · token usage, rework leaks, efficiency recommendations, and the council-recommended Phase 2 plan · 2026-06-12</p>
+  </header>
+
+  <h2>What shipped</h2>
+  <div class="card">
+    Standalone Vite + React + TypeScript + <code>@carbon/react</code> v11 app (<code>carbon-app/</code>),
+    home page redesigned in Carbon — UI Shell header, <code>$background-brand</code> hero, an
+    <code>InlineNotification</code> callout, facilitator Tiles, ClickableTile cards with color-coded
+    phase Tags. Content decoupled into <code>content.ts</code> (switcher-ready). Committed + pushed
+    (<code>carbon-redesign</code>) and deployed to a new Netlify site via Git auto-build.
+    <strong>Fidelity rubric: all checks passed</strong> (real Carbon components, spacing/type/color
+    tokens, zero hardcoded hex, IBM Plex applied; the hero — which Carbon has no component for — built
+    from grid + type tokens and documented as a gap).
+  </div>
+
+  <h2>Token receipts</h2>
+  <table>
+    <tr><th>Activity</th><th style="text-align:right">Measured tokens</th></tr>
+    <tr><td>Planning council — 5 advisors</td><td class="num">~178,000</td></tr>
+    <tr><td>Planning council — 3 peer reviewers</td><td class="num">~111,000</td></tr>
+    <tr><td>Repo Explore agent (recon)</td><td class="num">not surfaced</td></tr>
+    <tr><td>Main-thread build (coding + verification)</td><td class="num">not instrumented*</td></tr>
+    <tr class="total"><td>Measured council subtotal</td><td class="num">~289,000</td></tr>
+  </table>
+  <p class="note">*Run <code>/cost</code> for the exact session total — it's the missing denominator that makes "tokens-per-page" a real number in Phase 2.</p>
+
+  <div class="card" style="margin-top:14px;">
+    <strong>The ratio that matters:</strong>
+    <div class="ratio">
+      <div class="plan" style="width:93%">Planning / deliberation ~289k</div>
+      <div class="build">Build ~2s</div>
+    </div>
+    <p class="cap">The build was cheap and fast (<code>vite build</code> ≈ 2s). The measured cost was
+    almost entirely <em>deliberation</em>. Phase 1 was planning-heavy — which is exactly the thing
+    Phase 2 is designed to not repeat.</p>
+  </div>
+
+  <h2>Where the time leaked (avoidable rework)</h2>
+  <div class="card leak">
+    <ol>
+      <li><span class="pill leak">order</span><b>SCSS imported before it was written</b> — <code>App.tsx</code> imported <code>./App.scss</code> before the file existed → stale Vite errors I had to disambiguate from live ones.</li>
+      <li><span class="pill leak">guess</span><b>Non-existent Carbon class</b> — used <code>cds--type-fluid-heading-06</code> (doesn't exist) → corrected to <code>-05</code>.</li>
+      <li><span class="pill leak">churn</span><b>Fonts redone 3×</b> — aggregate <code>@ibm/plex</code> CSS pulled every Plex family into <code>dist</code> → hand-rolled <code>fonts.scss</code> (3 weights) → disabled Carbon's broken <code>~@ibm/plex</code> font-faces (<code>$css--font-face:false</code>).</li>
+      <li><span class="pill leak">docs</span><b>Doc-lookup thrash</b> — the docs MCP hit its monthly quota and a Carbon WebFetch returned truncated; fell back to reading <code>node_modules</code> (reliable, but cost cycles).</li>
+      <li><span class="pill leak">deploy</span><b>Netlify pnpm→npm</b> — first Git build failed: Netlify defaulted to pnpm, whose strict <code>node_modules</code> broke Carbon's <code>loadPaths:['node_modules']</code>. Fixed (commit <code>86b0706</code>) by declaring <code>@carbon/styles</code> directly + tracking a lockfile to force npm.</li>
+      <li><span class="pill leak">verify</span><b>Round-trips</b> — a <code>vite.config</code> change forced a dev-server restart, plus several screenshot/inspect cycles.</li>
+    </ol>
+  </div>
+
+  <h2>What worked (keep doing)</h2>
+  <div class="card keep">
+    <ul>
+      <li><span class="pill keep">win</span>Pre-emptive Sass config (<code>loadPaths</code> + <code>quietDeps</code> + <code>silenceDeprecations</code>) avoided the #1 Carbon-on-Vite time-sink.</li>
+      <li><span class="pill keep">win</span>Verify-the-pipeline-first (one styled <code>&lt;Button&gt;</code>) caught wiring before the full build.</li>
+      <li><span class="pill keep">win</span>The <code>content.ts</code> content↔presentation seam — already pays off for Phase 2.</li>
+      <li><span class="pill keep">win</span>Reading <code>node_modules</code> for ground truth when the docs failed.</li>
+    </ul>
+  </div>
+
+  <h2>Efficiency recommendations for Phase 2</h2>
+  <div class="rec"><h3>1. Codify, don't re-plan</h3><p>Turn Phase 1's decisions into a fixed-context <code>CARBON_BUILD.md</code> (component names, real type classes, config facts, the rework rules). The 6 pages become mechanical — no per-page deliberation.</p></div>
+  <div class="rec"><h3>2. Build once, reuse</h3><p>Extract a <code>PageShell</code> (header/nav/footer/Theme); <code>useState</code> + hash routing (no react-router); extend <code>content.ts</code> to a typed block model so pages are dumb renderers.</p></div>
+  <div class="rec"><h3>3. Pre-solve the 2 gaps</h3><p>Prompts → Carbon <code>CodeSnippet</code> (built-in copy button); Feedback → wrap the survey iframe in a <code>Tile</code>. Don't hand-roll either.</p></div>
+  <div class="rec"><h3>4. Docs = node_modules</h3><p>Resolve every component/type-class name from one <code>.d.ts</code> read. Skip the docs MCP (quota) and WebFetch (truncates).</p></div>
+  <div class="rec"><h3>5. Measure + budget</h3><p>Set a token budget; capture per-page tokens / rework / time-to-rubric. The proof of the thesis is page 6 costing far less than page 1.</p></div>
+  <div class="rec"><h3>6. Verify once</h3><p>One screenshot sweep across all 7 pages at the end; freeze <code>vite.config</code> (no restarts); automate the rubric.</p></div>
+
+  <h2>🏛️ Council verdict — Phase 2</h2>
+  <div class="verdict">
+    <h3>Agreement (high confidence)</h3>
+    <p>The build was never the problem — re-deciding settled questions was. <strong>Don't run another big council.</strong> Codify into a build doc, extract a PageShell once, model content as typed data, pipeline foundation-then-batch, verify once.</p>
+    <h3>The clash</h3>
+    <p>How much to build beyond the 6 pages. The Expansionist wanted instrumentation + a switcher harness + a productized offering <em>now</em>; the majority (Contrarian, First Principles, Outsider) called that premature abstraction tax. <strong>Synthesis:</strong> light metrics yes, switcher/productization deferred.</p>
+    <h3>Blind spots caught</h3>
+    <p>Unmeasured build-token baseline (no tokens-per-page denominator); Phase 1 deploy status; no token budget set.</p>
+    <div class="first"><b>The one thing to do first:</b> write <code>CARBON_BUILD.md</code> from a single <code>node_modules</code> pass before any page work.</div>
+  </div>
+
+  <h2>Decisions taken</h2>
+  <div class="card">
+    <p style="font-size:14px;"><strong>Scope → Lean 6 pages + light metrics.</strong> Defer the switcher harness &amp; productization.<br>
+    <strong>Deploy → Build now, deploy in parallel</strong> (Netlify Git auto-build ships each push to <code>carbon-redesign</code>).</p>
+  </div>
+
+  <footer>
+    Phase 1 receipts · Patterns Denver Carbon rebuild · 2026-06-12 · Full deliberation in council-transcript-20260612-phase2-plan.md
+  </footer>
+</div>
+</body>
+</html>

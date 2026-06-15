@@ -1,0 +1,413 @@
+// Token-only partials — these expose Carbon's Sass variables/mixins WITHOUT
+// re-emitting the full component CSS (that happens once, in index.scss).
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+
+// All colours below reference Carbon theme tokens via the --cds-* custom
+// properties Carbon emits for the active theme. No hardcoded hex anywhere.
+
+.pd-main {
+  // clear the fixed UI Shell header (3rem tall)
+  padding-top: $spacing-09;
+  background: var(--cds-background);
+}
+
+// ---- Hero -----------------------------------------------------------------
+.pd-hero {
+  background: var(--cds-background-brand);
+  color: var(--cds-text-on-color);
+  padding-block: $spacing-10 $spacing-12;
+}
+
+// NOTE: no opacity on hero text — white on blue-60 is ~5.2:1 (passes WCAG AA),
+// but reducing opacity drops it below 4.5:1. Hierarchy comes from the type
+// scale + letter-spacing, not transparency.
+.pd-hero__eyebrow {
+  color: var(--cds-text-on-color);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: $spacing-05;
+}
+
+.pd-hero__title {
+  margin-bottom: $spacing-05;
+}
+
+.pd-hero__sub {
+  color: var(--cds-text-on-color);
+  max-width: 36rem;
+  margin-bottom: $spacing-07;
+}
+
+.pd-hero__presenter {
+  color: var(--cds-text-on-color);
+}
+
+// ---- Sections -------------------------------------------------------------
+.pd-section {
+  padding-block: $spacing-07;
+}
+
+.pd-section--tight {
+  padding-block: $spacing-07 0;
+}
+
+.pd-label {
+  color: var(--cds-text-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: $spacing-05;
+}
+
+.pd-callout {
+  max-width: 100%;
+}
+
+// ---- Facilitators ---------------------------------------------------------
+.pd-facilitator {
+  display: flex;
+  align-items: center;
+  gap: $spacing-05;
+  height: 100%;
+}
+
+.pd-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  inline-size: $spacing-09;
+  block-size: $spacing-09;
+  border-radius: 50%;
+  background: var(--cds-background-brand);
+  color: var(--cds-text-on-color);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.pd-facilitator__name {
+  display: block;
+  color: var(--cds-text-primary);
+}
+
+.pd-facilitator__org {
+  display: block;
+  color: var(--cds-text-secondary);
+}
+
+// ---- Navigation cards -----------------------------------------------------
+.pd-card {
+  block-size: 100%;
+  min-block-size: $spacing-12;
+
+  &__icon {
+    color: var(--cds-icon-primary);
+    margin-bottom: $spacing-05;
+  }
+
+  &__tag {
+    margin-bottom: $spacing-03;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: $spacing-03;
+    color: var(--cds-text-primary);
+    margin-bottom: $spacing-03;
+  }
+
+  &__desc {
+    color: var(--cds-text-secondary);
+  }
+}
+
+// ---- Standard page header band --------------------------------------------
+.pd-pagehead {
+  padding-block: $spacing-09 $spacing-07;
+  border-bottom: 1px solid var(--cds-border-subtle-01);
+  background: var(--cds-layer-01);
+}
+
+.pd-pagehead__eyebrow {
+  color: var(--cds-text-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: $spacing-05;
+}
+
+.pd-pagehead__title {
+  color: var(--cds-text-primary);
+  margin-bottom: $spacing-05;
+}
+
+.pd-pagehead__sub {
+  color: var(--cds-text-secondary);
+  max-width: 42rem;
+}
+
+// ---- Generic block bits ---------------------------------------------------
+.pd-block__heading {
+  color: var(--cds-text-primary);
+  margin-bottom: $spacing-05;
+}
+
+.pd-block__body {
+  color: var(--cds-text-secondary);
+  margin-bottom: $spacing-05;
+  max-width: 46rem;
+}
+
+.pd-bullets {
+  margin-bottom: $spacing-05;
+  color: var(--cds-text-secondary);
+}
+
+.pd-cta {
+  margin-top: $spacing-05;
+}
+
+// ---- Checklist ------------------------------------------------------------
+.pd-check {
+  margin-bottom: $spacing-05;
+
+  &__hint {
+    color: var(--cds-text-helper);
+    margin-left: $spacing-06;
+  }
+}
+
+// ---- Steps ----------------------------------------------------------------
+.pd-step {
+  display: flex;
+  gap: $spacing-05;
+  align-items: flex-start;
+  block-size: 100%;
+
+  &__num {
+    flex-shrink: 0;
+    inline-size: $spacing-07;
+    block-size: $spacing-07;
+    border-radius: 50%;
+    background: var(--cds-background-brand);
+    color: var(--cds-text-on-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+
+  &__body {
+    flex: 1;
+    min-inline-size: 0;
+
+    h3 {
+      margin-bottom: $spacing-03;
+    }
+  }
+
+  &__output {
+    color: var(--cds-text-helper);
+    margin-top: $spacing-04;
+  }
+}
+
+// CodeSnippet spacing inside steps + prompts
+.pd-step__body .cds--snippet,
+.pd-prompt .cds--snippet {
+  margin-top: $spacing-05;
+}
+
+// ---- Prompt / embed tiles -------------------------------------------------
+.pd-prompt,
+.pd-embed {
+  block-size: 100%;
+
+  h3 {
+    margin-bottom: $spacing-03;
+  }
+}
+
+.pd-tagnote {
+  margin-top: $spacing-04;
+  max-width: 46rem;
+}
+
+// ---- Info card grids ------------------------------------------------------
+.pd-card--info {
+  display: flex;
+  flex-direction: column;
+}
+
+// ---- Footer ---------------------------------------------------------------
+.pd-footer {
+  padding-block: $spacing-09;
+  margin-top: $spacing-07;
+  border-top: 1px solid var(--cds-border-subtle-01);
+
+  p {
+    color: var(--cds-text-helper);
+  }
+}
+
+// ---- Progress strip (day-of flow) -----------------------------------------
+.pd-progress {
+  background: var(--cds-layer-01);
+  border-bottom: 1px solid var(--cds-border-subtle-01);
+  padding-block: $spacing-04;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: $spacing-05;
+  }
+  &__label {
+    color: var(--cds-text-secondary);
+    white-space: nowrap;
+  }
+  &__track {
+    flex: 1;
+    block-size: $spacing-03;
+    background: var(--cds-border-subtle-01);
+    border-radius: $spacing-03;
+    overflow: hidden;
+  }
+  &__fill {
+    block-size: 100%;
+    background: var(--cds-background-brand);
+    transition: width 0.3s ease;
+  }
+  &__dots {
+    display: flex;
+    gap: $spacing-03;
+  }
+  &__dot {
+    inline-size: $spacing-04;
+    block-size: $spacing-04;
+    border-radius: 50%;
+    background: var(--cds-border-strong-01);
+    &.is-done {
+      background: var(--cds-support-success);
+    }
+  }
+}
+
+// ---- Pinned sentence ------------------------------------------------------
+.pd-sentence-pin {
+  border-inline-start: 3px solid var(--cds-background-brand);
+  background: var(--cds-layer-01);
+  padding: $spacing-05 $spacing-06;
+  border-radius: 0 8px 8px 0;
+
+  &__label {
+    color: var(--cds-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: $spacing-03;
+  }
+  &__text {
+    color: var(--cds-text-primary);
+  }
+}
+
+// ---- Steps: rails ---------------------------------------------------------
+.pd-step__head {
+  display: flex;
+  align-items: center;
+  gap: $spacing-05;
+  margin-bottom: $spacing-03;
+}
+.pd-copied {
+  margin-top: $spacing-04;
+}
+.pd-step__fillin {
+  color: var(--cds-text-primary);
+  background: var(--cds-layer-accent-01);
+  padding: $spacing-03 $spacing-05;
+  border-radius: 6px;
+  margin-top: $spacing-04;
+}
+.pd-step__output {
+  color: var(--cds-text-helper);
+  margin-top: $spacing-04;
+}
+.pd-step__broken {
+  margin-top: $spacing-04;
+  summary {
+    cursor: pointer;
+    color: var(--cds-link-primary);
+  }
+  p {
+    color: var(--cds-text-secondary);
+    margin-top: $spacing-03;
+  }
+}
+
+// ---- Agenda ---------------------------------------------------------------
+.pd-agenda-row {
+  display: flex;
+  gap: $spacing-05;
+  padding-block: $spacing-04;
+  border-bottom: 1px solid var(--cds-border-subtle-01);
+  &:last-child { border-bottom: none; }
+  &__time { color: var(--cds-text-brand, var(--cds-link-primary)); white-space: nowrap; min-inline-size: 3rem; }
+  &__label { color: var(--cds-text-primary); }
+}
+
+// ---- Readiness ------------------------------------------------------------
+.pd-readiness-q {
+  margin-bottom: $spacing-06;
+}
+.pd-result__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-05;
+  margin-bottom: $spacing-05;
+}
+.pd-result__score {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--cds-text-primary);
+}
+.pd-result__max {
+  font-size: 1.25rem;
+  color: var(--cds-text-secondary);
+}
+.pd-meter {
+  block-size: $spacing-05;
+  background: var(--cds-border-subtle-01);
+  border-radius: $spacing-05;
+  overflow: hidden;
+  &__fill {
+    block-size: 100%;
+    background: var(--cds-background-brand);
+    transition: width 0.4s ease;
+  }
+}
+.pd-result__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-04;
+  margin-top: $spacing-05;
+}
+.pd-consent {
+  margin-top: $spacing-07;
+  padding-top: $spacing-06;
+  border-top: 1px solid var(--cds-border-subtle-01);
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-05;
+}
+
+// ---- Stuck? help FAB ------------------------------------------------------
+.pd-help-fab {
+  position: fixed;
+  inset-block-end: $spacing-05;
+  inset-inline-end: $spacing-05;
+  z-index: 9000;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
