@@ -283,45 +283,56 @@
 
     .form-row label {
       display: block;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
       color: #1F2937;
       margin-bottom: 6px;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
 
     .form-row select,
     .form-row input[type="text"],
+    .form-row input[type="url"],
     .form-row textarea {
       width: 100%;
-      font-size: 14px;
+      font-size: 15px;
       font-family: inherit;
       color: #1F2937;
-      background: #F9FAFB;
-      border: 1.5px solid #d8d4e4;
-      border-radius: 6px;
-      padding: 10px 12px;
+      background: #fff;
+      border: 2px solid #d8d4e4;
+      border-radius: 8px;
+      padding: 11px 14px;
       appearance: none;
       -webkit-appearance: none;
-      transition: border-color 0.15s;
+      transition: border-color 0.15s, box-shadow 0.15s;
     }
 
     .form-row select:focus,
     .form-row input[type="text"]:focus,
+    .form-row input[type="url"]:focus,
     .form-row textarea:focus {
       outline: none;
       border-color: #412FE4;
+      box-shadow: 0 0 0 3px rgba(65,47,228,0.1);
     }
 
     .form-row textarea {
       resize: vertical;
-      min-height: 72px;
+      min-height: 80px;
+      line-height: 1.55;
     }
 
     .form-row .form-hint {
-      font-size: 11px;
+      font-size: 12px;
       color: #9893a1;
-      margin-top: 4px;
+      margin-top: 5px;
+    }
+
+    .form-optional {
+      font-size: 11px;
+      font-weight: 400;
+      color: #9893a1;
+      margin-left: 4px;
     }
 
     .submit-btn {
@@ -458,12 +469,12 @@
     <a class="nav-logo" href="index.html">Patterns Denver</a>
     <div class="nav-links">
       <a class="nav-link" href="index.html">Home</a>
-      <a class="nav-link" href="before.html">Before</a>
-      <a class="nav-link" href="guide.html">Guide</a>
+      <a class="nav-link" href="before.html">Setup</a>
+      <a class="nav-link" href="guide.html">Playbook</a>
       <a class="nav-link" href="prompts.html">Prompts</a>
       <a class="nav-link active" href="gallery.html">Gallery</a>
-      <a class="nav-link" href="after.html">After</a>
-      <a class="nav-link" href="survey.html">Survey</a>
+      <a class="nav-link" href="after.html">Next steps</a>
+      <a class="nav-link" href="survey.html">Feedback</a>
     </div>
   </nav>
 
@@ -531,6 +542,12 @@
           <p class="form-hint">One sentence. What broke, worked unexpectedly, or changed how you think about this?</p>
         </div>
 
+        <div class="form-row">
+          <label for="link">Link to your work <span class="form-optional">optional</span></label>
+          <input type="url" id="link" name="link" placeholder="https://github.com/… or any shareable URL">
+          <p class="form-hint">GitHub repo, spec doc, anything you want the room to be able to open.</p>
+        </div>
+
         <button type="submit" class="submit-btn">Add to gallery →</button>
       </form>
 
@@ -584,8 +601,9 @@
           card.innerHTML = `
             <div class="card-session">${esc(row.group_name)}</div>
             <div class="card-sentence">"${esc(row.sentence)}"</div>
-            <div class="card-field"><strong>Built:</strong> ${esc(row.built)}</div>
-            <div class="card-field"><strong>Surprised by:</strong> ${esc(row.surprise)}</div>
+            <div class="card-field"><strong>Built:</strong> ${linkify(row.built)}</div>
+            <div class="card-field"><strong>Surprised by:</strong> ${linkify(row.surprise)}</div>
+            ${row.link ? `<div style="margin-top:12px;"><a href="${esc(row.link)}" target="_blank" rel="noopener" style="display:inline-block;background:#F5F4FD;border:1.5px solid #C5BEF7;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:700;color:#412FE4;text-decoration:none;">View their work →</a></div>` : ''}
             <div class="card-time">${relTime(row.created_at)}</div>
           `;
           grid.insertBefore(card, grid.firstChild);
@@ -595,6 +613,11 @@
 
       function esc(str) {
         return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      }
+
+      function linkify(str) {
+        const escaped = esc(str);
+        return escaped.replace(/(https?:\/\/[^\s&]+)/g, '<a href="$1" target="_blank" rel="noopener" style="color:#412FE4;text-decoration:underline;word-break:break-all;">$1</a>');
       }
 
       // ── Poll Supabase ──────────────────────────────────────────
@@ -630,11 +653,13 @@
         btn.disabled = true;
         btn.textContent = 'Submitting…';
 
+        const linkVal = form.querySelector('#link').value.trim();
         const payload = {
           group_name: form.querySelector('#group-name').value.trim(),
           sentence:   form.querySelector('#sentence').value.trim(),
           built:      form.querySelector('#built').value.trim(),
-          surprise:   form.querySelector('#surprise').value.trim()
+          surprise:   form.querySelector('#surprise').value.trim(),
+          link:       linkVal || null
         };
 
         try {
